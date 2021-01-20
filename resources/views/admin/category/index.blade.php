@@ -40,9 +40,14 @@
                                     <td>
                                         <img width="80"  src="{{ asset('uploads/category') }}/{{ $category->category_photo }}" alt="{{ $category->category_photo }}">
                                     </td>
+
+                                    @can('edit category')
                                     <td>
                                         <a href="{{ route('category.edit',$category->id) }}" class="btn btn-info btn-sm">Edit</a>
                                     </td>
+
+                                    @endcan
+
                                 </tr>
                             @empty
                                 <tr>
@@ -59,30 +64,34 @@
                 <div class="card-header">
                     Add Category
                 </div>
+                @can('add category')
                 <div class="card-body">
-                        @if ($errors->all())
-                        <div class="alert alert-danger">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </div>
-                        @endif
-                    <form method="post" action="{{ route('category.store') }}" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
-                          <label>Category Name</label>
-                          <input type="text" class="form-control" placeholder="Enter your category Name" name="category_name">
-                        </div>
-                        <div class="form-group">
-                            <label>Category Photo</label>
-                            <input type="file" class="form-control" name="category_photo">
-                          </div>
-                        <button type="submit" class="btn btn-primary">Add Category</button>
-                      </form>
+                    @if ($errors->all())
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </div>
+                    @endif
+                <form method="post" action="{{ route('category.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                      <label>Category Name</label>
+                      <input type="text" class="form-control" placeholder="Enter your category Name" name="category_name">
+                    </div>
+                    <div class="form-group">
+                        <label>Category Photo</label>
+                        <input type="file" class="form-control" name="category_photo">
+                      </div>
+                    <button type="submit" class="btn btn-primary">Add Category</button>
+                  </form>
+                @else
+                    <span class="lead m-auto"><h1 class="badge badge-danger">UnAuthorized</h1></span>
+                @endcan
                 </div>
             </div>
         </div>
     </div>
-</div>   
+</div>
 
 @endsection

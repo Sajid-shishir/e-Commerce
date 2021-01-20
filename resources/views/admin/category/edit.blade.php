@@ -21,6 +21,7 @@
                 <div class="card-header">
                     Edit Category
                 </div>
+                @can('edit category')
                 <div class="card-body">
                         @if ($errors->all())
                         <div class="alert alert-danger">
@@ -43,9 +44,14 @@
                         <button type="submit" class="btn btn-primary">Add Category</button>
                       </form>
                 </div>
+                @else
+                <span class="lead m-auto"><h1 class="badge badge-danger">UnAuthorized</h1></span>
+                @endcan
+
             </div>
         </div>
     </div>
-</div>   
+</div>
+
 
 @endsection

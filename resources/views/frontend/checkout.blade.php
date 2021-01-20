@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-sm-6 col-12">
                                 <p>Country. *</p>
-                                <select name="country_id" id="country_list">
+                                <select name="country_id" id="country_list" required>
                                     <option value="">-Select One-</option>
                                     @foreach ($countries as $country)
                                     <option value="{{ $country->id }}">{{ $country->country_name }}</option>
@@ -56,7 +56,7 @@
                             </div>
                             <div class="col-sm-6 col-12">
                                 <p>City. *</p>
-                                <select name="city_id" id="city_list">
+                                <select name="city_id" id="city_list" required>
                                     <option value="">-Select One-</option>
                                     {{-- <option value="2">Sylhet</option> --}}
                                 </select>

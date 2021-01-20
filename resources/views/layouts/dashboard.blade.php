@@ -44,9 +44,12 @@
   </head>
 
   <body>
-
     <!-- ########## START: LEFT PANEL ########## -->
-    <div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i> Admin Panel</a></div>
+    @if (Auth::user()->role == 1)
+    <div class="sl-logo"><a href=""><i class="fa fa-graduation-cap"></i> Admin Panel</a></div>
+    @else
+    <div class="sl-logo"><a href=""><i class="fa fa-user"></i> Customer Home</a></div>
+    @endif
     <div class="sl-sideleft">
       <div class="input-group input-group-search">
         <input type="search" name="search" class="form-control" placeholder="Search">
@@ -91,6 +94,12 @@
             <span class="menu-item-label">Add Coupon</span>
           </div><!-- menu-item -->
         </a>
+        <a href="{{ route('manage.role') }}" class="sl-menu-link @yield('manage_role')">
+            <div class="sl-menu-item">
+              <i class="fa fa-lock"></i>
+              <span class="menu-item-label">Manage Role</span>
+            </div><!-- menu-item -->
+          </a>
 
         @else
         <a href="{{ url('/') }}" class="sl-menu-link">
@@ -101,8 +110,8 @@
         </a>
         <a href="{{ url('home/customer') }}" class="sl-menu-link @yield('home')" >
           <div class="sl-menu-item">
-            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
-            <span class="menu-item-label">Customer Dashboard</span>
+            <i class="fa fa-tachometer"></i>
+            <span class="menu-item-label">Dashboard</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
 

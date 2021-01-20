@@ -18,7 +18,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Add Coupon
+                    <span >List Of Coupon</span>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -27,10 +27,10 @@
                                 <th>SL No</th>
                                 <th>Coupon Name</th>
                                 <th>Discount Amount (%)</th>
-                                <th>Valid Till</th>                               
-                                <th>Status</th>                               
-                                <th>Remaining Days</th>                               
-                                <th>Created At</th>                               
+                                <th>Valid Till</th>
+                                <th>Status</th>
+                                <th>Remaining Days</th>
+                                <th>Created At</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,25 +38,25 @@
                                 <tr>
                                     <td>{{ $loop->index +1 }}</td>
                                     <td>{{ $coupon->coupon_name }}</td>
-                                    <td>{{ $coupon->discount_amount }}%</td>                                
-                                    <td>{{ $coupon->valid_till }}</td>     
+                                    <td>{{ $coupon->discount_amount }}%</td>
+                                    <td>{{ $coupon->valid_till }}</td>
                                     <td>
                                      @if ($coupon->valid_till >=\Carbon\Carbon::now()->format('Y-m-d'))
                                      <span class="badge badge-success">Valid</span>
                                     @else
-                                    <span class="badge badge-danger">Invalid</span>                                  
+                                    <span class="badge badge-danger">Invalid</span>
                                      @endif
-                                    </td>     
+                                    </td>
                                     <td>
                                         @if ($coupon->valid_till >=\Carbon\Carbon::now()->format('Y-m-d'))
                                         <span class="badge badge-success">{{ \Carbon\Carbon::parse($coupon->valid_till)->diffInDays(\Carbon\Carbon::now()->format('Y-m-d')) }} days left</span>
                                        @else
-                                       <span class="badge badge-danger">Expired {{ \Carbon\Carbon::parse($coupon->valid_till)->diffInDays(\Carbon\Carbon::now()->format('Y-m-d')) }} days ago</span>                                  
+                                       <span class="badge badge-danger">Expired {{ \Carbon\Carbon::parse($coupon->valid_till)->diffInDays(\Carbon\Carbon::now()->format('Y-m-d')) }} days ago</span>
                                         @endif
-                                        
-                                    </td> 
 
-                                    <td>{{ $coupon->created_at }}</td>          
+                                    </td>
+
+                                    <td>{{ $coupon->created_at }}</td>
                                 </tr>
                             @empty
                                 <tr>
@@ -71,8 +71,9 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    Add Category
+                    Add Coupon
                 </div>
+                @can('add coupon')
                 <div class="card-body">
                         @if ($errors->all())
                         <div class="alert alert-danger">
@@ -82,7 +83,7 @@
                         </div>
                         @endif
                     <form method="post" action="{{ route('coupon.store') }}">
-                      @csrf                                                       
+                      @csrf
                         <div class="form-group">
                           <label>Coupon Name</label>
                           <input type="text" class="form-control" name="coupon_name">
@@ -97,7 +98,10 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Add Product</button>
                       </form>
-                </div>
+                    </div>
+                    @else
+                    <span class="lead m-auto"><h1 class="badge badge-danger">UnAuthorized</h1></span>
+                    @endcan
             </div>
         </div>
     </div>

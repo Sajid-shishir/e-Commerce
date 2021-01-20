@@ -27,8 +27,9 @@
                                 <th>SL No</th>
                                 <th>Product Name</th>
                                 <th>Product Price</th>
-                                <th>Product Thumbnail Photo</th>                               
-                                <th>Product multiple Photo</th>                               
+                                <th>Product Thumbnail Photo</th>
+                                <th>Product multiple Photo</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,7 +37,7 @@
                                 <tr>
                                     <td>{{ $products->firstItem() + $index }}</td>
                                     <td>{{ $product->product_name }}</td>
-                                    <td>{{ $product->product_price }}</td>                                
+                                    <td>{{ $product->product_price }}</td>
                                     <td>
                                         <img width="170" height="130" src="{{ asset('uploads/product_thumbnail') }}/{{ $product->product_thumbnail_photo }}" alt="not found">
                                     </td>
@@ -49,7 +50,10 @@
                                     <span>No photo</span>
                                     @endforelse
                                     </td>
-                                    
+                                    <td class="lead">
+                                        <a href="" class="badge badge-warning">Edit</a>
+                                    </td>
+
                                 </tr>
                             @empty
                                 <tr>
@@ -67,6 +71,7 @@
                 <div class="card-header">
                     Add Product
                 </div>
+                @can('add product')
                 <div class="card-body">
                         @if ($errors->all())
                         <div class="alert alert-danger">
@@ -77,18 +82,18 @@
                         @endif
                     <form method="post" action="{{ route('product.store') }}" enctype="multipart/form-data">
                         @csrf
-                                               
+
                         <div class="form-group">
                             <label>Category Name</label>
                             <select name="category_id" class="form-control">
                             <option value="">-Select one-</option>
                             @foreach ($categories as $category)
-                                
+
                             <option value="{{ $category->id}}">{{ $category->category_name }}</option>
                             @endforeach
-                            
+
                             </select>
-                          </div>                                                         
+                          </div>
                         <div class="form-group">
                           <label>Product Name</label>
                           <input type="text" class="form-control" name="product_name">
@@ -120,9 +125,13 @@
                         <button type="submit" class="btn btn-primary">Add Product</button>
                       </form>
                 </div>
+                @else
+                <span class="lead m-auto"><h1 class="badge badge-danger">UnAuthorized</h1></span>
+                @endcan
+
             </div>
         </div>
     </div>
-</div>   
+</div>
 
 @endsection
