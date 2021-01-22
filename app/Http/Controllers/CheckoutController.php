@@ -71,7 +71,7 @@ class CheckoutController extends Controller
                 'coupon_name' =>$request->coupon_name
 
             ]);
-    
+
         }
         // inserting in order table
 

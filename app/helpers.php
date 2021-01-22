@@ -20,12 +20,14 @@ function sub_total(){
 
             return $total_price;
 }
+
 function orderinfo(){
 
 
     return App\Order_list::where('product_id',request())->get();
 }
-function review_star_amount($product_id){
+
+    function review_star_amount($product_id){
     if(!App\Order_list::where('product_id',$product_id)->exists()){
         return 0;
     }else{

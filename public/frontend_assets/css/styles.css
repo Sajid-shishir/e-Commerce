@@ -2703,14 +2703,14 @@ shop single style here
     position: absolute;
     right: 0;
     top: 0;
-    background: #ef4836;
+    background: #c4493b;
     color: #fff;
     text-transform: uppercase;
     border: none;
 }
 
 .cupon-wrap button:hover {
-    background: #333;
+    background: rgb(92, 91, 91);
 }
 
 .cart-total h3 {

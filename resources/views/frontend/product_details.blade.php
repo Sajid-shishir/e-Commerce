@@ -99,14 +99,14 @@
                         <li><strong>Categories:</strong></li>
                         <li><a href="#">{{ App\Category::find($product_info->category_id)->category_name }}</a></li>
                     </ul>
-                    <ul class="socil-icon">
+                    {{-- <ul class="socil-icon">
                         <li>Share :</li>
                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                         <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    </ul>
+                    </ul> --}}
                 </div>
             </div>
         </div>

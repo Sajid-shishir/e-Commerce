@@ -67,29 +67,24 @@
                 <div class="row">
                     <div class="col-md-6 col-12">
                         <ul class="d-flex header-contact">
-                            <li class="lead"><i class="fa fa-mobile"></i> +8801686662852</li>
+                            <li><i class="fa fa-phone"></i> +8801686662852</li>
                             <li><i class="fa fa-envelope"></i> sajidulhaque007@gmail.com</li>
                         </ul>
                     </div>
                     <div class="col-md-6 col-12">
                         <ul class="d-flex account_login-area">
                             <li>
-                            <a href="{{ url('login') }}">
-                                <i class="fa fa-user"></i> My Account
-                            </a>
-                                {{-- <ul class="dropdown_style">
+                                <a href="javascript:void(0);"><i class="fa fa-user"></i> My Account <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown_style">
                                     <li><a href="#">Login</a></li>
                                     <li><a href="#">Register</a></li>
                                     <li><a href="#">Cart</a></li>
                                     <li><a href="#">Checkout</a></li>
                                     <li><a href="#">wishlist</a></li>
-                                </ul> --}}
+                                </ul>
                             </li>
-                            @isset(Auth::user()->name)
-                            <li class="lead"><a href="{{ url('login') }}" class="fa fa-unlock"> {{ Auth::user()->name }} </a></li>
-                            @else
-                            <li class="lead"><a href="{{ url('login') }}" class="fa fa-lock"> Login/Register </a></li>
-                            @endisset
+                            <li><a href="{{ url('login') }}"> Login/Register </a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -97,6 +92,7 @@
         </div>
         <div class="header-bottom">
             <div class="fluid-container">
+
                 <div class="row">
                     <div class="col-lg-3 col-md-7 col-sm-6 col-6">
                         <div class="logo">
@@ -117,7 +113,7 @@
                                         <li><a href="#">About Page</a></li>
                                         <li><a href="#">Product Details</a></li>
                                         <li><a href="#">Shopping cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="#">Checkout</a></li>
                                         <li><a href="#">Wishlist</a></li>
                                         <li><a href="#">FAQ</a></li>
                                     </ul>
@@ -135,7 +131,7 @@
                     </div>
                     <div class="col-md-4 col-lg-2 col-sm-5 col-4">
                         <ul class="search-cart-wrapper d-flex">
-                            <li class="search-tigger"><a href="javascript:void(0);"><i class="flaticon-search"></i></a></li>
+                            {{-- <li class="search-tigger"><a href="javascript:void(0);"><i class="flaticon-search"></i></a></li> --}}
                             {{-- <li>
                                 <a href="javascript:void(0);"><i class="flaticon-like"></i> <span>2</span></a>
                                 <ul class="cart-wrap dropdown_style">
@@ -167,35 +163,7 @@
                                     </li>
                                 </ul>
                             </li> --}}
-                            <li>
-                                <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>
-                                    {{ cart_total_products() }}
-                                </span></a>
-                                <ul class="cart-wrap dropdown_style">
-                                    @forelse (cart_products() as $cart)
-                                    <li class="cart-items">
-                                        <div class="cart-img">
-                                            <img src="assets/images/cart/1.jpg" alt="">
-                                        </div>
-                                        <div class="cart-content">
-                                            <a href="cart.html">{{ $cart->relationtoproducttable->product_name }}</a>
-                                            <span>QTY : {{ $cart->amount }}</span>
-                                            <p>Tk : {{ $cart->relationtoproducttable->product_price }}</p>
 
-                                            <a href="{{ url('delete/from/cart') }}/{{ $cart->id }}"><i class="fa fa-times"></i></a>
-                                        </div>
-                                        {{-- <li>Subtotal: <span class="pull-right"> {{ sub_total() }}</span></li> --}}
-                                    </li>
-                                    @empty
-                                    <li >NO ITEM IN CART</li>
-                                    @endforelse
-                                    <li>Subtotal: <span class="pull-right"> {{ sub_total() }}</span></li>
-                                    <br>
-                                    <li>
-                                       <a href="{{ url('cart') }}" class="btn btn-light" style="color: black">GO TO CART</a>
-                                   </li>
-                                </ul>
-                            </li>
                         </ul>
                     </div>
                     <div class="col-md-1 col-sm-1 col-2 d-block d-lg-none">
@@ -208,6 +176,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             <!-- responsive-menu area start -->
             <div class="responsive-menu-area">
@@ -255,12 +224,6 @@
         </div>
     </header>
     <!-- header-area end -->
-    @include('frontend.frontend_includes.message')
-    {{-- @if (session('message'))
-    <div class="alert alert-success">{{ session('message') }}</div>
-    @endif --}}
-
-
 
     @yield('content')
 

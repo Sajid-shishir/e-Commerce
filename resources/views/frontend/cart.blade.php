@@ -3,7 +3,6 @@
 active
 @endsection
 @section('content')
-
 <div class="breadcumb-area bg-img-5 ptb-100">
     <div class="container">
         <div class="row">
@@ -11,7 +10,7 @@ active
                 <div class="breadcumb-wrap text-center">
                     <h2>Shopping Cart</h2>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
                         <li><span>Shopping Cart</span></li>
                     </ul>
                 </div>
@@ -19,9 +18,6 @@ active
         </div>
     </div>
 </div>
-
-<!-- .breadcumb-area end -->
-<!-- cart-area start -->
 <div class="cart-area ptb-100">
     <div class="container">
         <div class="row">
@@ -31,7 +27,7 @@ active
                         @foreach ($errors->all() as $error)
                         <li>
                             {{ $error }}
-                        </li>                           
+                        </li>
                         @endforeach
                 </div>
                 @endif
@@ -51,7 +47,7 @@ active
                         <tbody>
 
                             @foreach (cart_products() as $cart_product)
-                                
+
                             <tr>
                                 <td class="images"><img src="{{ asset('uploads/product_thumbnail') }}/{{ $cart_product->relationtoproducttable->product_thumbnail_photo }}" alt="{{ $cart_product->relationtoproducttable->product_thumbnail_photo }}"></td>
                                 <td class="product"><a href="{{ url('product') }}/{{ $cart_product->relationtoproducttable->product_slug }}" target="_blank">{{ $cart_product->relationtoproducttable->product_name }}</a></td>
@@ -64,14 +60,14 @@ active
                                 <td class="total">TK: {{ $cart_product->relationtoproducttable->product_price * $cart_product->amount }}
                                 </td>
 
-                                <td class="remove">
-                                    <a href="{{ url('delete/from/cart') }}/{{ $cart_product->id }}"><i class="fa fa-times"></i></a>
+                                <td class="remove" class="lead">
+                                    <a class="lead" href="{{ url('delete/from/cart') }}/{{ $cart_product->id }}"><i class="fa fa-trash-o"></i></a>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                
+
                     <div class="row mt-60">
                         <div class="col-xl-4 col-lg-5 col-md-6 ">
                             <div class="cartcupon-wrap">
@@ -83,12 +79,12 @@ active
                                         <a href="{{ url('/') }}">Continue Shopping</a></li>
                                 </ul>
                             </form>
-                            <br>                          
+                            <br>
                                 <h3>Coupon</h3>
                                 <p>Enter Your Coupon Code if You Have One</p>
                                 <div class="cupon-wrap">
                                     <input type="text" placeholder="Coupon Code" id="coupon_text" value="{{ $coupon_name ?? "" }}">
-                                    <a class="btn btn-light" id="apply-btn">Apply Coupon</a>
+                                    <a class="btn btn-danger" style="color: white" id="apply-btn">Apply Coupon</a>
                                 </div>
                             </div>
                         </div>
@@ -103,26 +99,31 @@ active
                                     @endisset
 
                                     <li><span class="pull-left"> Total </span>
-                                        
+
                                       @isset($discount_amount)
                                       Tk: {{ $total_from_cart = (sub_total()-(($discount_amount/100) * sub_total())) }}
                                       @else
                                       TK: {{ $total_from_cart = sub_total() }}
-                                      @endisset  
-                                        
+                                      @endisset
+
                                     </li>
                                 </ul>
+                                @isset ($cart_product->id)
                                 <form action="{{ url('checkout')}}" method="post">
                                     @csrf
                                     <input type="hidden" name="coupon_from_cart" value="{{ $coupon_name ?? "" }}">
                                     <input type="hidden" name="discount_amount" value="{{ $discount_amount ?? "" }}">
                                     <input type="hidden" name="total_from_cart" value="{{ $total_from_cart }}">
-                                    <button type="submit" class="btn btn-danger" href="">Proceed to Checkout</button> 
-                                </form>                            
+                                    <button type="submit" class="btn btn-danger" href="">Proceed to Checkout</button>
+                                </form>
+                                @else
+                                <span class="lead"><span class="badge badge-danger">Your Cart is Empty</span></span>
+                                @endisset
+
                             </div>
                         </div>
                     </div>
-                
+
             </div>
         </div>
     </div>
@@ -140,5 +141,5 @@ active
         });
     });
     </script>
-    
+
 @endsection

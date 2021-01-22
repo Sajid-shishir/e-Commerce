@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="featured-active2 owl-carousel next-prev-style">
-                    
-                    @foreach ($categories as $category)                           
+
+                    @foreach ($categories as $category)
                     <div class="featured-wrap">
                         <div class="featured-img">
                             <img src="{{ asset('uploads/category') }}/{{ $category->category_photo }}" alt="">
@@ -14,7 +14,7 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach                         
+                    @endforeach
                 </div>
             </div>
         </div>

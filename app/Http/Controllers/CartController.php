@@ -29,7 +29,7 @@ class CartController extends Controller
         function deletefromcart($cart_id){
 
             Cart::find($cart_id)->delete();
-            return redirect('/');
+            return back();
         }
 
         //Coupons

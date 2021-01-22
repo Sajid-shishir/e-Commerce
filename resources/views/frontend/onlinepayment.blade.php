@@ -1,4 +1,4 @@
-@extends('layouts.frontend_master')
+@extends('layouts.payment_method')
 @section('Online_payment')
     active
 @endsection

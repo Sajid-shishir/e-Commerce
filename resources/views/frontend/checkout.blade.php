@@ -12,7 +12,7 @@
                 <div class="breadcumb-wrap text-center">
                     <h2>Checkout</h2>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
                         <li><span>Checkout</span></li>
                     </ul>
                 </div>
@@ -52,7 +52,6 @@
                                     <option value="{{ $country->id }}">{{ $country->country_name }}</option>
                                     @endforeach
                                 </select>
-
                             </div>
                             <div class="col-sm-6 col-12">
                                 <p>City. *</p>
@@ -60,7 +59,6 @@
                                     <option value="">-Select One-</option>
                                     {{-- <option value="2">Sylhet</option> --}}
                                 </select>
-
                             </div>
                             <div class="col-12">
                                 <p>Your Address *</p>
@@ -71,7 +69,6 @@
                                 <textarea  placeholder="Notes about Your Order, e.g- Special Note for Delivery" name="note" required></textarea>
                             </div>
                         </div>
-
                 </div>
             </div>
             <div class="col-lg-4">
@@ -100,7 +97,17 @@
                             <label for="card">Credit Card/Paypal</label>
                         </li>
                     </ul>
-                        <button type="submit">Place Order</button>
+                    @isset($cart_product)
+                    <button type="submit">Place Order</button>
+                    @else
+                    <ul class="d-flex">
+                        <li>
+                            <span class="lead"><span class="badge badge-danger">Your Cart is Empty,Can't Place any Order</span></span>
+                            <span class="lead"><span class="badge badge-danger"></span></span>
+                            <br>
+                        </li>
+                    </ul>
+                    @endisset
                     </form>
                 </div>
             </div>

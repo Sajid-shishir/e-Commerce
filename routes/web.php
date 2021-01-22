@@ -29,11 +29,13 @@ Route::get('register/github','GithubController@redirectToProvider');
 Route::get('register/github/callback','GithubController@handleProviderCallback');
 Route::get('register/google','GoogleController@redirectToProvider');
 Route::get('register/google/callback','GoogleController@handleProviderCallback');
+
 Route::post('add/to/cart','CartController@addtocart');
 Route::get('delete/from/cart/{cart_id}','CartController@deletefromcart');
 Route::get('cart','CartController@cart');
 Route::post('update/cart','CartController@updatecart');
 Route::get('cart/{coupon_name}','CartController@cart');
+
 Route::post('checkout','CheckoutController@index');
 Route::get('checkout','CheckoutController@index');
 Route::post('checkout/post','CheckoutController@checkoutpost');

@@ -29,7 +29,7 @@ class StripePaymentController extends Controller
                 "description" => "Test payment from Catch Food Online"
 
         ]);
-        // $request->session()->flash('success', 'Payment successful!');
+
         $order_id = Order::insertGetId([
 
             'user_id' => Auth::id(),
@@ -65,7 +65,12 @@ class StripePaymentController extends Controller
             Cart::find($cart_product->id)->delete();
 
         }
+        // $request->session()->flash('message', 'Payment successful!');
+        session()->flash('message', 'Payment successful!');
+        // return redirect()->action('StripePaymentController@stripe');
+        // return redirect('/')->with('message','Payment Done Successfully!');
         return redirect('/');
+        // return back();
 
     }
 
