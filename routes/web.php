@@ -1,9 +1,11 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
 Route::get('/', 'FrontendController@index');
 Route::get('/contact', 'FrontendController@contact');
 Route::get('/about', 'FrontendController@about');
@@ -22,7 +24,7 @@ Route::resource('category','CategoryController');
 Route::resource('product','ProductController');
 Route::resource('coupon','CouponController');
 
-Route::get('home/customer','CustomerController@homecustomer');
+Route::get('home/customer','CustomerController@homecustomer')->name('home.customer');
 Route::get('order/download/{order_id}','CustomerController@orderdownload');
 Route::post('add/review','CustomerController@addreview');
 
@@ -54,6 +56,6 @@ Route::post('manage/role', 'RoleController@roleadd')->name('role.add');
 Route::post('role/assign', 'RoleController@roleassign')->name('role.assign');
 Route::get('role/permission/edit/{user_id}', 'RoleController@role_permission_edit')->name('role.permission.edit');
 Route::post('role/permission/edit/post', 'RoleController@role_permission_edit_post')->name('role.permission.edit.post');
-
+//Bkash Payment
 
 

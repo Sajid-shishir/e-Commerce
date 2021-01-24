@@ -96,6 +96,10 @@
                             <input id="payment-form" type="radio" name="payment_method" value="2" >
                             <label for="card">Credit Card/Paypal</label>
                         </li>
+                        {{-- <li>
+                            <input id="bKash_button" type="radio" name="payment_method" value="3" >
+                            <label for="card">Bkash</label>
+                        </li> --}}
                     </ul>
                     @isset($cart_product)
                     <button type="submit">Place Order</button>

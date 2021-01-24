@@ -44,10 +44,10 @@ class HomeController extends Controller
 
             $weekly_chart = new WeeklySaleChart;
             $weekly_chart->labels($date);
-            $weekly_chart->dataset('Sale','line', $sale)->options([
+            $weekly_chart->dataset('Sale','bar', $sale)->options([
                 'backgroundColor' => [
 
-                    '#5B9387',
+                   
                 ]
             ]);
             // $weekly_chart->dataset('Sample 2','pie', [3, 2, 1]);

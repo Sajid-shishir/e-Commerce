@@ -15,8 +15,8 @@ class CheckRole
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {   
-        
+    {
+
         if(Auth::user()->role == 2){
             return redirect('home/customer');
         }

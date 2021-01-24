@@ -8,6 +8,7 @@ function cart_total_products(){
 function cart_products(){
 
     return App\Cart::where('ip_address', request()->ip())->get();
+    // return App\Cart::where('id', request())->get();
 }
 
 function sub_total(){
