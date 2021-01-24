@@ -27,7 +27,8 @@
     <!-- Meta -->
     <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="author" content="ThemePixels">
-
+    <meta name='csrf-token' content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
         @yield('title')
 
@@ -51,12 +52,12 @@
     <div class="sl-logo"><a href=""><i class="fa fa-user"></i> Customer Home</a></div>
     @endif
     <div class="sl-sideleft">
-      <div class="input-group input-group-search">
+      {{-- <div class="input-group input-group-search">
         <input type="search" name="search" class="form-control" placeholder="Search">
         <span class="input-group-btn">
           <button class="btn"><i class="fa fa-search"></i></button>
         </span><!-- input-group-btn -->
-      </div><!-- input-group -->
+      </div><!-- input-group --> --}}
 
       <label href="" class="sidebar-label">Navigation</label>
 
@@ -152,8 +153,8 @@
       <div class="sl-header-right">
         <nav class="nav">
           <div class="dropdown">
-            <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name">{{ Auth::user()->name }}</span>
+            <a href="" class="nav-link nav-link-profile fa fa-user" data-toggle="dropdown">
+              <span class=" "><span class="logged-name badge badge-light ">{{ Auth::user()->name }}</span></span>
               {{-- <img src="{{asset('dashboard_assets/img/img3.jpg')}}" class="wd-32 rounded-circle" alt=""> --}}
             </a>
             <div class="dropdown-menu dropdown-menu-header wd-200">
@@ -173,12 +174,12 @@
           </div><!-- dropdown -->
         </nav>
         <div class="navicon-right">
-          <a id="btnRightMenu" href="" class="pos-relative">
+          {{-- <a id="btnRightMenu" href="" class="pos-relative">
             <i class="icon ion-ios-bell-outline"></i>
             <!-- start: if statement -->
             <span class="square-8 bg-danger"></span>
             <!-- end: if statement -->
-          </a>
+          </a> --}}
         </div><!-- navicon-right -->
       </div><!-- sl-header-right -->
     </div><!-- sl-header -->

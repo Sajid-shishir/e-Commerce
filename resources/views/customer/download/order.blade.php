@@ -6,131 +6,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Invoice</title>
   </head>
   <body>
-      <div class="container">
-        <div class="card">
-          <div class="card-header">
-          Invoice-Date:
-           <strong>{{ \Carbon\Carbon::now()->format('d-m-Y') }}</strong>
-            <span class="float-right"> <strong>Status:</strong> Paid</span>
-          </div>
-          <div class="card-body">
-             <div class="row mb-4">
-                        <div class="col-sm-6">
-                                <h6 class="mb-3">From:</h6>
-                                <div>
-                                <strong>Catch Food Online</strong>
-                                </div>
-                                <div>Uttara</div>
-                                <div>Dhaka-1230, Bangladesh</div>
-                                <div>Email: sajidulhaque007@gmail.com.</div>
-                                <div>Phone: +880 1686662852</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <div class="row p-5">
+                            <div class="col-md-6 text-right">
+                                <span class="text-center">Catch Food Online- Receipt</span>
+                                <p class="font-weight-bold mb-1">Invoice #{{ $order_info->id }}/{{ Str::random(6) }}</p>
+                                <p class="text-muted">Date: {{ \Carbon\Carbon::now()->format('d-m-Y') }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            <h6 class="mb-3">To:</h6>
-                            <div><strong>Order ID: {{ $order_info->id }}</strong></div>
-                            <div>
-                            <strong>Name: {{ $order_info->full_name }}</strong>
+                        <hr class="my-5">
+                        <div class="row pb-5 p-5">
+                            <div class="col-md-6">
+                                {{-- <p class="font-weight-bold mb-4">Order ID: {{ $order_info->id }}</p> --}}
+                                <p class="font-weight-bold mb-4">Purchase Date: {{ $order_info->created_at->format('d/m/Y H:i:s A') }}</p>
+                                <p class="mb-1">Name: {{ $order_info->full_name }}</p>
+                                <p class="mb-1">Address: {{ $order_info->address }}</p>
+                                <p class="mb-1">City: {{ $order_info->relationtocity->city_name }}</p>
+                                <p class="mb-1">Email: {{ $order_info->email_address }}</p>
+                                <p class="mb-1">Phone: {{ $order_info->phone_number }}</p>
+                                <p class="mb-1">Coupon Name: {{ $order_info->coupon_name ??  "Null" }}</p>
+                                <p class="mb-1">Total: {{ $order_info->total }}/-</p>
                             </div>
-                            <div>
-                               <strong> Address:</strong> {{ $order_info->address }}
+
+                            <div class="col-md-6 text-right">
+                                <p class="font-weight-bold mb-4">Payment Details</p>
+                                @if ( $order_info->payment_method == 2 )
+                                <p class="mb-1"><span class="text-muted"><strong>Type: </strong></span>Card</p>
+                                <p class="mb-1"><span class="text-muted"><strong>Status: </strong></span>Paid</p>
+                                @else
+                                <p class="mb-1"><span class="text-muted"><strong>Type: </strong></span>Cash on delivery</p>
+                                <p class="mb-1"><span class="text-muted"><strong>Status: </strong></span>Pending</p>
+                                @endif
                             </div>
-                            <div>
-                                <strong> City:</strong> {{ $order_info->relationtocity->city_name }}
-                             </div>
-                            <div>
-                              <strong>  Email: </strong>{{ $order_info->email_address }}
-                            </div>
-                            <div>
-                              <strong>  Phone: </strong>{{ $order_info->phone_number }}
-                            </div>
-                            {{-- <div>
-                             <strong> Coupon Name: </strong>{{ $order_info->coupon_name ??  "Null" }}
-                            </div>
-                            <div>
-                               <strong> Sub-total: </strong>{{ $order_info->sub_total }}/-
-                            </div>
-                            <div>
-                               <strong> Total: </strong>{{ $order_info->total }}/-
-                            </div> --}}
                         </div>
-                  </div>
-            <br>
-            {{-- <div class="table table-bordered"> --}}
-                  <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                        <th >Sl No:</th>
-                        <th>Item</th>
-                        <th >Unit Cost</th>
-                        <th >Qty</th>
-                        <th >Total</th>
-                        </tr>
-                   </thead>
-                   <tbody>
-                       @foreach (orderinfo() as  $info)
-                       <tr>
-                           <td >1</td>
-                           <td >{{ $info->id }}</td>
-                           <td >$999,00</td>
-                           <td >1</td>
-                           <td class="right">$999,00</td>
-                       </tr>
-                       @endforeach
-                   </tbody>
-                </table>
-            {{-- </div> --}}
 
-          <div class="row">
-          <div class="col-lg-4 col-sm-5">
+                        <div class="row p-5">
+                            <div class="col-md-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-0 text-uppercase small font-weight-bold">ID</th>
+                                            <th class="border-0 text-uppercase small font-weight-bold">Item</th>
+                                            <th class="border-0 text-uppercase small font-weight-bold">Description</th>
+                                            <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
+                                            <th class="border-0 text-uppercase small font-weight-bold">Unit Cost</th>
+                                            <th class="border-0 text-uppercase small font-weight-bold">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Software</td>
+                                            <td>LTS Versions</td>
+                                            <td>21</td>
+                                            <td>$321</td>
+                                            <td>$3452</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Software</td>
+                                            <td>Support</td>
+                                            <td>234</td>
+                                            <td>$6356</td>
+                                            <td>$23423</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Software</td>
+                                            <td>Sofware Collection</td>
+                                            <td>4534</td>
+                                            <td>$354</td>
+                                            <td>$23434</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-          </div>
+                        <div class="d-flex flex-row-reverse bg-dark text-white p-4">
+                            <div class="py-3 px-5 text-right">
+                                <div class="mb-2">Grand Total</div>
+                                <div class="h2 font-weight-light">$234,234</div>
+                            </div>
 
-                    <div class="col-lg-4 col-sm-5 ml-auto">
-                        <table class="table table-clear">
-                          <tbody>
-                            <tr>
-                                <td class="left">
-                                <strong>Subtotal</strong>
-                                </td>
-                                <td class="right">$8.497,00</td>
-                            </tr>
-                            <tr>
-                                <td class="left">
-                                <strong>Discount (20%)</strong>
-                                </td>
-                                <td class="right">$1,699,40</td>
-                            </tr>
-                            <tr>
-                                <td class="left">
-                                <strong>VAT (10%)</strong>
-                                </td>
-                                <td class="right">$679,76</td>
-                            </tr>
-                            <tr>
-                                <td class="left">
-                                <strong>Total</strong>
-                                </td>
-                                <td class="right">
-                                <strong>$7.477,36</strong>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            <div class="py-3 px-5 text-right">
+                                <div class="mb-2">Discount</div>
+                                <div class="h2 font-weight-light">10%</div>
+                            </div>
+
+                            <div class="py-3 px-5 text-right">
+                                <div class="mb-2">Sub - Total amount</div>
+                                <div class="h2 font-weight-light">$32,432</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-     </div>
     </div>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>

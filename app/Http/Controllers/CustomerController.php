@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Coupon;
 use App\Product;
 use App\Order_list;
+use DB;
 
 class CustomerController extends Controller
 {
@@ -22,7 +23,8 @@ class CustomerController extends Controller
 
      function homecustomer(){
 
-       $customer_orders = Order::where('user_id',Auth::id())->get();
+       $customer_orders = Order::where('user_id',Auth::id())->orderBy('id','desc')->paginate(5);
+    //    $customer_orders =Order::paginate(10);
         $product_info = Order_list::where('product_id')->get();
         return view('customer.home',compact('customer_orders','product_info'));
 
@@ -30,7 +32,7 @@ class CustomerController extends Controller
 
     function orderdownload($order_id){
        $order_info = Order::findOrFail($order_id);
-       $dynamic_name = "Invoice-".$order_info->id."-".Carbon::now()->format('d-m-Y')."pdf";
+       $dynamic_name = "Invoice-".$order_info->id."-".Carbon::now()->format('d-m-Y').".pdf";
        $order_pdf = PDF::loadView('customer.download.order',compact('order_info','dynamic_name'));
        return $order_pdf->download($dynamic_name);
         // echo $order_id;
