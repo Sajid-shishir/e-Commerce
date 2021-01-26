@@ -100,6 +100,12 @@
               <span class="menu-item-label">Manage Role</span>
             </div><!-- menu-item -->
           </a>
+          <a href="{{ route('report') }}" class="sl-menu-link @yield('report')">
+            <div class="sl-menu-item">
+              <i class="fa fa-lock"></i>
+              <span class="menu-item-label">Report</span>
+            </div><!-- menu-item -->
+          </a>
 
         @else
         <a href="{{ url('/') }}" class="sl-menu-link">
