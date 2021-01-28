@@ -217,7 +217,8 @@ sup {
 }
 
 a {
-  color: #0866C6;
+  /* color: #0866C6; */
+  color: #1b1e20;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;

@@ -109,7 +109,7 @@ active
                                     </li>
                                 </ul>
                                 @isset ($cart_product->id)
-                                <form action="{{ url('checkout')}}" method="post">
+                                <form action="{{ url('/example2')}}" method="POST">
                                     @csrf
                                     <input type="hidden" name="coupon_from_cart" value="{{ $coupon_name ?? "" }}">
                                     <input type="hidden" name="discount_amount" value="{{ $discount_amount ?? "" }}">

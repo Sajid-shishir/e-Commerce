@@ -96,6 +96,10 @@
                             <input id="payment-form" type="radio" name="payment_method" value="2" >
                             <label for="card">Credit Card/Paypal</label>
                         </li>
+                        <li>
+                            <input id="payment-form" type="radio" name="payment_method" value="3" >
+                            <label for="card">Local Payments</label>
+                        </li>
                         {{-- <li>
                             <input id="bKash_button" type="radio" name="payment_method" value="3" >
                             <label for="card">Bkash</label>
@@ -118,6 +122,7 @@
         </div>
     </div>
 </div>
+
 
 @endsection
 

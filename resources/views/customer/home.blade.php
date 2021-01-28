@@ -51,8 +51,8 @@
                                     </td>
                                     @endif
                                     <td>৳ {{ $customer_order->sub_total}}</td>
-                                    <td>৳ {{ $customer_order->total}}</td>
-                                    <td>{{ $customer_order->created_at->format('d/m/Y H:i:s A') }}</td>
+                                    <td>৳ {{ $customer_order->amount}}</td>
+                                    {{-- <td>{{ $customer_order->created_at->format('d/m/Y H:i:s A') }}</td> --}}
                                     <td>
                                         <a href="{{ url('order/download') }}/{{ $customer_order->id }}" class="btn btn-dark btn-sm">Download</a>
                                     </td>

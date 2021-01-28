@@ -1,10 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SslCommerzPaymentController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::get('/', 'FrontendController@index');
 Route::get('/contact', 'FrontendController@contact');
@@ -50,12 +48,24 @@ Route::post('stripe','StripePaymentController@stripePost')->name('stripe.post');
 
 //ajax Request
 Route::post('get/city/list', 'CheckoutController@getcitylist');
+Route::post('get/city', 'SslCommerzPaymentController@getcity');
 //Roles
 Route::get('manage/role', 'RoleController@managerole')->name('manage.role');
 Route::post('manage/role', 'RoleController@roleadd')->name('role.add');
 Route::post('role/assign', 'RoleController@roleassign')->name('role.assign');
 Route::get('role/permission/edit/{user_id}', 'RoleController@role_permission_edit')->name('role.permission.edit');
 Route::post('role/permission/edit/post', 'RoleController@role_permission_edit_post')->name('role.permission.edit.post');
-//Bkash Payment
+//ssl Commerze
+// SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::post('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 

@@ -14,5 +14,11 @@
     </nav>
 @endsection
 @section('content')
-
+    <div class="container">
+        <div class="row">
+            <div class="card-body">
+                <h2>Report</h2>
+            </div>
+        </div>
+    </div>
 @endsection

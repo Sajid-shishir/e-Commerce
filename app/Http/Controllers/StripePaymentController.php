@@ -11,6 +11,7 @@ use Illuminate\Support\Carbon;
 use App\Order_list;
 use App\Product;
 use App\Cart;
+use Str;
 
 class StripePaymentController extends Controller
 {
@@ -45,6 +46,7 @@ class StripePaymentController extends Controller
             'coupon_name' => $request->coupon_name,
             'payment_method' => 2,
             'paid_status' => 2,
+            'transaction_id' => Str::random(15),
             'created_at' => Carbon::now()
 
         ]);

@@ -28,14 +28,14 @@
                         <div class="row pb-5 p-5">
                             <div class="col-md-6">
                                 {{-- <p class="font-weight-bold mb-4">Order ID: {{ $order_info->id }}</p> --}}
-                                <p class="font-weight-bold mb-4">Purchase Date: {{ $order_info->created_at->format('d/m/Y H:i:s A') }}</p>
+                                {{-- <p class="font-weight-bold mb-4">Purchase Date: {{ $order_info->created_at->format('d/m/Y H:i:s A') }}</p> --}}
                                 <p class="mb-1">Name: {{ $order_info->full_name }}</p>
                                 <p class="mb-1">Address: {{ $order_info->address }}</p>
                                 <p class="mb-1">City: {{ $order_info->relationtocity->city_name }}</p>
                                 <p class="mb-1">Email: {{ $order_info->email_address }}</p>
                                 <p class="mb-1">Phone: {{ $order_info->phone_number }}</p>
                                 <p class="mb-1">Coupon Name: {{ $order_info->coupon_name ??  "Null" }}</p>
-                                <p class="mb-1">Total: {{ $order_info->total }}/-</p>
+                                <p class="mb-1">Total: {{ $order_info->amount }}/-</p>
                             </div>
 
                             <div class="col-md-6 text-right">
