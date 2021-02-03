@@ -12,6 +12,9 @@ use App\Order_list;
 use App\Product;
 use App\Cart;
 use Str;
+use Stripe\Error\Card;
+use Stripe\Exception\CardException;
+use Exception;
 
 class StripePaymentController extends Controller
 {
@@ -21,10 +24,12 @@ class StripePaymentController extends Controller
     }
     public function stripePost(Request $request)
     {
-        Stripe\Stripe::setApiKey('sk_test_51I9r4cFnagMfg4BuGoqYfc4nhHP1d99li50IbBX2qmeqFD2NtVdRiUKyPcYnaxE4JdfKr9JXw1a8L7ybZ16jZDZ7007eXTkltZ');
 
+
+        Stripe\Stripe::setApiKey('sk_test_51I9r4cFnagMfg4BuGoqYfc4nhHP1d99li50IbBX2qmeqFD2NtVdRiUKyPcYnaxE4JdfKr9JXw1a8L7ybZ16jZDZ7007eXTkltZ');
+        try {
         Stripe\Charge::create ([
-                "amount" => $request->total * 100,
+                "amount" => $request->amount * 100,
                 "currency" => "INR",
                 "source" => $request->stripeToken,
                 "description" => "Test payment from Catch Food Online"
@@ -42,10 +47,11 @@ class StripePaymentController extends Controller
             'address' => $request->address,
             'note' => $request->note,
             'sub_total' => $request->sub_total,
-            'total' => $request->total,
+            'amount' => $request->amount,
             'coupon_name' => $request->coupon_name,
             'payment_method' => 2,
-            'paid_status' => 2,
+            'status' => 2,
+            'currency' => 'BDT',
             'transaction_id' => Str::random(15),
             'created_at' => Carbon::now()
 
@@ -72,6 +78,33 @@ class StripePaymentController extends Controller
         // return redirect()->action('StripePaymentController@stripe');
         // return redirect('/')->with('message','Payment Done Successfully!');
         return redirect('/');
+     }
+     catch(\Stripe\Exception\CardException $e) {
+        // Since it's a decline, \Stripe\Exception\CardException will be caught
+        session()->flash('error', 'Something Wrong, Please check your card number!');
+        return redirect('/cart');
+        echo 'Status is:' . $e->getHttpStatus() . '\n';
+        echo 'Type is:' . $e->getError()->type . '\n';
+        echo 'Code is:' . $e->getError()->code . '\n';
+        // param is '' in this case
+        echo 'Param is:' . $e->getError()->param . '\n';
+        echo 'Message is:' . $e->getError()->message . '\n';
+      } catch (\Stripe\Exception\RateLimitException $e) {
+        // Too many requests made to the API too quickly
+      } catch (\Stripe\Exception\InvalidRequestException $e) {
+        // Invalid parameters were supplied to Stripe's API
+      } catch (\Stripe\Exception\AuthenticationException $e) {
+        // Authentication with Stripe's API failed
+        // (maybe you changed API keys recently)
+      } catch (\Stripe\Exception\ApiConnectionException $e) {
+        // Network communication with Stripe failed
+      } catch (\Stripe\Exception\ApiErrorException $e) {
+        // Display a very generic error to the user, and maybe send
+        // yourself an email
+      } catch (Exception $e) {
+        // Something else happened, completely unrelated to Stripe
+      }
+
         // return back();
 
     }

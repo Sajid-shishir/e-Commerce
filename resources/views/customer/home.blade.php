@@ -29,7 +29,7 @@
                                     <th scope="col">Payment Method</th>
                                     <th scope="col">Sub Total</th>
                                     <th scope="col">Total</th>
-                                    <th scope="col">User Created</th>
+                                    <th scope="col">Payment Time</th>
                                     <th scope="col">Invoice</th>
                                 </tr>
                             </thead>
@@ -41,18 +41,22 @@
                                     {{-- <td>{{ App\Order_list::find($customer_order->user_id)->amount }}</td> --}}
                                     <td>{{ $customer_order->full_name}}</td>
                                     <td>{{ $customer_order->address}}</td>
-                                    @if( $customer_order->paid_status == 1)
+                                    @if( $customer_order->status == 1)
                                     <td>
                                         <span class="badge badge-light">Cash on delivery</span>
                                     </td>
                                     @else
                                     <td>
-                                        <span class="badge badge-primary">Card</span>
+                                        <span class="badge badge-primary">Online</span>
                                     </td>
                                     @endif
                                     <td>৳ {{ $customer_order->sub_total}}</td>
                                     <td>৳ {{ $customer_order->amount}}</td>
-                                    {{-- <td>{{ $customer_order->created_at->format('d/m/Y H:i:s A') }}</td> --}}
+                                    @if($customer_order->created_at)
+                                    <td style="color: green">{{ $customer_order->created_at->toDayDateTimeString() }}</td>
+                                    @else
+                                    <td style="color: red">Processing</td>
+                                    @endif
                                     <td>
                                         <a href="{{ url('order/download') }}/{{ $customer_order->id }}" class="btn btn-dark btn-sm">Download</a>
                                     </td>

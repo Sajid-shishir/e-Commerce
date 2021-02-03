@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
+use Symfony\Component\HttpFoundation\Session\Session;
 use App\Country;
 use App\City;
+use App\Product;
+use App\Cart;
 use Auth;
+use Illuminate\Support\Carbon;
+use App\Order_list;
 
 class SslCommerzPaymentController extends Controller
 {
+
 
     public function exampleEasyCheckout()
     {
@@ -25,6 +31,10 @@ class SslCommerzPaymentController extends Controller
         $countries = Country::all();
 
         return view('exampleHosted',compact('totalFromCart','discount','coupon_name','countries'));
+    }
+    function __construct(){
+
+        $this->middleware('auth');
     }
 
     public function index(Request $request)
@@ -55,6 +65,7 @@ class SslCommerzPaymentController extends Controller
         $post_data['discount'] = $request->discount;
         $post_data['coupon_name'] = $request->coupon_name;
         $post_data['note'] = $request->note;
+        $post_data['sub_total'] = $request->sub_total;
 
         # SHIPMENT INFORMATION
         $post_data['ship_name'] = "Store Test";
@@ -98,6 +109,7 @@ class SslCommerzPaymentController extends Controller
                 'city_id' => $post_data['cus_city'],
                 'note' =>  $post_data['note'],
                 'currency'=>$post_data['currency'],
+                'sub_total'=>$post_data['sub_total'],
 
             ]);
 
@@ -211,6 +223,23 @@ class SslCommerzPaymentController extends Controller
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Processing']);
 
+                    foreach(cart_products() as $cart_product){
+
+                        // Order_list::insert([
+
+                        // 'user_id' => $cart_product=Auth::id(),
+                        // 'order_id' => $cart_product->order_id,
+                        // 'product_id' => $cart_product->product_id,
+                        // 'amount' =>$cart_product->amount,
+                        // 'created_at' => Carbon::now()
+                        // ]);
+                            // emptying cart table
+                        Product::find($cart_product->product_id)->decrement('quantity', $cart_product->amount);
+                        Cart::find($cart_product->id)->delete();
+
+                    }
+
+                    session()->flash('message', 'Payment successful!');
                 return redirect('/');
             } else {
                 /*

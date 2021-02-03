@@ -79,8 +79,9 @@
 
                         <li>{{ $cart_product->relationtoproducttable->product_name }} <span class="pull-right">Tk: {{ $cart_product->relationtoproducttable->product_price *$cart_product->amount }}</span></li>
                         @endforeach
+                        <input type="hidden" name="currency" value="BDT">
                         <input type="hidden" name="sub_total" value="{{ sub_total() }}">
-                        <input type="hidden" name="total" value="{{ $total_from_cart }}">
+                        <input type="hidden" name="amount" value="{{ $total_from_cart }}">
                         <input type="hidden" name="coupon_name" value="{{ $coupon_from_cart ?? "Null" }}">
                         <li>Subtotal: <span class="pull-right"><strong>Tk: {{ sub_total() }}</strong></span></li>
                         <li>Coupon: <span class="pull-right"><strong>{{ $coupon_from_cart ?? "Null" }}</strong></span></li>
@@ -93,13 +94,13 @@
                             <label for="delivery">Cash on Delivery</label>
                         </li>
                         <li>
-                            <input id="payment-form" type="radio" name="payment_method" value="2" >
+                            <input id="card" type="radio" name="payment_method" value="2" checked>
                             <label for="card">Credit Card/Paypal</label>
                         </li>
-                        <li>
+                        {{-- <li>
                             <input id="payment-form" type="radio" name="payment_method" value="3" >
                             <label for="card">Local Payments</label>
-                        </li>
+                        </li> --}}
                         {{-- <li>
                             <input id="bKash_button" type="radio" name="payment_method" value="3" >
                             <label for="card">Bkash</label>

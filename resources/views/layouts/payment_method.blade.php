@@ -83,7 +83,11 @@
                                     <li><a href="#">wishlist</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{{ url('login') }}"> Login/Register </a></li>
+                            @isset(Auth::user()->name)
+                            <li class="lead"><a href="{{ url('login') }}" class="fa fa-unlock"> {{ Auth::user()->name }} </a></li>
+                            @else
+                            <li class="lead"><a href="{{ url('login') }}" class="fa fa-lock"> Login/Register </a></li>
+                            @endisset
 
                         </ul>
                     </div>

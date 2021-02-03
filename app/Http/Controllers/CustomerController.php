@@ -11,6 +11,9 @@ use App\Coupon;
 use App\Product;
 use App\Order_list;
 use DB;
+use App\Mail\payment;
+use Illuminate\Support\Facades\Mail;
+use App\User;
 
 class CustomerController extends Controller
 {
@@ -35,6 +38,11 @@ class CustomerController extends Controller
        $dynamic_name = "Invoice-".$order_info->id."-".Carbon::now()->format('d-m-Y').".pdf";
        $order_pdf = PDF::loadView('customer.download.order',compact('order_info','dynamic_name'));
        return $order_pdf->download($dynamic_name);
+
+       foreach(User::where(Auth::user())->get() as $user){
+
+        Mail::to($request->user())->send(new payment($order_pdf));
+    }
         // echo $order_id;
 
 

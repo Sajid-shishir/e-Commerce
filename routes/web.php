@@ -40,6 +40,7 @@ Route::get('cart/{coupon_name}','CartController@cart');
 Route::post('checkout','CheckoutController@index');
 Route::get('checkout','CheckoutController@index');
 Route::post('checkout/post','CheckoutController@checkoutpost');
+
 //payments
 Route::get('stripe','StripePaymentController@stripe');
 Route::post('stripe','StripePaymentController@stripePost')->name('stripe.post');
@@ -59,6 +60,7 @@ Route::post('role/permission/edit/post', 'RoleController@role_permission_edit_po
 // SSLCOMMERZ Start
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
 Route::post('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
 Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);

@@ -1,4 +1,4 @@
-@extends('layouts.frontend_master')
+@extends('layouts.payment_method')
 @section('checkout')
     active
 @endsection
@@ -78,6 +78,7 @@
             <form action="{{ url('/pay') }}" method="POST" class="needs-validation">
 
                 <input type="hidden" name="total" value="{{ $totalFromCart }}">
+                <input type="hidden" name="sub_total" value="{{ sub_total() }}">
                 <input type="hidden" name="discount" value="{{ $discount }}">
                 <input type="hidden" name="coupon_name" value="{{ $coupon_name ?? "Null" }}">
                 <span class="lead"><span class="badge badge-success">You are logged in as: {{ Auth::user()->name }}</span></span>
@@ -109,10 +110,10 @@
                     <input type="text" class="form-control" name="address" required>
                 </div>
 
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
                     <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-                </div>
+                </div> --}}
                 <div class="mb-3">
                     <p>Order Notes </p>
                     <textarea  placeholder="Notes about Your Order, e.g- Special Note for Delivery" name="note" required></textarea>
@@ -152,12 +153,12 @@
                     <label class="custom-control-label" for="same-address">Shipping address is the same as my billing
                         address</label>
                 </div> --}}
-                <div class="custom-control custom-checkbox">
+                {{-- <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="save-info">
                     <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                </div>
+                </div> --}}
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout (Hosted)</button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout </button>
             </form>
         </div>
     </div>

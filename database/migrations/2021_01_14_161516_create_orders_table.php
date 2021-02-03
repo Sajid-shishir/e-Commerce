@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->integer('city_id');
             $table->longText('address');
             $table->longText('note');
+            $table->integer('sub_total');
             $table->integer('amount');
             $table->string('coupon_name')->nullable();
             $table->integer('payment_method');

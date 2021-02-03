@@ -87,7 +87,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <input type="hidden" name="total" value="{{ $total }}">
+                                <input type="hidden" name="amount" value="{{ $amount }}">
                                 <input type="hidden" name="sub_total" value="{{ $sub_total }}">
                                 <input type="hidden" name="full_name" value="{{ $full_name }}">
                                 <input type="hidden" name="email_address" value="{{ $email_address }}">
@@ -97,7 +97,8 @@
                                 <input type="hidden" name="address" value="{{ $address }}">
                                 <input type="hidden" name="note" value="{{ $note }}">
                                 <input type="hidden" name="coupon_name" value="{{ $coupon_name }}">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ({{ $total }})</button>
+                                <input type="hidden" name="currency" value="BDT">
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ({{ $amount }})</button>
                             </div>
                         </div>
                     </form>
