@@ -132,19 +132,20 @@
         </a> --}}
 
 
-        <a href="#" class="sl-menu-link">
+        {{-- <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-paper-outline tx-22"></i>
             <span class="menu-item-label">Reserved dropdown</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
-            <ul class="sl-menu-sub nav flex-column">
+        </a><!-- sl-menu-link --> --}}
+           <!-- <ul class="sl-menu-sub nav flex-column">
                 <li class="nav-item"><a href="#" class="nav-link">Blank Page</a></li>
                 {{-- <li class="nav-item"><a href="#" class="nav-link">Signin Page</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Signup Page</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">404 Page Not Found</a></li> --}}
-            </ul>
+            </ul>-->
+
       </div><!-- sl-sideleft-menu -->
 
       <br>

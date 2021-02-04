@@ -58,14 +58,14 @@ class ProductController extends Controller
     {
         $request->validate([
 
-            'product_price' => 'required|numeric|max:10|min:1',
-            'quantity' => 'required|numeric|max:99|min:1',
+            'product_price' => 'required|numeric|max:1000|min:1',
+            'quantity' => 'required|numeric|max:1000|min:1',
             'product_name' => 'required',
             'product_short_desc' => 'required',
             'product_long_desc' => 'required',
             'product_thumbnail_photo' => 'required',
             'product_name' => 'required',
-            'product_name' => 'required',
+            
 
         ]);
 
@@ -164,5 +164,5 @@ class ProductController extends Controller
     {
         //
     }
-    
+
 }

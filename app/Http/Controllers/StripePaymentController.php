@@ -56,6 +56,26 @@ class StripePaymentController extends Controller
             'created_at' => Carbon::now()
 
         ]);
+        // print_r($request->phone_number);
+        // die();
+                    // $url = "http://66.45.237.70/api.php";
+                    // $number=$request->phone_number;
+                    // $text="Hello, Dear ".$request->full_name.". Your Transaction Id: ".$request->transaction_id.". Total Payment Done: ".$request->amount. " Thank You";
+                    // $data= array(
+                    // 'username'=>"01634174881",
+                    // 'password'=>"4RPTBXKF",
+                    // 'number'=>"$number",
+                    // 'message'=>"$text"
+                    // );
+
+                    // $ch = curl_init(); // Initialize cURL
+                    // curl_setopt($ch, CURLOPT_URL,$url);
+                    // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+                    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    // $smsresult = curl_exec($ch);
+                    // $p = explode("|",$smsresult);
+                    // $sendstatus = $p[0];
+
 
         // return back();
         foreach(cart_products() as $cart_product){
@@ -68,7 +88,8 @@ class StripePaymentController extends Controller
             'amount' =>$cart_product->amount,
             'created_at' => Carbon::now()
             ]);
-                // emptying cart table
+
+
             Product::find($cart_product->product_id)->decrement('quantity', $cart_product->amount);
             Cart::find($cart_product->id)->delete();
 

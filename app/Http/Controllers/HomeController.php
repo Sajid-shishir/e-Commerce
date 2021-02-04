@@ -101,7 +101,7 @@ class HomeController extends Controller
         //print_r($request->all());
 
     }
-    public function report(){
-            return view('admin.report');
-    }
+    // public function report(){
+    //         return view('admin.report');
+    // }
 }

@@ -50,6 +50,7 @@ class CheckoutController extends Controller
                 'order_id' => $order_id,
                 'product_id' => $cart_product->product_id,
                 'amount' =>$cart_product->amount,
+                // 'star' =>$cart_product->default(0),
                 'created_at' => Carbon::now()
                 ]);
                     // emptying cart table
@@ -95,7 +96,7 @@ class CheckoutController extends Controller
         // inserting in order table
 
     }
-    
+
     function getcitylist(Request $request){
         $drop_to_send = "";
 

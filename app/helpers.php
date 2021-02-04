@@ -32,18 +32,11 @@ function orderinfo(){
     if(!App\Order_list::where('product_id',$product_id)->exists()){
         return 0;
     }else{
-        $amount = (App\Order_list::where('product_id',$product_id)->whereNotNull('star')->sum('star'))/(App\Order_list::where('product_id',$product_id)->whereNotNull('star')->count());
-        return floor($amount);
+        $star_amount = (App\Order_list::where('product_id',$product_id)->whereNotNull('star')->sum('star'))/(App\Order_list::where('product_id',$product_id)->whereNotNull('star')->count());
+        return round($star_amount);
     }
 
-    function gotocart($id){
-        if(App\Cart::where('id',$id)->exists()){
-             echo "ase";
-        } else{
-            echo "kisu kino bhai";
-        }
-        print_r($id);
-    }
+
 
 }
 

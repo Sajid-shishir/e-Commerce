@@ -53,7 +53,7 @@
                     <h3>{{ $product_info->product_name }}</h3>
                     <h6>Available Quantity: {{ $product_info->quantity }}</h6>
                     <div class="rating-wrap fix">
-                        <span class="pull-left">${{ $product_info->product_price }}</span>
+                        <span class="pull-left">৳ {{ $product_info->product_price }}</span>
                         <ul class="rating pull-right">
                             @if(review_star_amount($product_info->id) == 1)
                             <li><i class="fa fa-star"></i></li>
@@ -115,7 +115,7 @@
                 <div class="single-product-menu">
                     <ul class="nav">
                         <li><a class="active" data-toggle="tab" href="#description">Description</a> </li>
-                        
+
                         <li><a data-toggle="tab" href="#review">Review</a></li>
                     </ul>
                 </div>
@@ -264,7 +264,7 @@
                         <div class="row">
                             <div class="col-7">
                                 <h3><a href="{{  route('product.show',$related_product->product_slug) }}">{{ $related_product->product_name }}</a></h3>
-                                <p>${{ $related_product->product_price }}</p>
+                                <p>৳ {{ $related_product->product_price }}</p>
                             </div>
                             <div class="col-5 text-right">
                                 <ul>

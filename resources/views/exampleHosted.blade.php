@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="SSLCommerz">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Example - Hosted Checkout | SSLCommerz</title>
+
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -50,26 +50,26 @@
                     <div>
                         <h6 class="my-0">{{ $product->relationtoproducttable->product_name }}</h6>
                     </div>
-                    <span class="text-muted">{{ $product->relationtoproducttable->product_price * $product->amount}}TK</span>
+                    <span class="text-muted">৳ {{ $product->relationtoproducttable->product_price * $product->amount}}</span>
                 </li>
                 @endforeach
 
                 @if(isset($coupon_name ))
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Coupon :</span>
-                    <strong>{{ $coupon_name }}TK</strong>
+                    <strong>{{ $coupon_name }} ৳</strong>
                 </li>
                 @endif
                 @if(isset($discount ))
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Discount :</span>
-                    <strong>{{ $discount }}TK</strong>
+                    <strong>{{ $discount }} ৳</strong>
                 </li>
                 @endif
 
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Total (BDT)</span>
-                    <strong>{{ $totalFromCart }}TK</strong>
+                    <strong>৳ {{ $totalFromCart }} </strong>
                 </li>
             </ul>
         </div>
@@ -138,13 +138,13 @@
                             <option value="">-Select One-</option>
                         </select>
                     </div>
-                    <div class="col-md-3 mb-3">
+                    {{-- <div class="col-md-3 mb-3">
                         <label for="zip">Zip</label>
                         <input type="text" class="form-control" id="zip" placeholder="" required>
                         <div class="invalid-feedback">
                             Zip code required.
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <hr class="mb-4">
                 {{-- <div class="custom-control custom-checkbox">

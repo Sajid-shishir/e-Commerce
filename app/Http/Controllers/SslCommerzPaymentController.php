@@ -32,10 +32,10 @@ class SslCommerzPaymentController extends Controller
 
         return view('exampleHosted',compact('totalFromCart','discount','coupon_name','countries'));
     }
-    function __construct(){
+    // function __construct(){
 
-        $this->middleware('auth');
-    }
+    //     $this->middleware('auth');
+    // }
 
     public function index(Request $request)
     {
@@ -94,7 +94,7 @@ class SslCommerzPaymentController extends Controller
         #Before  going to initiate the payment order status need to insert or update as Pending.
         $update_product = DB::table('orders')
             ->where('transaction_id', $post_data['tran_id'])
-            ->updateOrInsert([
+            ->insertGetId([
                 'user_id' =>Auth::id(),
                 'full_name' =>$post_data['cus_name'],
                 'email_address' =>$post_data['cus_email'],
@@ -112,10 +112,45 @@ class SslCommerzPaymentController extends Controller
                 'sub_total'=>$post_data['sub_total'],
 
             ]);
+                        $url = "http://66.45.237.70/api.php";
+                        $number=$post_data['cus_phone'];
+                        $text="Hello, Dear ".$post_data['cus_name'].". Your Transaction Id: ".$post_data['tran_id'].". Total Payment Done: ".$post_data['total_amount']. " Thank You";
+                        $data= array(
+                        'username'=>"01634174881",
+                        'password'=>"4RPTBXKF",
+                        'number'=>"$number",
+                        'message'=>"$text"
+                        );
+
+                        $ch = curl_init(); // Initialize cURL
+                        curl_setopt($ch, CURLOPT_URL,$url);
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                        $smsresult = curl_exec($ch);
+                        $p = explode("|",$smsresult);
+                        $sendstatus = $p[0];
+
+            foreach(cart_products() as $cart_product){
+            $update_orderlist = DB::table('order_lists')
+            ->where('user_id', Auth::id())
+            ->updateOrInsert([
+                'user_id' =>Auth::id(),
+                'order_id' => $update_product,
+                'product_id' => $cart_product->product_id,
+                'amount' =>$cart_product->amount,
+                'created_at' => Carbon::now()
+            ]);
+            Product::find($cart_product->product_id)->decrement('quantity', $cart_product->amount);
+            Cart::find($cart_product->id)->delete();
+        }
+
+
+
 
         $sslc = new SslCommerzNotification();
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
         $payment_options = $sslc->makePayment($post_data, 'hosted');
+
 
         if (!is_array($payment_options)) {
             print_r($payment_options);
@@ -197,11 +232,16 @@ class SslCommerzPaymentController extends Controller
 
     public function success(Request $request)
     {
+
         echo "Transaction is Successful";
 
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
         $currency = $request->input('currency');
+        $full_name = $request->input('full_name');
+        $phone_number = $request->input('phone_number');
+
+
 
         $sslc = new SslCommerzNotification();
 
@@ -209,6 +249,8 @@ class SslCommerzPaymentController extends Controller
         $order_detials = DB::table('orders')
             ->where('transaction_id', $tran_id)
             ->select('transaction_id', 'status', 'currency', 'amount')->first();
+
+
 
         if ($order_detials->status == 'Pending') {
             $validation = $sslc->orderValidate($tran_id, $amount, $currency, $request->all());
@@ -221,26 +263,28 @@ class SslCommerzPaymentController extends Controller
                 */
                 $update_product = DB::table('orders')
                     ->where('transaction_id', $tran_id)
-                    ->update(['status' => 'Processing']);
+                    ->update(['status' => 'Processing',
 
-                    foreach(cart_products() as $cart_product){
+                    ]);
 
-                        // Order_list::insert([
 
-                        // 'user_id' => $cart_product=Auth::id(),
-                        // 'order_id' => $cart_product->order_id,
-                        // 'product_id' => $cart_product->product_id,
-                        // 'amount' =>$cart_product->amount,
-                        // 'created_at' => Carbon::now()
-                        // ]);
-                            // emptying cart table
-                        Product::find($cart_product->product_id)->decrement('quantity', $cart_product->amount);
-                        Cart::find($cart_product->id)->delete();
+                // foreach(cart_products() as $cart_product){
+                //     Order_list::insert([
 
-                    }
+                //         'user_id' => Auth::id(),
+                //         // 'order_id' => $order_id,
+                //         'product_id' => $cart_product->product_id,
+                //         'amount' =>$cart_product->amount,
+                //         'created_at' => Carbon::now()
+                //         ]);
 
-                    session()->flash('message', 'Payment successful!');
-                return redirect('/');
+                // Product::find($cart_product->product_id)->decrement('quantity', $cart_product->amount);
+                // Cart::find($cart_product->id)->delete();
+
+            // }
+
+        session()->flash('message', 'Payment successful!');
+        return redirect('/');
             } else {
                 /*
                 That means IPN did not work or IPN URL was not set in your merchant panel and Transation validation failed.
@@ -297,7 +341,13 @@ class SslCommerzPaymentController extends Controller
             $update_product = DB::table('orders')
                 ->where('transaction_id', $tran_id)
                 ->update(['status' => 'Canceled']);
-            echo "Transaction is Cancel";
+                foreach(cart_products() as $cart_product){
+                    Product::find($cart_product->product_id)->decrement('quantity', $cart_product->amount);
+                    Cart::find($cart_product->id)->delete();
+
+                }
+            session()->flash('error', 'Payment Cancelled');
+            return redirect('/');
         } else if ($order_detials->status == 'Processing' || $order_detials->status == 'Complete') {
             echo "Transaction is already Successful";
         } else {

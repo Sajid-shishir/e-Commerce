@@ -249,7 +249,7 @@
                         </div>
                         <div class="product-content">
                             <h3><a href="{{  route('product.show',$product->product_slug) }}">{{ $product->product_name }}</a></h3>
-                            <p class="pull-left">${{ $product->product_price }}
+                            <p class="pull-left">৳ {{ $product->product_price }}
                             </p>
                             <ul class="pull-right d-flex">
                                 @if(review_star_amount($product->id)  == 1)

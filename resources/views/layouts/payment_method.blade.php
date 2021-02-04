@@ -73,16 +73,7 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <ul class="d-flex account_login-area">
-                            <li>
-                                <a href="javascript:void(0);"><i class="fa fa-user"></i> My Account <i class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown_style">
-                                    <li><a href="#">Login</a></li>
-                                    <li><a href="#">Register</a></li>
-                                    <li><a href="#">Cart</a></li>
-                                    <li><a href="#">Checkout</a></li>
-                                    <li><a href="#">wishlist</a></li>
-                                </ul>
-                            </li>
+
                             @isset(Auth::user()->name)
                             <li class="lead"><a href="{{ url('login') }}" class="fa fa-unlock"> {{ Auth::user()->name }} </a></li>
                             @else
@@ -111,24 +102,7 @@
                                 <li class="@yield('home')"><a href="{{ url('/') }}">Home</a></li>
                                 <li class="@yield('about')"><a href="{{ url('about') }}">About</a></li>
                                 <li class="@yield('shop')"><a href="{{ url('shop') }}">Shop</a></li>
-                                <li>
-                                    <a href="javascript:void(0);">Pages <i class="fa fa-angle-down"></i></a>
-                                    <ul class="dropdown_style">
-                                        <li><a href="#">About Page</a></li>
-                                        <li><a href="#">Product Details</a></li>
-                                        <li><a href="#">Shopping cart</a></li>
-                                        <li><a href="#">Checkout</a></li>
-                                        <li><a href="#">Wishlist</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">Blog <i class="fa fa-angle-down"></i></a>
-                                    <ul class="dropdown_style">
-                                        <li><a href="#">blog Page</a></li>
-                                        <li><a href="#">blog Details</a></li>
-                                    </ul>
-                                </li>
+                                
                                 <li class="@yield('contact')"><a href="{{ url('contact') }}">Contact</a></li>
                             </ul>
                         </nav>
