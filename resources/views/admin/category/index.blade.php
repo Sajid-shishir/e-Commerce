@@ -16,6 +16,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
+            @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">
                     List of Category
@@ -45,7 +50,6 @@
                                     <td>
                                         <a href="{{ route('category.edit',$category->id) }}" class="btn btn-info btn-sm">Edit</a>
                                     </td>
-
                                     @endcan
 
                                 </tr>
@@ -61,6 +65,7 @@
         </div>
         <div class="col-md-4">
             <div class="card">
+
                 <div class="card-header">
                     Add Category
                 </div>
@@ -77,7 +82,7 @@
                     @csrf
                     <div class="form-group">
                       <label>Category Name</label>
-                      <input type="text" class="form-control" placeholder="Enter your category Name" name="category_name">
+                      <input type="text" class="form-control" placeholder="Enter your category Name" name="category_name" value="{{ old('category_name') }}">
                     </div>
                     <div class="form-group">
                         <label>Category Photo</label>

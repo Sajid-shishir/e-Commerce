@@ -7,7 +7,14 @@ use App\Http\Controllers\SslCommerzPaymentController;
 Route::get('/', 'FrontendController@index');
 Route::get('/contact', 'FrontendController@contact');
 Route::get('/about', 'FrontendController@about');
+
 Route::get('/faq', 'FrontendController@faq');
+Route::get('/faq_post', 'FrontendController@faq_post')->name('faq_post');
+Route::post('/faq_add', 'FrontendController@faq_add')->name('faq_add');
+Route::get('/faq_delete/{faq_id}', 'FrontendController@faq_delete');
+Route::get('/faq_edit/{faq_id}', 'FrontendController@faq_edit');
+Route::post('/faq_edit_post', 'FrontendController@faq_edit_post')->name('faq_edit_post');
+
 Route::get('/shop', 'FrontendController@shop');
 Route::get('/search', 'FrontendController@search');
 
@@ -61,7 +68,6 @@ Route::post('manage/role', 'RoleController@roleadd')->name('role.add');
 Route::post('role/assign', 'RoleController@roleassign')->name('role.assign');
 Route::get('role/permission/edit/{user_id}', 'RoleController@role_permission_edit')->name('role.permission.edit');
 Route::post('role/permission/edit/post', 'RoleController@role_permission_edit_post')->name('role.permission.edit.post');
-//ssl Commerze
 // SSLCOMMERZ Start
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
 Route::post('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
@@ -73,6 +79,5 @@ Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax'])
 Route::post('/success', [SslCommerzPaymentController::class, 'success']);
 Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
 Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
-
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
-
+// SSLCOMMERZ End

@@ -109,6 +109,13 @@
             </div><!-- menu-item -->
           </a>
 
+          <a href="{{ route('faq_post') }}" class="sl-menu-link @yield('faq')">
+            <div class="sl-menu-item">
+              <i class="fa fa-quora"></i>
+              <span class="menu-item-label">FAQ</span>
+            </div><!-- menu-item -->
+          </a>
+
         @else
         <a href="{{ url('/') }}" class="sl-menu-link">
           <div class="sl-menu-item">

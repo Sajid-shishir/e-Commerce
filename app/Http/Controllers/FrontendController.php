@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use App\Faq;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -27,7 +28,57 @@ class FrontendController extends Controller
 
     function faq(){
 
-        return view('frontend.faq');
+        $faqs_frontend = Faq::all();
+        return view('frontend.faq',compact('faqs_frontend'));
+    }
+
+    function faq_post(){
+
+        $faqs = Faq::all();
+        return view('admin.faq.index',compact('faqs'));
+    }
+
+    function faq_delete($faq_id){
+
+        Faq::find($faq_id)->delete();
+         return back()->with('deleteStatus','Deleted Successfully');
+
+    }
+
+    function faq_edit($faq_id){
+
+         $faq = Faq::find($faq_id);
+        return view('admin.faq.edit',compact('faq'));
+
+        // Faq::find($faq_id)->delete();
+        //  return back()->with('deleteStatus','Deleted Successfully');
+
+    }
+    function faq_edit_post(Request $request){
+
+
+
+        Faq::find($request->faq_id)->update([
+            'faq_question' =>$request->faq_question,
+            'faq_answer' =>$request->faq_answer,
+        ]);
+          return redirect('faq_post')->with('UpdateStatus','Updated Successfully');
+
+    }
+
+    function faq_add(Request $request){
+
+        $request->validate([
+            'faq_question' => 'required|unique:faqs,faq_question',
+            'faq_answer' => 'required'
+        ]);
+
+        Faq::insert([
+            'faq_question' => $request->faq_question,
+            'faq_answer' => $request->faq_answer,
+        ]);
+            return back()->with('status','FAQ Added Successfully');
+
     }
 
     function about(){

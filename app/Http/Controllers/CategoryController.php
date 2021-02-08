@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use Symfony\Component\HttpFoundation\Session\Session;
 class CategoryController extends Controller
 {
 
@@ -48,7 +49,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category_name' => 'required|unique:categories,category_name'
+            'category_name' => 'required|unique:categories,category_name',
+            'category_photo' => 'required|category_photo'
         ]);
         $return_after_create = Category::create([
             'category_name' => $request->category_name,
@@ -67,7 +69,8 @@ class CategoryController extends Controller
             //     'category_photo' =>  $new_category_photo_name
             // ]);
         }
-        return back();
+        // session()->flash('message', 'Category Added!');
+        return back()->with('status','Category Added Successfuly!!!');
     }
 
     /**

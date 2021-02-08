@@ -16,6 +16,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
+            @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">
                     List of Product
@@ -29,7 +34,7 @@
                                 <th>Product Price</th>
                                 <th>Product Thumbnail Photo</th>
                                 <th>Product multiple Photo</th>
-                                <th>Action</th>
+                                {{-- <th>Action</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -50,9 +55,9 @@
                                     <span>No photo</span>
                                     @endforelse
                                     </td>
-                                    <td class="lead">
+                                    {{-- <td class="lead">
                                         <a href="" class="badge badge-warning">Edit</a>
-                                    </td>
+                                    </td> --}}
 
                                 </tr>
                             @empty

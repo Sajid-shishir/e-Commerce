@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
 use App\Library\SslCommerz\SslCommerzNotification;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Str;
 
 class CheckoutController extends Controller
@@ -58,6 +59,7 @@ class CheckoutController extends Controller
                 Cart::find($cart_product->id)->delete();
 
             }
+            session()->flash('message', 'Cash On Delivery Purchase!');
                 return redirect('/');
         }
         // elseif($request->payment_method == 3){

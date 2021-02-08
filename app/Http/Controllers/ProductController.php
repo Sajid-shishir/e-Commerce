@@ -65,7 +65,7 @@ class ProductController extends Controller
             'product_long_desc' => 'required',
             'product_thumbnail_photo' => 'required',
             'product_name' => 'required',
-            
+
 
         ]);
 
@@ -115,7 +115,7 @@ class ProductController extends Controller
         ]);
         $flag++;
         }
-        return back();
+        return back()->with('status','Product Added Successfully!!');
     }
 
     /**
