@@ -77,7 +77,7 @@
                             @isset(Auth::user()->name)
                             <li class="lead"><a href="{{ url('login') }}" class="fa fa-unlock"> {{ Auth::user()->name }} </a></li>
                             @else
-                            <li class="lead"><a href="{{ url('login') }}" class="fa fa-lock"> Login/Register </a></li>
+                            <li><a href="{{ url('login') }}" class="lead"> Login/Register </a></li>
                             @endisset
                         </ul>
                     </div>
@@ -100,7 +100,8 @@
                                 <li class="@yield('home')"><a href="{{ url('/') }}">Home</a></li>
                                 <li class="@yield('about')"><a href="{{ url('about') }}">About</a></li>
                                 <li class="@yield('shop')"><a href="{{ url('shop') }}">Shop</a></li>
-                                <li class="@yield('shop')"><a href="{{ url('faq') }}">FAQ</a></li>
+                                <li class="@yield('blog')"><a href="{{ url('blog') }}">Blog</a></li>
+                                <li class="@yield('faq')"><a href="{{ url('faq') }}">FAQ</a></li>
                                 {{-- <li>
                                     <a href="javascript:void(0);">Pages <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown_style">

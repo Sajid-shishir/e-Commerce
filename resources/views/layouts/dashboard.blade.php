@@ -79,22 +79,34 @@
         <a href={{ route('category.index') }} class="sl-menu-link @yield('add_category')">
           <div class="sl-menu-item">
             <i class="fa fa-list-alt" aria-hidden="true"></i>
-            <span class="menu-item-label">Add Category</span>
+            <span class="menu-item-label">Category</span>
           </div><!-- menu-item -->
         </a>
 
         <a href="{{ route('product.index') }}" class="sl-menu-link @yield('add_product')">
           <div class="sl-menu-item">
             <i class="fa fa-product-hunt"></i>
-            <span class="menu-item-label">Add Product</span>
+            <span class="menu-item-label">Product</span>
           </div><!-- menu-item -->
         </a>
         <a href="{{ route('coupon.index') }}" class="sl-menu-link @yield('add_coupon')">
           <div class="sl-menu-item">
             <i class="fa fa-gift"></i>
-            <span class="menu-item-label">Add Coupon</span>
+            <span class="menu-item-label">Coupon</span>
           </div><!-- menu-item -->
         </a>
+        <a href="{{ route('faq_post') }}" class="sl-menu-link @yield('faq')">
+            <div class="sl-menu-item">
+              <i class="fa fa-quora"></i>
+              <span class="menu-item-label">FAQ</span>
+            </div><!-- menu-item -->
+          </a>
+          <a href="{{ route('blog_post') }}" class="sl-menu-link @yield('blog')">
+            <div class="sl-menu-item">
+              <i class="fa fa-text-width"></i>
+              <span class="menu-item-label">Blog</span>
+            </div><!-- menu-item -->
+          </a>
         <a href="{{ route('manage.role') }}" class="sl-menu-link @yield('manage_role')">
             <div class="sl-menu-item">
               <i class="fa fa-lock"></i>
@@ -104,15 +116,15 @@
 
           <a href="{{ route('report') }}" class="sl-menu-link @yield('report')">
             <div class="sl-menu-item">
-              <i class="fa fa-file"></i>
+              <i class="fa fa-server"></i>
               <span class="menu-item-label">Report</span>
             </div><!-- menu-item -->
           </a>
 
-          <a href="{{ route('faq_post') }}" class="sl-menu-link @yield('faq')">
+          <a href="{{ route('chat') }}" class="sl-menu-link">
             <div class="sl-menu-item">
-              <i class="fa fa-quora"></i>
-              <span class="menu-item-label">FAQ</span>
+              <i class="fa fa-comments-o"></i>
+              <span class="menu-item-label">Live Chat</span>
             </div><!-- menu-item -->
           </a>
 
@@ -129,6 +141,12 @@
             <span class="menu-item-label">Dashboard</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
+        <a href="{{ route('chat') }}" class="sl-menu-link">
+            <div class="sl-menu-item">
+              <i class="fa fa-comments-o"></i>
+              <span class="menu-item-label">Live Chat</span>
+            </div><!-- menu-item -->
+          </a>
 
         @endif
         {{-- <a href="#" class="sl-menu-link">

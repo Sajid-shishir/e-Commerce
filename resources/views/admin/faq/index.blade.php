@@ -9,7 +9,7 @@
 @section('breadcrumb')
     <nav class="breadcrumb sl-breadcrumb">
         <a class="breadcrumb-item" href="{{route('home')}}">Home Page</a>
-        <a class="breadcrumb-item" href="">FAQ</a>
+        <a class="breadcrumb-item" href="">Add FAQ</a>
     </nav>
 @endsection
 @section('content')
@@ -52,10 +52,14 @@
                                 <td>{{ $faq->faq_question }}</td>
                                 <td>{{ $faq->faq_answer }}</td>
                                 <td>
+                                    @can('add faq')
+
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a type="button" class="btn btn-dark btn-sm text-black" href="{{ url('faq_edit') }}/{{ $faq->id }}">Edit</a>
                                         <a type="button" class="btn btn-danger btn-sm text-white" href="{{ url('faq_delete') }}/{{ $faq->id }}">Delete</a>
-                                      </div>
+                                    </div>
+                                    @endcan
+
                                 </td>
 
                             </tr>
@@ -70,7 +74,10 @@
             </div>
         </div>
         <div class="col-md-4">
+            @can('add faq')
             <div class="card">
+
+
                 <div class="card-header">
                   Frequently Asked Questions
                 </div>
@@ -103,6 +110,10 @@
                       </form>
                 </div>
             </div>
+            @else
+            <span class="lead m-auto"><h1 class="badge badge-danger">UnAuthorized</h1></span>
+            <span class="lead m-auto"><h1 class="badge badge-danger">Only Blog Writter can Add Faq</h1></span>
+            @endcan
         </div>
     </div>
 </div>

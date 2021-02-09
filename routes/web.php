@@ -7,7 +7,7 @@ use App\Http\Controllers\SslCommerzPaymentController;
 Route::get('/', 'FrontendController@index');
 Route::get('/contact', 'FrontendController@contact');
 Route::get('/about', 'FrontendController@about');
-
+//FAQ
 Route::get('/faq', 'FrontendController@faq');
 Route::get('/faq_post', 'FrontendController@faq_post')->name('faq_post');
 Route::post('/faq_add', 'FrontendController@faq_add')->name('faq_add');
@@ -24,10 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('edit/User/profile', 'HomeController@edit_profile')->name('edit_profile');
 Route::post('change/password', 'HomeController@change_password')->name('change_password');
 
-
 Route::get('report', 'ReportController@report')->name('report');
 Route::get('check/report', 'ReportController@checkReport')->name('check.report');
-
 
 // Route::resource('test','TestController');
 Route::resource('category','CategoryController');
@@ -81,3 +79,8 @@ Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
 Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 // SSLCOMMERZ End
+//Blog
+Route::get('blog', 'BlogController@index')->name('blog');
+Route::get('blog_post', 'BlogController@blog_post')->name('blog_post');
+Route::post('blog_add', 'BlogController@blog_add')->name('blog_add');
+Route::get('blog_show/{blog_id}', 'BlogController@blog_show')->name('blog_show');

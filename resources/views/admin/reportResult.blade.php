@@ -57,7 +57,9 @@
                                     <td class="badge badge-light">{{ $searched_order->created_at }}</td>
                                 </tr>
                                 @empty
-
+                                <tr>
+                                    <td colspan="12" class="text-center text-danger">No Order Found</td>
+                                </tr>
 
                                 @endforelse
                             </tbody>

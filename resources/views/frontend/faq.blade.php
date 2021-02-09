@@ -45,10 +45,7 @@
                         </div>
                         @empty
                         <h6><span>No FAQ available</span></h6>
-
                         @endforelse
-
-
               </div>
             </div>
         </div>

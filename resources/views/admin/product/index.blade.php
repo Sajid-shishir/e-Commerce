@@ -113,11 +113,11 @@
                         </div>
                         <div class="form-group">
                           <label>Product Short Description</label>
-                          <textarea name="product_short_desc" class="form-control"  rows="4" value="{{ old('product_short_desc') }}"></textarea>
+                          <textarea name="product_short_desc" class="form-control"  rows="4" value="">{{ old('product_short_desc') }}</textarea>
                         </div>
                         <div class="form-group">
                           <label>Product Long Description</label>
-                          <textarea name="product_long_desc" class="form-control"  rows="4" value="{{ old('product_long_desc') }}" ></textarea>
+                          <textarea name="product_long_desc" class="form-control"  rows="4" value="">{{ old('product_long_desc') }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Product Thumbnail Photo</label>

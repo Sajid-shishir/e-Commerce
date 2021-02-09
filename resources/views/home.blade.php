@@ -38,7 +38,7 @@
     </div>
 
 
-    <div class="row mb-3">
+    <div class="row mb-6">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header card-header-default bg-dark">Total Users: {{$total_users}}  </div>
