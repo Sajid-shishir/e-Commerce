@@ -11,12 +11,12 @@ use App\Coupon;
 use App\Product;
 use App\Order_list;
 use DB;
-<<<<<<< HEAD
-=======
+
+
 use App\Mail\payment;
 use Illuminate\Support\Facades\Mail;
 use App\User;
->>>>>>> testing
+
 
 class CustomerController extends Controller
 {

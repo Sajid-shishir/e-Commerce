@@ -47,11 +47,11 @@ class HomeController extends Controller
             $weekly_chart->dataset('Sale','bar', $sale)->options([
                 'backgroundColor' => [
 
-<<<<<<< HEAD
-                   
-=======
 
->>>>>>> testing
+
+
+
+
                 ]
             ]);
             // $weekly_chart->dataset('Sample 2','pie', [3, 2, 1]);
@@ -105,13 +105,13 @@ class HomeController extends Controller
         //print_r($request->all());
 
     }
-<<<<<<< HEAD
+
     public function report(){
             return view('admin.report');
     }
-=======
+
     // public function report(){
     //         return view('admin.report');
     // }
->>>>>>> testing
+
 }

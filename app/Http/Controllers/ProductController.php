@@ -164,9 +164,6 @@ class ProductController extends Controller
     {
         //
     }
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> testing
+
 }
