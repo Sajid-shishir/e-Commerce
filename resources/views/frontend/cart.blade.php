@@ -51,13 +51,13 @@ active
                             <tr>
                                 <td class="images"><img src="{{ asset('uploads/product_thumbnail') }}/{{ $cart_product->relationtoproducttable->product_thumbnail_photo }}" alt="{{ $cart_product->relationtoproducttable->product_thumbnail_photo }}"></td>
                                 <td class="product"><a href="{{ url('product') }}/{{ $cart_product->relationtoproducttable->product_slug }}" target="_blank">{{ $cart_product->relationtoproducttable->product_name }}</a></td>
-                                <td class="ptice">TK: {{ $cart_product->relationtoproducttable->product_price }}</td>
+                                <td class="ptice">৳ {{ $cart_product->relationtoproducttable->product_price }}</td>
 
                                 <input type="hidden" value="{{ $cart_product->id }}" name="cart_id[]" />
-                                <td class="quantity cart-plus-minus ">
+                                <td class="quantity ">
                                     <input type="text" value="{{ $cart_product->amount }}" name="cart_quantity[]" />
                                 </td>
-                                <td class="total">TK: {{ $cart_product->relationtoproducttable->product_price * $cart_product->amount }}
+                                <td class="total">৳ {{ $cart_product->relationtoproducttable->product_price * $cart_product->amount }}
                                 </td>
 
                                 <td class="remove" class="lead">
@@ -71,17 +71,17 @@ active
                     <div class="row mt-60">
                         <div class="col-xl-4 col-lg-5 col-md-6 ">
                             <div class="cartcupon-wrap">
-                                <ul class="d-flex">
+                                {{-- <ul class="d-flex">
                                     <li>
                                         <button>Update Cart</button>
                                     </li>
                                     <li>
                                         <a href="{{ url('/') }}">Continue Shopping</a></li>
-                                </ul>
+                                </ul> --}}
                             </form>
                             <br>
                                 <h3>Coupon</h3>
-                                <p>Enter Your Coupon Code if You Have One</p>
+                                <p>Enter Your Coupon Code</p>
                                 <div class="cupon-wrap">
                                     <input type="text" placeholder="Coupon Code" id="coupon_text" value="{{ $coupon_name ?? "" }}">
                                     <a class="btn btn-danger" style="color: white" id="apply-btn">Apply Coupon</a>
@@ -92,7 +92,7 @@ active
                             <div class="cart-total text-right">
                                 <h3>Cart Totals</h3>
                                 <ul>
-                                    <li><span class="pull-left">Subtotal </span>TK: {{ sub_total() }}</li>
+                                    <li><span class="pull-left">Subtotal </span>৳ {{ sub_total() }}</li>
 
                                     @isset($discount_amount)
                                     <li><span class="pull-left">Coupon Discount </span>TK: {{ $discount_amount }} %</li>
@@ -101,24 +101,40 @@ active
                                     <li><span class="pull-left"> Total </span>
 
                                       @isset($discount_amount)
-                                      Tk: {{ $total_from_cart = (sub_total()-(($discount_amount/100) * sub_total())) }}
+                                      ৳ {{ $total_from_cart = (sub_total()-(($discount_amount/100) * sub_total())) }}
                                       @else
-                                      TK: {{ $total_from_cart = sub_total() }}
+                                      ৳ {{ $total_from_cart = sub_total() }}
                                       @endisset
 
                                     </li>
                                 </ul>
-                                @isset ($cart_product->id)
-                                <form action="{{ url('checkout')}}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="coupon_from_cart" value="{{ $coupon_name ?? "" }}">
-                                    <input type="hidden" name="discount_amount" value="{{ $discount_amount ?? "" }}">
-                                    <input type="hidden" name="total_from_cart" value="{{ $total_from_cart }}">
-                                    <button type="submit" class="btn btn-danger" href="">Proceed to Checkout</button>
-                                </form>
-                                @else
-                                <span class="lead"><span class="badge badge-danger">Your Cart is Empty</span></span>
-                                @endisset
+                               @auth
+                               @isset ($cart_product->id)
+                               <span class="badge badge-warning">Choose Payment Method:</span>
+
+                               <form action="{{ url('/checkout')}}" method="POST">
+                                   @csrf
+                                   <input type="hidden" name="coupon_from_cart" value="{{ $coupon_name ?? "" }}">
+                                   <input type="hidden" name="discount_amount" value="{{ $discount_amount ?? "" }}">
+                                   <input type="hidden" name="total_from_cart" value="{{ $total_from_cart }}">
+                                   <button type="submit" class="btn btn-light" href=""><input type="image" src="{{ asset('frontend_assets/images/stp1.png') }}" name="submit" width="100" height="48" alt="submit"/></button>
+                               </form>
+                               <br>
+                               <form action="{{ url('/example2')}}" method="POST">
+                                   @csrf
+                                   <input type="hidden" name="coupon_from_cart" value="{{ $coupon_name ?? "" }}">
+                                   <input type="hidden" name="discount_amount" value="{{ $discount_amount ?? "" }}">
+                                   <input type="hidden" name="total_from_cart" value="{{ $total_from_cart }}">
+                                   <button type="submit" class="btn btn-light" href=""><input type="image" src="{{ asset('frontend_assets/images/ssl.png') }}" name="submit" width="100" height="48" alt="submit"/></button>
+                               </form>
+                               <br>
+
+                               @else
+                               <span class="lead"><span class="badge badge-danger">Your Cart is Empty</span></span>
+                               @endisset
+                               @else
+                               <span class="lead"><strong class="badge badge-danger">Login First in order to checkout</strong></span>
+                               @endauth
 
                             </div>
                         </div>

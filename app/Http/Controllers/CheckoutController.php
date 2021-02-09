@@ -11,6 +11,10 @@ use App\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use DB;
+use App\Library\SslCommerz\SslCommerzNotification;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Str;
 
 class CheckoutController extends Controller
 {
@@ -34,6 +38,7 @@ class CheckoutController extends Controller
             $order_id = Order::insertGetId($request->except('_token')+[
 
                 'user_id' => Auth::id(),
+                'transaction_id' => Str::random(15),
                 'created_at' => Carbon::now()
             ]);
 
@@ -46,6 +51,7 @@ class CheckoutController extends Controller
                 'order_id' => $order_id,
                 'product_id' => $cart_product->product_id,
                 'amount' =>$cart_product->amount,
+                // 'star' =>$cart_product->default(0),
                 'created_at' => Carbon::now()
                 ]);
                     // emptying cart table
@@ -53,8 +59,24 @@ class CheckoutController extends Controller
                 Cart::find($cart_product->id)->delete();
 
             }
+            session()->flash('message', 'Cash On Delivery Purchase!');
                 return redirect('/');
         }
+        // elseif($request->payment_method == 3){
+        //     return view('frontend.bkash',[
+        //         'full_name' =>$request->full_name,
+        //         'email_address' =>$request->email_address,
+        //         'phone_number' =>$request->phone_number,
+        //         'country_id' =>$request->country_id,
+        //         'city_id' =>$request->city_id,
+        //         'address' =>$request->address,
+        //         'note' =>$request->note,
+        //         'sub_total' =>$request->sub_total,
+        //         'total' =>$request->total,
+        //         'coupon_name' =>$request->coupon_name
+
+        //     ]);
+        // }
         else{
             // echo "credit card";
             // print_r($request->all());
@@ -67,7 +89,7 @@ class CheckoutController extends Controller
                 'address' =>$request->address,
                 'note' =>$request->note,
                 'sub_total' =>$request->sub_total,
-                'total' =>$request->total,
+                'amount' =>$request->amount,
                 'coupon_name' =>$request->coupon_name
 
             ]);

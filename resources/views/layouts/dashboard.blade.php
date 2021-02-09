@@ -108,6 +108,20 @@
             </div><!-- menu-item -->
           </a>
 
+          <a href="{{ route('report') }}" class="sl-menu-link @yield('report')">
+            <div class="sl-menu-item">
+              <i class="fa fa-file"></i>
+              <span class="menu-item-label">Report</span>
+            </div><!-- menu-item -->
+          </a>
+
+          <a href="{{ route('faq_post') }}" class="sl-menu-link @yield('faq')">
+            <div class="sl-menu-item">
+              <i class="fa fa-quora"></i>
+              <span class="menu-item-label">FAQ</span>
+            </div><!-- menu-item -->
+          </a>
+
         @else
         <a href="{{ url('/') }}" class="sl-menu-link">
           <div class="sl-menu-item">
@@ -123,27 +137,28 @@
         </a><!-- sl-menu-link -->
 
         @endif
-        <a href="#" class="sl-menu-link">
+        {{-- <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
             <span class="menu-item-label">Reserved</span>
           </div><!-- menu-item -->
-        </a>
+        </a> --}}
 
 
-        <a href="#" class="sl-menu-link">
+        {{-- <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-paper-outline tx-22"></i>
             <span class="menu-item-label">Reserved dropdown</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="#" class="nav-link">Blank Page</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Signin Page</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Signup Page</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">404 Page Not Found</a></li>
-        </ul>
+        </a><!-- sl-menu-link --> --}}
+           <!-- <ul class="sl-menu-sub nav flex-column">
+                <li class="nav-item"><a href="#" class="nav-link">Blank Page</a></li>
+                {{-- <li class="nav-item"><a href="#" class="nav-link">Signin Page</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Signup Page</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">404 Page Not Found</a></li> --}}
+            </ul>-->
+
       </div><!-- sl-sideleft-menu -->
 
       <br>

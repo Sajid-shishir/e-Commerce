@@ -44,11 +44,11 @@ class CouponController extends Controller
     {
         $request->validate([
 
-            'coupon_name' => 'required|max:10|unique:coupons,coupon_name',
+            'coupon_name' => 'required|max:20|unique:coupons,coupon_name',
             'discount_amount' => 'required|numeric|max:99|min:1',
             'valid_till' => 'required'
         ]);
-        
+
         Coupon::insert([
 
             'coupon_name' => strtoupper($request->coupon_name),
@@ -62,8 +62,8 @@ class CouponController extends Controller
 
             Mail::to($user->email)->send(new SendCoupon($coupon_name));
         }
-        
-        return back();
+
+        return back()->with('status','Coupon Added Successfully');
     }
 
     /**

@@ -39,7 +39,7 @@ class HomeController extends Controller
     {
         for($i=1; $i<=7 ;$i++){
             $date[] = Carbon::now()->subDays(7-$i)->format('Y-m-d');
-            $sale[] = Order::whereDate('created_at',Carbon::now()->subDays(7-$i)->format('Y-m-d'))->sum('total');
+            $sale[] = Order::whereDate('created_at',Carbon::now()->subDays(7-$i)->format('Y-m-d'))->sum('amount');
         }
 
             $weekly_chart = new WeeklySaleChart;
@@ -47,16 +47,21 @@ class HomeController extends Controller
             $weekly_chart->dataset('Sale','bar', $sale)->options([
                 'backgroundColor' => [
 
+<<<<<<< HEAD
                    
+=======
+
+>>>>>>> testing
                 ]
             ]);
             // $weekly_chart->dataset('Sample 2','pie', [3, 2, 1]);
 
                 $cash_on_delivery = Order::where('payment_method',1)->count();
                 $online_payment   = Order::where('payment_method',2)->count();
+                $ssl_payment   = Order::where('payment_method',3)->count();
                 $Payment_method_chart = new PaymentMethodChart;
-                $Payment_method_chart->labels(['Cash On Delivery','Online Payment']);
-                $Payment_method_chart->dataset('Payment Type','pie', [$cash_on_delivery,$online_payment])->options([
+                $Payment_method_chart->labels(['Cash On Delivery','Online Payment','ssl_payment']);
+                $Payment_method_chart->dataset('Payment Type','pie', [$cash_on_delivery,$online_payment,$ssl_payment])->options([
                     'backgroundColor' => [
                         '#5B93D3',
                         '#5B9387',
@@ -100,7 +105,13 @@ class HomeController extends Controller
         //print_r($request->all());
 
     }
+<<<<<<< HEAD
     public function report(){
             return view('admin.report');
     }
+=======
+    // public function report(){
+    //         return view('admin.report');
+    // }
+>>>>>>> testing
 }

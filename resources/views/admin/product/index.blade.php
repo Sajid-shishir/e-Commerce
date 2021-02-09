@@ -16,6 +16,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
+            @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">
                     List of Product
@@ -29,7 +34,7 @@
                                 <th>Product Price</th>
                                 <th>Product Thumbnail Photo</th>
                                 <th>Product multiple Photo</th>
-                                <th>Action</th>
+                                {{-- <th>Action</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -50,9 +55,9 @@
                                     <span>No photo</span>
                                     @endforelse
                                     </td>
-                                    <td class="lead">
+                                    {{-- <td class="lead">
                                         <a href="" class="badge badge-warning">Edit</a>
-                                    </td>
+                                    </td> --}}
 
                                 </tr>
                             @empty
@@ -85,8 +90,8 @@
 
                         <div class="form-group">
                             <label>Category Name</label>
-                            <select name="category_id" class="form-control">
-                            <option value="">-Select one-</option>
+                            <select name="category_id" class="form-control" required>
+                            <option value="" >-Select one-</option>
                             @foreach ($categories as $category)
 
                             <option value="{{ $category->id}}">{{ $category->category_name }}</option>
@@ -96,27 +101,27 @@
                           </div>
                         <div class="form-group">
                           <label>Product Name</label>
-                          <input type="text" class="form-control" name="product_name">
+                          <input type="text" class="form-control" name="product_name" value="{{ old('product_name') }}">
                         </div>
                         <div class="form-group">
                           <label>Product Price</label>
-                          <input type="text" class="form-control" name="product_price">
+                          <input type="text" class="form-control" name="product_price" value="{{ old('product_price') }}">
                         </div>
                         <div class="form-group">
                           <label>Product Quantity</label>
-                          <input type="text" class="form-control" name="quantity">
+                          <input type="text" class="form-control @error('name') border-red-500 @enderror"  name="quantity" value="{{ old('quantity') }}">
                         </div>
                         <div class="form-group">
                           <label>Product Short Description</label>
-                          <textarea name="product_short_desc" class="form-control"  rows="4"></textarea>
+                          <textarea name="product_short_desc" class="form-control"  rows="4" value="{{ old('product_short_desc') }}"></textarea>
                         </div>
                         <div class="form-group">
                           <label>Product Long Description</label>
-                          <textarea name="product_long_desc" class="form-control"  rows="4"></textarea>
+                          <textarea name="product_long_desc" class="form-control"  rows="4" value="{{ old('product_long_desc') }}" ></textarea>
                         </div>
                         <div class="form-group">
                             <label>Product Thumbnail Photo</label>
-                            <input type="file" class="form-control" name="product_thumbnail_photo">
+                            <input type="file" class="form-control" name="product_thumbnail_photo" value="{{ old('product_thumbnail_photo') }}">
                           </div>
                           <div class="form-group">
                             <label>Product Multiple Photos</label>

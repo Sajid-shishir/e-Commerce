@@ -10,7 +10,7 @@
                         <div class="featured-img">
                             <img src="{{ asset('uploads/category') }}/{{ $category->category_photo }}" alt="">
                             <div class="featured-content">
-                                <a href="shop.html">{{ $category->category_name }}</a>
+                                <a href="#">{{ $category->category_name }}</a>
                             </div>
                         </div>
                     </div>

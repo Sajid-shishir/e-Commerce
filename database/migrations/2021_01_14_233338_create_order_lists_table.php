@@ -20,7 +20,7 @@ class CreateOrderListsTable extends Migration
             $table->integer('product_id');
             $table->integer('amount');
             $table->longText('review')->nullable();
-            $table->integer('star')->nullable();
+            $table->integer('star')->default(0);
             $table->timestamps();
         });
     }

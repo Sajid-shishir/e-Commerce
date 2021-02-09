@@ -1,15 +1,27 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+<<<<<<< HEAD
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+=======
+use App\Http\Controllers\SslCommerzPaymentController;
+
+>>>>>>> testing
 
 Route::get('/', 'FrontendController@index');
 Route::get('/contact', 'FrontendController@contact');
 Route::get('/about', 'FrontendController@about');
+
 Route::get('/faq', 'FrontendController@faq');
+Route::get('/faq_post', 'FrontendController@faq_post')->name('faq_post');
+Route::post('/faq_add', 'FrontendController@faq_add')->name('faq_add');
+Route::get('/faq_delete/{faq_id}', 'FrontendController@faq_delete');
+Route::get('/faq_edit/{faq_id}', 'FrontendController@faq_edit');
+Route::post('/faq_edit_post', 'FrontendController@faq_edit_post')->name('faq_edit_post');
+
 Route::get('/shop', 'FrontendController@shop');
 Route::get('/search', 'FrontendController@search');
 
@@ -18,7 +30,16 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('edit/User/profile', 'HomeController@edit_profile')->name('edit_profile');
 Route::post('change/password', 'HomeController@change_password')->name('change_password');
+<<<<<<< HEAD
 Route::get('report', 'HomeController@report')->name('report');
+=======
+
+
+Route::get('report', 'ReportController@report')->name('report');
+Route::get('check/report', 'ReportController@checkReport')->name('check.report');
+
+
+>>>>>>> testing
 // Route::resource('test','TestController');
 Route::resource('category','CategoryController');
 Route::resource('product','ProductController');
@@ -42,6 +63,7 @@ Route::get('cart/{coupon_name}','CartController@cart');
 Route::post('checkout','CheckoutController@index');
 Route::get('checkout','CheckoutController@index');
 Route::post('checkout/post','CheckoutController@checkoutpost');
+
 //payments
 Route::get('stripe','StripePaymentController@stripe');
 Route::post('stripe','StripePaymentController@stripePost')->name('stripe.post');
@@ -50,12 +72,27 @@ Route::post('stripe','StripePaymentController@stripePost')->name('stripe.post');
 
 //ajax Request
 Route::post('get/city/list', 'CheckoutController@getcitylist');
+Route::post('get/city', 'SslCommerzPaymentController@getcity');
 //Roles
 Route::get('manage/role', 'RoleController@managerole')->name('manage.role');
 Route::post('manage/role', 'RoleController@roleadd')->name('role.add');
 Route::post('role/assign', 'RoleController@roleassign')->name('role.assign');
 Route::get('role/permission/edit/{user_id}', 'RoleController@role_permission_edit')->name('role.permission.edit');
 Route::post('role/permission/edit/post', 'RoleController@role_permission_edit_post')->name('role.permission.edit.post');
+<<<<<<< HEAD
 //Bkash Payment
+=======
+// SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::post('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+>>>>>>> testing
 
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+// SSLCOMMERZ End

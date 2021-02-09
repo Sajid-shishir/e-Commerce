@@ -16,6 +16,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
+            @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">
                     <span >List Of Coupon</span>
@@ -86,11 +91,11 @@
                       @csrf
                         <div class="form-group">
                           <label>Coupon Name</label>
-                          <input type="text" class="form-control" name="coupon_name">
+                          <input type="text" class="form-control" name="coupon_name" value="{{ old('coupon_name') }}">
                         </div>
                         <div class="form-group">
                           <label>Discount Amount (%)</label>
-                          <input type="text" class="form-control" name="discount_amount">
+                          <input type="text" class="form-control" name="discount_amount" value="{{ old('discount_amount') }}">
                         </div>
                         <div class="form-group">
                           <label>Valid Till </label>
