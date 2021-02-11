@@ -47,7 +47,6 @@ class HomeController extends Controller
             $weekly_chart->dataset('Sale','bar', $sale)->options([
                 'backgroundColor' => [
 
-
                 ]
             ]);
             // $weekly_chart->dataset('Sample 2','pie', [3, 2, 1]);
@@ -66,7 +65,7 @@ class HomeController extends Controller
 
         $users = User::orderBy('id','desc')->paginate(3);
         $total_users=User::count();
-        return view('home',compact('users','total_users','weekly_chart','Payment_method_chart'));
+        return view('admin.home',compact('users','total_users','weekly_chart','Payment_method_chart'));
 
     }
     public function edit_profile(){

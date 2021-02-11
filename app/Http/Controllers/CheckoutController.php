@@ -38,9 +38,26 @@ class CheckoutController extends Controller
             $order_id = Order::insertGetId($request->except('_token')+[
 
                 'user_id' => Auth::id(),
-                'transaction_id' => Str::random(15),
+                'transaction_id' => uniqid(),
                 'created_at' => Carbon::now()
             ]);
+                $url = "http://66.45.237.70/api.php";
+                $number=$request->phone_number;
+                $text="Hello, Dear ".$request->full_name.". Your Transaction Id: ".uniqid().". Total Payment Pending: ".$request->amount. " TK, Thank You";
+                $data= array(
+                'username'=>"01634174881",
+                'password'=>"4RPTBXKF",
+                'number'=>"$number",
+                'message'=>"$text"
+                );
+
+                $ch = curl_init(); // Initialize cURL
+                curl_setopt($ch, CURLOPT_URL,$url);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $smsresult = curl_exec($ch);
+                $p = explode("|",$smsresult);
+                $sendstatus = $p[0];
 
             // inserting in order_list table
             foreach(cart_products() as $cart_product){
@@ -54,6 +71,7 @@ class CheckoutController extends Controller
                 // 'star' =>$cart_product->default(0),
                 'created_at' => Carbon::now()
                 ]);
+
                     // emptying cart table
                 Product::find($cart_product->product_id)->decrement('quantity', $cart_product->amount);
                 Cart::find($cart_product->id)->delete();

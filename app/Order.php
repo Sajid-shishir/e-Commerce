@@ -29,6 +29,7 @@ class Order extends Model
     function relationtoproduct(){
         return $this->belongsToMany('App\Order_list');
     }
+   
 
 
 }

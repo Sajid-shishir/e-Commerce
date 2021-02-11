@@ -17,10 +17,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+@isset($data)
+
 
             <div class="card">
                 <div class="card-header">
-                    <span class="lead">Searched Orders </span>
+                    <span class="lead">Report (From:{{$start}} to : {{ substr($end, 0, -9)
+                    }})</span>
+
                 </div>
                 <div class="card-body">
                     <div class="card-body">
@@ -45,36 +49,36 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($searched_orders as $index=> $searched_order)
+                                @forelse ($data as $index=> $d)
                                 <tr>
                                     <td>{{ $loop->index +1}}</td>
-                                    <td>{{ $searched_order->user_id }}</td>
-                                    <td>{{ $searched_order->transaction_id }}</td>
-                                    <td>{{ $searched_order->full_name }}</td>
-                                    <td>{{ $searched_order->email_address}}</td>
-                                    <td>{{ $searched_order->phone_number }}</td>
-                                    <td>{{ $searched_order->address }}</td>
-                                    @if ($searched_order->payment_method==1)
+                                    <td>{{ $d->user_id }}</td>
+                                    <td>{{ $d->transaction_id }}</td>
+                                    <td>{{ $d->full_name }}</td>
+                                    <td>{{ $d->email_address}}</td>
+                                    <td>{{ $d->phone_number }}</td>
+                                    <td>{{ $d->address }}</td>
+                                    @if ($d->payment_method==1)
                                     <td>
                                         <span class="badge badge-light">Cash on delivery</span>
                                     </td>
-                                    @elseif($searched_order->payment_method==2)
+                                    @elseif($d->payment_method==2)
                                     <td>
                                         <span class="badge badge-primary">Online</span>
                                     </td>
-                                    @elseif($searched_order->payment_method==3)
+                                    @elseif($d->payment_method==3)
                                     <td>
                                         <span class="badge badge-primary">SSLCommerz</span>
                                     </td>
                                     @endif
-                                    <td>{{ $searched_order->amount }}</td>
+                                    <td>{{ $d->amount }}</td>
 
-                                    @if ($searched_order->payment_method==3)
+                                    @if ($d->payment_method==3)
                                     <td>
                                         <span class="badge badge-warning">processing</span>
                                     </td>
                                     @endif
-                                    <td class="badge badge-light">{{ $searched_order->created_at }}</td>
+                                    <td class="badge badge-light">{{ $d->created_at }}</td>
                                 </tr>
                                 @empty
                                 <tr>
@@ -83,11 +87,12 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        {{ $searched_orders->links('pagination::bootstrap-4') }}
+                        {{-- {{ $data->links() }} --}}
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endisset
 
 @endsection

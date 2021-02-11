@@ -45,7 +45,7 @@
                             </ul>
                         </div>
                         <h3><a href="{{ url('blog_show') }}/{{ $blog->id }}">{{ $blog->blog_title }}</a></h3>
-                        <p>{{ $blog->desc }}</p>
+                        <p>Click in the link for description</p>
                     </div>
                 </div>
             </div>

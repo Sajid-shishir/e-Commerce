@@ -52,29 +52,29 @@ class StripePaymentController extends Controller
             'payment_method' => 2,
             'status' => 2,
             'currency' => 'BDT',
-            'transaction_id' => Str::random(15),
+            'transaction_id' => uniqid(),
             'created_at' => Carbon::now()
 
         ]);
         // print_r($request->phone_number);
         // die();
-                    // $url = "http://66.45.237.70/api.php";
-                    // $number=$request->phone_number;
-                    // $text="Hello, Dear ".$request->full_name.". Your Transaction Id: ".$request->transaction_id.". Total Payment Done: ".$request->amount. " Thank You";
-                    // $data= array(
-                    // 'username'=>"01634174881",
-                    // 'password'=>"4RPTBXKF",
-                    // 'number'=>"$number",
-                    // 'message'=>"$text"
-                    // );
+                    $url = "http://66.45.237.70/api.php";
+                    $number=$request->phone_number;
+                    $text="Hello, Dear ".$request->full_name.". Your Transaction Id: ".uniqid().". Total Payment Done: ".$request->amount. " TK,  Thank You";
+                    $data= array(
+                    'username'=>"01634174881",
+                    'password'=>"4RPTBXKF",
+                    'number'=>"$number",
+                    'message'=>"$text"
+                    );
 
-                    // $ch = curl_init(); // Initialize cURL
-                    // curl_setopt($ch, CURLOPT_URL,$url);
-                    // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-                    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    // $smsresult = curl_exec($ch);
-                    // $p = explode("|",$smsresult);
-                    // $sendstatus = $p[0];
+                    $ch = curl_init(); // Initialize cURL
+                    curl_setopt($ch, CURLOPT_URL,$url);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    $smsresult = curl_exec($ch);
+                    $p = explode("|",$smsresult);
+                    $sendstatus = $p[0];
 
 
         // return back();

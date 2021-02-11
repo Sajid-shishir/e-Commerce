@@ -34,6 +34,9 @@ class CustomerController extends Controller
     }
 
     function orderdownload($order_id){
+
+    //    $data = DB::table('order_lists')->join('products',);
+
        $order_info = Order::findOrFail($order_id);
        $dynamic_name = "Invoice-".$order_info->id."-".Carbon::now()->format('d-m-Y').".pdf";
        $order_pdf = PDF::loadView('customer.download.order',compact('order_info','dynamic_name'));

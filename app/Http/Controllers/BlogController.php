@@ -11,18 +11,21 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class BlogController extends Controller
 {
-    public function index(){
+     function index(){
 
         $blog_frontend =Blog::all();
         return view('frontend.blog',compact('blog_frontend'));
     }
 
-    public function blog_post(){
-        $blogs =Blog::all();
-        return view('admin.blog.index',compact('blogs'));
+     function blog_post(){
+
+        $blogs =Blog::orderBy('id','desc')->paginate(3);
+        $total_blogs=Blog::count();
+        // $blogs =Blog::all();
+        return view('admin.blog.index',compact('blogs','total_blogs'));
     }
 
-    public function blog_add(Request $request){
+     function blog_add(Request $request){
 
         $request->validate([
             'blog_title'=>'required|unique:blogs,blog_title',
@@ -48,11 +51,36 @@ class BlogController extends Controller
         // return view('admin.blog.index');
     }
 
-    public function blog_show($blog_id){
+     function blog_show($blog_id){
 
         $blog_details = Blog::all();
         $blog_info = Blog::find($blog_id);
         $related_blogs = Blog::where('id','!=',$blog_info->id)->get();
         return view('frontend.blog_details',compact('blog_info','blog_details','related_blogs'));
     }
+
+    function blog_edit($blog_id){
+
+        $blog = Blog::find($blog_id);
+        return view('admin.blog.edit',compact('blog'));
+
+    }
+
+
+    function blog_edit_post(Request $request){
+
+        Blog::find($request->blog_id)->update([
+            'blog_title' =>$request->blog_title,
+            'desc' =>$request->desc,
+        ]);
+          return redirect('blog_post')->with('UpdateStatus','Updated Successfully');
+    }
+
+    function blog_delete($blog_id){
+
+        Blog::find($blog_id)->delete();
+         return back()->with('deleteStatus','Deleted Successfully');
+
+    }
+
 }

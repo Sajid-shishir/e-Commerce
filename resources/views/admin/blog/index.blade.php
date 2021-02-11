@@ -9,7 +9,7 @@
 @section('breadcrumb')
     <nav class="breadcrumb sl-breadcrumb">
         <a class="breadcrumb-item" href="{{route('home')}}">Home Page</a>
-        <a class="breadcrumb-item" href="">Add Blog</a>
+        <a class="breadcrumb-item" href="">Blog</a>
     </nav>
 @endsection
 @section('content')
@@ -31,7 +31,7 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                  List Of Blog
+                 <span>List Of Blogs: {{$total_blogs}}</span>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -46,23 +46,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($blogs as $blog)
+                            @forelse ($blogs as  $index=> $blog)
                             <tr>
-                                <td>{{ $loop->index +1 }}</td>
+                                <td>{{ $blogs->firstItem() + $index }}</td>
                                 <td>{{ $blog->blog_title }}</td>
                                 <td>{{ $blog->connect_to_user->name }}</td>
                                 <td>{{ $blog->desc }}</td>
                                 <td>
                                     <img width="80"  src="{{ asset('uploads/blog') }}/{{ $blog->image }}" alt="{{ $blog->image }}">
                                 </td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a type="button" class="btn btn-light btn-sm text-black" href="{{ url('blog_edit') }}/{{ $blog->id }}">Edit</a>
+                                        <a type="button" class="btn btn-danger btn-sm text-white" href="{{ url('blog_delete') }}/{{ $blog->id }}">Delete</a>
+                                    </div>
+                                </td>
                             </tr>
                             @empty
 
                             @endforelse
-
                         </tbody>
                     </table>
-
+                    {{ $blogs->links() }}
                 </div>
             </div>
         </div>

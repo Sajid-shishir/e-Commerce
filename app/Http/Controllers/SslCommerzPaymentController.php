@@ -114,7 +114,7 @@ class SslCommerzPaymentController extends Controller
             ]);
                         $url = "http://66.45.237.70/api.php";
                         $number=$post_data['cus_phone'];
-                        $text="Hello, Dear ".$post_data['cus_name'].". Your Transaction Id: ".$post_data['tran_id'].". Total Payment Done: ".$post_data['total_amount']. " Thank You";
+                        $text="Hello, Dear ".$post_data['cus_name'].". Your Transaction Id: ".$post_data['tran_id'].". Total Payment Done: ".$post_data['total_amount']. " TK,  Thank You";
                         $data= array(
                         'username'=>"01634174881",
                         'password'=>"4RPTBXKF",

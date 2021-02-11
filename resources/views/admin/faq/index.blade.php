@@ -9,7 +9,7 @@
 @section('breadcrumb')
     <nav class="breadcrumb sl-breadcrumb">
         <a class="breadcrumb-item" href="{{route('home')}}">Home Page</a>
-        <a class="breadcrumb-item" href="">Add FAQ</a>
+        <a class="breadcrumb-item" href="">FAQ</a>
     </nav>
 @endsection
 @section('content')
@@ -55,7 +55,7 @@
                                     @can('add faq')
 
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a type="button" class="btn btn-dark btn-sm text-black" href="{{ url('faq_edit') }}/{{ $faq->id }}">Edit</a>
+                                        <a type="button" class="btn btn-light btn-sm text-black" href="{{ url('faq_edit') }}/{{ $faq->id }}">Edit</a>
                                         <a type="button" class="btn btn-danger btn-sm text-white" href="{{ url('faq_delete') }}/{{ $faq->id }}">Delete</a>
                                     </div>
                                     @endcan

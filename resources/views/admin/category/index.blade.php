@@ -20,6 +20,7 @@
             <div class="alert alert-success">
                 {{ session('status') }}
             </div>
+
             @endif
             <div class="card">
                 <div class="card-header">
@@ -48,8 +49,16 @@
 
                                     @can('edit category')
                                     <td>
-                                        <a href="{{ route('category.edit',$category->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                        <a href="{{ route('category.edit',$category->id) }}" class="btn btn-light btn-sm">Edit</a>
                                     </td>
+                                    <td>
+                                        <form action="{{ route('category.destroy', $category->id)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                          </form>
+                                    </td>
+
                                     @endcan
 
                                 </tr>

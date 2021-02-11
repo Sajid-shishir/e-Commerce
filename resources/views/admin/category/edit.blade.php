@@ -41,7 +41,7 @@
                             <label>Category Photo</label>
                             <input type="file" class="form-control" name="category_photo">
                           </div>
-                        <button type="submit" class="btn btn-primary">Add Category</button>
+                        <button type="submit" class="btn btn-success">Update</button>
                       </form>
                 </div>
                 @else
