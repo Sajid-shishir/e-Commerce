@@ -106,10 +106,10 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'category_name' => 'required|unique:categories,category_name',
-            
-
+            'category_name' => 'required',
+            'category_photo' => 'required',
         ]);
+        
         if($request->hasFile('category_photo')){
 
             if($category->category_photo != 'category_default_photo.jpg'){

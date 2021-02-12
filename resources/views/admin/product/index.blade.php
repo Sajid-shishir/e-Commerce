@@ -14,8 +14,8 @@
 @endsection
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8">
+    <div class="row-mb-6">
+        <div class="col-md-12">
             @if (session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}
@@ -32,9 +32,11 @@
                                 <th>SL No</th>
                                 <th>Product Name</th>
                                 <th>Product Price</th>
+                                <th>Product Quantity</th>
+                                <th>Product Category</th>
                                 <th>Product Thumbnail Photo</th>
                                 <th>Product multiple Photo</th>
-                                {{-- <th>Action</th> --}}
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,6 +45,8 @@
                                     <td>{{ $products->firstItem() + $index }}</td>
                                     <td>{{ $product->product_name }}</td>
                                     <td>{{ $product->product_price }}</td>
+                                    <td>{{ $product->quantity }}</td>
+                                    <td>{{ $product->relation_to_category->category_name }}</td>
                                     <td>
                                         <img width="170" height="130" src="{{ asset('uploads/product_thumbnail') }}/{{ $product->product_thumbnail_photo }}" alt="not found">
                                     </td>
@@ -55,9 +59,17 @@
                                     <span>No photo</span>
                                     @endforelse
                                     </td>
-                                    {{-- <td class="lead">
-                                        <a href="" class="badge badge-warning">Edit</a>
-                                    </td> --}}
+                                    <td>
+                                        <a href="{{ route('product.edit',$product->id) }}" class="btn btn-light btn-sm">Edit</a>
+
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('product.destroy', $product->id)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                          </form>
+                                    </td>
 
                                 </tr>
                             @empty
@@ -71,7 +83,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <br>
+
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
                     Add Product
@@ -127,7 +141,7 @@
                             <label>Product Multiple Photos</label>
                             <input required type="file" class="form-control" name="product_multiple_photos[]" multiple>
                           </div>
-                        <button type="submit" class="btn btn-primary">Add Product</button>
+                        <button type="submit" class="btn btn-success">Add</button>
                       </form>
                 </div>
                 @else

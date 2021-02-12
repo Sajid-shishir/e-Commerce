@@ -47,9 +47,9 @@
   <body>
     <!-- ########## START: LEFT PANEL ########## -->
     @if (Auth::user()->role == 1)
-    <div class="sl-logo"><a href=""><i class="fa fa-graduation-cap"></i> Admin Panel</a></div>
+    <div class="sl-logo"><a href=""><i class="fa fa-graduation-cap"></i> Administrator</a></div>
     @else
-    <div class="sl-logo"><a href=""><i class="fa fa-user"></i> Customer Home</a></div>
+    <div class="sl-logo"><a href=""><i class="fa fa-user"></i> Customer Dashboard</a></div>
     @endif
     <div class="sl-sideleft">
       {{-- <div class="input-group input-group-search">
@@ -198,6 +198,7 @@
               <span class="menu-item-label">Live Chat</span>
             </div><!-- menu-item -->
           </a>
+          <h1><label href="" class="sidebar-label text-dark">------------------------------------------</label></h1>
 
         @else
         <a href="{{ url('/') }}" class="sl-menu-link">

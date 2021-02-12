@@ -71,8 +71,7 @@ class ProductController extends Controller
 
         $product_slug =Str::slug($request->product_name.'-'.Carbon::now()->timestamp);
         // echo Str::slug('dsadasdas sfsd fdas 33');
-
-       $product_id = Product::insertGetId([
+        $product_id = Product::insertGetId([
 
             'category_id'=>$request->category_id,
             'product_name'=>$request->product_name,
@@ -83,7 +82,6 @@ class ProductController extends Controller
             'product_thumbnail_photo'=>$request->product_thumbnail_photo,
             'product_slug' =>$product_slug,
             'created_at' => Carbon::now()
-
 
         ]);
         //photo upload code
@@ -139,7 +137,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        return view('admin.product.edit', compact('product','categories'));
     }
 
     /**
@@ -151,7 +150,32 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'category_id' => 'required',
+            'product_name' => 'required',
+            'product_price' => 'required|numeric|max:1000|min:1',
+            'quantity' => 'required|numeric|max:1000|min:1',
+            // 'product_thumbnail_photo' => 'required',
+        ]);
+
+        if($request->hasFile('product_thumbnail_photo')){
+
+            if($product->product_thumbnail_photo != 'product_thumbnail_photo'){
+                $location =base_path()."/public/uploads/product_thumbnail/".$product->product_thumbnail_photo;
+                // unlink($location);
+            }
+            $uploaded_product_image = $request->file('product_thumbnail_photo');
+            $new_product_photo_name = $product->id.".".$uploaded_product_image->extension();
+            $new_product_photo_location = base_path('public/uploads/product_thumbnail/'.$new_product_photo_name);
+            Image::make($uploaded_product_image)->resize(600,470)->save($new_product_photo_location,30);
+            $product->product_thumbnail_photo =$new_product_photo_name;
+        }
+       $product->category_id = $request-> category_id;
+       $product->product_name = $request-> product_name;
+       $product->product_price = $request-> product_price;
+       $product->quantity = $request-> quantity;
+       $product->save();
+        return redirect('product')->with('status','Updated Successfully');
     }
 
     /**
@@ -162,7 +186,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product = Category::find($id);
+        $product ->delete();
+        return redirect('product')->with('status','Deleted Successfully');
     }
 
 }

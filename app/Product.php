@@ -12,4 +12,7 @@ class Product extends Model
 
         return $this->hasMany('App\Product_multiple_photo','product_id','id');
     }
+    function relation_to_category(){
+        return $this->belongsTo('App\Category','category_id',);
+    }
 }
