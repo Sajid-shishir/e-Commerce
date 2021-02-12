@@ -50,15 +50,15 @@
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-header">
-                            <h4>From : </h4>
+                            <h4>Date to Date : </h4>
                         </div>
                             <div class="card-body">
                                 <form method="get" action="{{route('check.report.from')}}">
                                     @csrf
                                     <div class="">
-                                       <p>Start date:</p>
+                                       <p>From:</p>
                                         <input type="date" name="start" max={{ \Carbon\carbon::now()->format('Y-m-d') }} class="form-control"><br/>
-                                        <p>End date:</p>
+                                        <p>To:</p>
                                         <input type="date" name="end" max={{ \Carbon\carbon::now()->format('Y-m-d') }} class="form-control"><br/>
                                         <div class="input-group-append">
                                             <button type="submit" class="btn btn-dark">Get Report</button>

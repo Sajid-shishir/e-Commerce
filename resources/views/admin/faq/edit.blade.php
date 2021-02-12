@@ -49,7 +49,7 @@
 
                         </div>
 
-                        <button type="submit" class="btn btn-warning">Edit FAQ</button>
+                        <button type="submit" class="btn btn-warning">Update FAQ</button>
                       </form>
                 </div>
             </div>

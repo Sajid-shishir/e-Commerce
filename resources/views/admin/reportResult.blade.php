@@ -83,7 +83,7 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        {{ $searched_orders->links('pagination::bootstrap-4') }}
+                        {{-- {{ $searched_orders->links('pagination::bootstrap-4') }} --}}
                 </div>
             </div>
         </div>

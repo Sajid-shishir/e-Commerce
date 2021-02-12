@@ -55,8 +55,8 @@
                                     @can('add faq')
 
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a type="button" class="btn btn-light btn-sm text-black" href="{{ url('faq_edit') }}/{{ $faq->id }}">Edit</a>
-                                        <a type="button" class="btn btn-danger btn-sm text-white" href="{{ url('faq_delete') }}/{{ $faq->id }}">Delete</a>
+                                        <a type="button" class="btn btn-light btn-sm text-black fa fa-edit" href="{{ url('faq_edit') }}/{{ $faq->id }}"> Edit</a>
+                                        <a type="button" class="btn btn-danger btn-sm text-white fa fa-trash" href="{{ url('faq_delete') }}/{{ $faq->id }}"> Trash</a>
                                     </div>
                                     @endcan
 

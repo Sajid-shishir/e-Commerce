@@ -59,18 +59,19 @@
                                     <span>No photo</span>
                                     @endforelse
                                     </td>
+                                    @can('edit product')
                                     <td>
-                                        <a href="{{ route('product.edit',$product->id) }}" class="btn btn-light btn-sm">Edit</a>
+                                        <a href="{{ route('product.edit',$product->id) }}" class="btn btn-light btn-sm fa fa-edit"> Edit</a>
 
                                     </td>
                                     <td>
-                                        <form action="{{ route('product.destroy', $product->id)}}" method="post">
+                                        <form action="{{ route('product.destroy', $product->id)}}" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to delete?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                            <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash"></i> Trash</button>
                                           </form>
                                     </td>
-
+                                    @endcan
                                 </tr>
                             @empty
                                 <tr>

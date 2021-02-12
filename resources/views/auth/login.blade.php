@@ -65,6 +65,7 @@
                             </div>
                         </div>
                         <br>
+                        {{-- @auth --}}
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <a href="{{ url('register/github') }}" class="btn btn-light">
@@ -72,6 +73,8 @@
                                 </a>
                             </div>
                         </div>
+                        {{-- @endauth --}}
+
                     </form>
                 </div>
             </div>

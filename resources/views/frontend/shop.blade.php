@@ -48,13 +48,13 @@
                         <div class="product-wrap">
                             <div class="product-img">
                                 <img src="{{ asset('uploads/product_thumbnail') }}/{{ $product->product_thumbnail_photo }}" alt="">
-                                <div class="product-icon flex-style">
+                                {{-- <div class="product-icon flex-style">
                                     <ul>
                                         <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
                                         <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="product-content">
                                 <h3><a href="single-product.html">{{ $product->product_name }}</a></h3>
@@ -83,7 +83,7 @@
                                     <li><i class="fa fa-star"></i></li>
                                     <li><i class="fa fa-star"></i></li>
                                     @else
-                                    <li>No Review</li>
+                                    <li> No Review</li>
                                     @endif
                                 </ul>
                             </div>
@@ -101,19 +101,20 @@
                             <div class="product-img">
 
                                 <img src="{{ asset('uploads/product_thumbnail') }}/{{ $categorywise_product->product_thumbnail_photo }}" alt="">
-                                <div class="product-icon flex-style">
+                                {{-- <div class="product-icon flex-style">
                                     <ul>
                                         <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="#"><i class="fa fa-shopping-bag"></i></a></li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="product-content">
                                 <h3><a href="single-product.html">{{ $categorywise_product->product_name }}</a></h3>
                                 <p class="pull-left">TK: {{ $categorywise_product->product_price }}
                                 </p>
                                 <ul class="rating">
+                                    <br>
                                     @if(review_star_amount($categorywise_product->id)  == 1)
                                     <li><i class="fa fa-star"></i></li>
                                     @elseif(review_star_amount($categorywise_product->id)== 2)
@@ -135,7 +136,7 @@
                                     <li><i class="fa fa-star"></i></li>
                                     <li><i class="fa fa-star"></i></li>
                                     @else
-                                    <li>No Review</li>
+                                    <li> No Review</li>
                                     @endif
                                 </ul>
                             </div>

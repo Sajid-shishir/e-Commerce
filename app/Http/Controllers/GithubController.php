@@ -31,6 +31,7 @@ class GithubController extends Controller
             User::insert([
                 'name' => $user->getNickname(),
                 'email' => $user->getEmail(),
+                'avatar' =>'null',
                 'password' => bcrypt('xyz@123'),
                 'role' => 2,
                 'created_at' => Carbon::now()
@@ -41,7 +42,7 @@ class GithubController extends Controller
             return redirect('home/customer');
         }
 
-       
+
         // $user->token;
     }
 }

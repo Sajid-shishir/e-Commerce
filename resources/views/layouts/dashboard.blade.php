@@ -49,7 +49,7 @@
     @if (Auth::user()->role == 1)
     <div class="sl-logo"><a href=""><i class="fa fa-graduation-cap"></i> Administrator</a></div>
     @else
-    <div class="sl-logo"><a href=""><i class="fa fa-user"></i> Customer Dashboard</a></div>
+    <div class="sl-logo"><a href=""><i class="fa fa-user"></i> Customer Home</a></div>
     @endif
     <div class="sl-sideleft">
       {{-- <div class="input-group input-group-search">
@@ -177,7 +177,7 @@
               <span class="menu-item-label">Report</span>
             </div><!-- menu-item -->
           </a> --}}
-          <h1><label href="" class="sidebar-label text-dark">Generate report</label></h1>
+          <h1><label href="" class="sidebar-label text-dark">Generate sales report</label></h1>
 
           <a href="{{ route('report') }}" class="sl-menu-link @yield('report')">
             <div class="sl-menu-item">

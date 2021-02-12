@@ -51,7 +51,7 @@
                             <label>Thumbnail Photo</label>
                             <input type="file" class="form-control" name="image">
                           </div>
-                        <button type="submit" class="btn btn-warning">Edit Blog</button>
+                        <button type="submit" class="btn btn-warning">Update Blog</button>
                       </form>
                 </div>
             </div>

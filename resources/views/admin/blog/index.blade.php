@@ -55,12 +55,21 @@
                                 <td>
                                     <img width="80"  src="{{ asset('uploads/blog') }}/{{ $blog->image }}" alt="{{ $blog->image }}">
                                 </td>
+                                @can('add and edit blog')
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a type="button" class="btn btn-light btn-sm text-black" href="{{ url('blog_edit') }}/{{ $blog->id }}">Edit</a>
-                                        <a type="button" class="btn btn-danger btn-sm text-white" href="{{ url('blog_delete') }}/{{ $blog->id }}">Delete</a>
+                                        <a type="button" class="btn btn-light btn-sm text-black fa fa-edit" href="{{ url('blog_edit') }}/{{ $blog->id }}"> Edit</a>
+                                        {{-- <a type="button" class="btn btn-danger btn-sm text-white fa fa-trash" href="{{ url('blog_delete') }}/{{ $blog->id }}"> Trash</a> --}}
                                     </div>
                                 </td>
+                                <td>
+                                    <form action="{{ url('blog_delete') }}/{{ $blog->id }}" method="get" class="d-inline" onsubmit="return confirm('Are you sure you want to delete?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash"></i> Trash</button>
+                                    </form>
+                                </td>
+                                @endcan
                             </tr>
                             @empty
 
@@ -73,7 +82,7 @@
         </div>
         <br>
     <div class="row-mb-6">
-        @can('add blog')
+        @can('add and edit blog')
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">

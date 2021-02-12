@@ -31,8 +31,8 @@ class ReportController extends Controller
         // $order_lists = DB::table('order_lists')->Paginate(5);
         $searched_orders = QueryBuilder::for(Order::class)
                ->allowedFilters(['created_at'])
-               ->Paginate(5);
-                // ->get();
+            //    ->latest(5);
+                ->get();
                return view('admin.reportResult', compact('searched_orders'));
 
 

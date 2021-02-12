@@ -13,7 +13,7 @@ class BlogController extends Controller
 {
      function index(){
 
-        $blog_frontend =Blog::all();
+        $blog_frontend =Blog::latest()->get();
         return view('frontend.blog',compact('blog_frontend'));
     }
 

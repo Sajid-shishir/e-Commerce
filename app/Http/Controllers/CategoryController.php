@@ -107,9 +107,9 @@ class CategoryController extends Controller
     {
         $request->validate([
             'category_name' => 'required',
-            'category_photo' => 'required',
+            // 'category_photo' => 'required',
         ]);
-        
+
         if($request->hasFile('category_photo')){
 
             if($category->category_photo != 'category_default_photo.jpg'){
@@ -138,6 +138,6 @@ class CategoryController extends Controller
 
         $category = Category::find($id);
         $category ->delete();
-        return redirect('/category')->with('status','Deleted Successfully');
+        return redirect('/category')->with('delete','Deleted Successfully');
     }
 }
