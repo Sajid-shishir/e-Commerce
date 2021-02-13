@@ -10,12 +10,12 @@
     <nav class="breadcrumb sl-breadcrumb">
         <a class="breadcrumb-item" href="{{route('home')}}">Home Page</a>
         <a class="breadcrumb-item" href="">Report</a>
-<<<<<<< HEAD
+
 
     </nav>
 @endsection
 @section('content')
-=======
+
     </nav>
 @endsection
 @section('content')
@@ -103,6 +103,5 @@
                     </div>
                 </div> --}}
             </div>
->>>>>>> testing
 
 @endsection

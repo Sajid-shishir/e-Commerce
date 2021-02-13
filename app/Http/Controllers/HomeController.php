@@ -47,14 +47,7 @@ class HomeController extends Controller
             $weekly_chart->dataset('Sale','bar', $sale)->options([
                 'backgroundColor' => [
 
-<<<<<<< HEAD
 
-
-
-
-
-=======
->>>>>>> origin/testing
                 ]
             ]);
             // $weekly_chart->dataset('Sample 2','pie', [3, 2, 1]);

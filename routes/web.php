@@ -39,13 +39,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('edit/User/profile', 'HomeController@edit_profile')->name('edit_profile');
 Route::post('change/password', 'HomeController@change_password')->name('change_password');
 
-<<<<<<< HEAD
+
 Route::get('report', 'HomeController@report')->name('report');
 
 
 
-=======
->>>>>>> origin/testing
+
+
 Route::get('report', 'ReportController@report')->name('report');
 Route::get('check/report', 'ReportController@checkReport')->name('check.report');
 Route::get('check/report/from', 'ReportController@checkReportFrom')->name('check.report.from');
