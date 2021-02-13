@@ -37,9 +37,19 @@ class CustomerController extends Controller
     }
 
     function orderdownload($order_id){
+
+    //    $data = DB::table('order_lists')->join('products',);
+
+       $order_list = Order_list::where('order_id',$order_id)->first();
+        $product =Product::where('id',$order_list->product_id)->first();
+
+         
+
+
+
        $order_info = Order::findOrFail($order_id);
        $dynamic_name = "Invoice-".$order_info->id."-".Carbon::now()->format('d-m-Y').".pdf";
-       $order_pdf = PDF::loadView('customer.download.order',compact('order_info','dynamic_name'));
+       $order_pdf = PDF::loadView('customer.download.order',compact('order_info','dynamic_name','order_list','product'));
        return $order_pdf->download($dynamic_name);
 
        foreach(User::where(Auth::user())->get() as $user){

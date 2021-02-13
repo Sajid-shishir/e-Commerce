@@ -22,7 +22,7 @@
         <div class="col-md-8">
             <div class="card mb-5">
                 <div class="card-header">
-                    List of Roles
+                     Roles and Permissions
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -31,6 +31,7 @@
                                 <th>SL No</th>
                                 <th>Role Name</th>
                                 <th>Permissions</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -43,6 +44,7 @@
                                         <li> {{ $permission }} </li>
                                     @endforeach
                                     </td>
+
                                 </tr>
                             @empty
                                 <tr>
@@ -56,7 +58,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    List of Users
+                    Assigned Permissions
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">

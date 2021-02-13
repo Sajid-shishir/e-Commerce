@@ -50,7 +50,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'category_name' => 'required|unique:categories,category_name',
-            'category_photo' => 'required|category_photo'
+            'category_photo' => 'required'
         ]);
         $return_after_create = Category::create([
             'category_name' => $request->category_name,
@@ -92,6 +92,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+
         return view('admin.category.edit', compact('category'));
     }
 
@@ -104,6 +105,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        $request->validate([
+            'category_name' => 'required',
+            // 'category_photo' => 'required',
+        ]);
+
         if($request->hasFile('category_photo')){
 
             if($category->category_photo != 'category_default_photo.jpg'){
@@ -118,7 +124,7 @@ class CategoryController extends Controller
         }
        $category->category_name = $request-> category_name;
        $category->save();
-        return redirect('category');
+        return redirect('category')->with('status','Updated Successfully');
     }
 
     /**
@@ -127,8 +133,11 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+
+        $category = Category::find($id);
+        $category ->delete();
+        return redirect('/category')->with('delete','Deleted Successfully');
     }
 }

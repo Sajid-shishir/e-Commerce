@@ -32,9 +32,9 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        
-                        @auth                           
+                    {{-- <ul class="navbar-nav mr-auto">
+
+                        @auth
                         <li class="nav-item">
                             <a class="nav-link" href="#">Add FAQ</a>
                         </li>
@@ -43,7 +43,7 @@
                         </li>
                         @endauth
 
-                    </ul>
+                    </ul> --}}
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

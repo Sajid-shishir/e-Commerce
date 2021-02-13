@@ -32,16 +32,17 @@ class GoogleController extends Controller
 
         if(!User::where('email', $user->getEmail())->exists()){
             User::insert([
-                'name' => $user->getNickname(),
+                'name' => $user->getName(),
                 'email' => $user->getEmail(),
+                'avatar' =>'null',
                 'password' => bcrypt('xyz@123'),
                 'role' => 2,
                 'created_at' => Carbon::now(),
             ]);
-            if(Auth::attempt(['email'=> $user->getEmail(),'password' => 'xyz@123'])){
-     
-             return redirect('home/customer');
-            }
+        }
+        if(Auth::attempt(['email'=> $user->getEmail(),'password' => 'xyz@123'])){
+
+         return redirect('home/customer');
         }
 
         // $user->token;

@@ -51,15 +51,16 @@ class RoleController extends Controller
             'user' => User::find($user_id)
         ]);
 
-
-
-    }function role_permission_edit_post(Request $request){
+    }
+    function role_permission_edit_post(Request $request){
 
         $user =User::find($request->user_id);
         $user ->syncPermissions($request->permission);
         return redirect('manage/role');
 
-
-
     }
+
+    
+
+
 }

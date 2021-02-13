@@ -1,5 +1,5 @@
 @extends('layouts.frontend_master')
-@section('faq')
+@section('shop')
     active
 @endsection
 @section('content')
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="breadcumb-wrap text-center">
-                    <h2>Shop Page</h2>
+                    <h2>Product Details</h2>
                     <ul>
                         <li><a href="{{ url('/') }}">Home</a></li>
                         <li><span>Shop</span></li>

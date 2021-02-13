@@ -47,7 +47,7 @@
   <body>
     <!-- ########## START: LEFT PANEL ########## -->
     @if (Auth::user()->role == 1)
-    <div class="sl-logo"><a href=""><i class="fa fa-graduation-cap"></i> Admin Panel</a></div>
+    <div class="sl-logo"><a href=""><i class="fa fa-graduation-cap"></i> Administrator</a></div>
     @else
     <div class="sl-logo"><a href=""><i class="fa fa-user"></i> Customer Home</a></div>
     @endif
@@ -59,42 +59,111 @@
         </span><!-- input-group-btn -->
       </div><!-- input-group --> --}}
 
-      <label href="" class="sidebar-label">Navigation</label>
+      <h1><label href="" class="sidebar-label text-dark">Admin Dashboard</label></h1>
+
 
       <div class="sl-sideleft-menu">
-        @if (Auth::user()->role == 1)
-        <a href="{{ url('/home') }}" class="sl-menu-link @yield('home')" >
+          @if (Auth::user()->role == 1)
+        <a href="{{ url('/home') }}" class="sl-menu-link @yield('home') @yield('edit_profile')">
+            <div class="sl-menu-item">
+              <i class="fa fa-tachometer tx-22"></i>
+              <span class="menu-item-label">Home Page</span>
+              <i class="menu-item-arrow fa fa-angle-down"></i>
+            </div><!-- menu-item -->
+          </a><!-- sl-menu-link -->
+               <ul class="sl-menu-sub nav flex-column">
+                  <li class="nav-item"><a href="{{ url('/home') }}" class="nav-link">Dashboard</a></li>
+                  <li class="nav-item"><a href="{{route('edit_profile')}}" class="nav-link">Edit Profile</a></li>
+              </ul>
+
+              <h1><label href="" class="sidebar-label text-dark"> Categories</label></h1>
+              <a href="{{ route('category.index') }}" class="sl-menu-link @yield('add_category')">
+                <div class="sl-menu-item">
+                  <i class="fa fa-list-alt tx-22"></i>
+                  <span class="menu-item-label">Category</span>
+                  <i class="menu-item-arrow fa fa-angle-down"></i>
+                </div><!-- menu-item -->
+              </a><!-- sl-menu-link -->
+                   <ul class="sl-menu-sub nav flex-column">
+                      <li class="nav-item"><a href="{{ route('category.index') }}" class="nav-link">Add Category</a></li>
+                  </ul>
+
+                  <h1><label href="" class="sidebar-label text-dark">Products and coupons</label></h1>
+
+                  <a href="{{ route('product.index') }}" class="sl-menu-link @yield('add_product') @yield('add_coupon')">
+                    <div class="sl-menu-item">
+                      <i class="fa fa-product-hunt tx-22"></i>
+                      <span class="menu-item-label">Product</span>
+                      <i class="menu-item-arrow fa fa-angle-down"></i>
+                    </div><!-- menu-item -->
+                  </a><!-- sl-menu-link -->
+                       <ul class="sl-menu-sub nav flex-column">
+                          <li class="nav-item"><a href="{{ route('product.index') }}" class="nav-link">Add Product</a></li>
+                          <li class="nav-item"><a href="{{ route('coupon.index') }}" class="nav-link">Add Coupon</a></li>
+                      </ul>
+
+        {{-- <a href="{{ url('/home') }}" class="sl-menu-link @yield('home')" >
           <div class="sl-menu-item">
             <i class="fa fa-tachometer"></i>
             <span class="menu-item-label">Admin Dashboard</span>
           </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
-        <a href="{{route('edit_profile')}}" class="sl-menu-link @yield('edit_profile')" >
+        </a><!-- sl-menu-link --> --}}
+        {{-- <a href="{{route('edit_profile')}}" class="sl-menu-link @yield('edit_profile')" >
           <div class="sl-menu-item">
             <i class="fa fa-pencil-square-o"></i>
             <span class="menu-item-label">Edit Profile</span>
           </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
+        </a><!-- sl-menu-link --> --}}
 
-        <a href={{ route('category.index') }} class="sl-menu-link @yield('add_category')">
+        {{-- <a href={{ route('category.index') }} class="sl-menu-link @yield('add_category')">
           <div class="sl-menu-item">
             <i class="fa fa-list-alt" aria-hidden="true"></i>
-            <span class="menu-item-label">Add Category</span>
+            <span class="menu-item-label">Category</span>
           </div><!-- menu-item -->
-        </a>
+        </a> --}}
 
-        <a href="{{ route('product.index') }}" class="sl-menu-link @yield('add_product')">
+        {{-- <a href="{{ route('product.index') }}" class="sl-menu-link @yield('add_product')">
           <div class="sl-menu-item">
             <i class="fa fa-product-hunt"></i>
-            <span class="menu-item-label">Add Product</span>
+            <span class="menu-item-label">Product</span>
           </div><!-- menu-item -->
-        </a>
-        <a href="{{ route('coupon.index') }}" class="sl-menu-link @yield('add_coupon')">
+        </a> --}}
+        {{-- <a href="{{ route('coupon.index') }}" class="sl-menu-link @yield('add_coupon')">
           <div class="sl-menu-item">
             <i class="fa fa-gift"></i>
-            <span class="menu-item-label">Add Coupon</span>
+            <span class="menu-item-label">Coupon</span>
           </div><!-- menu-item -->
-        </a>
+        </a> --}}
+        {{-- <a href="{{ route('faq_post') }}" class="sl-menu-link @yield('faq')">
+            <div class="sl-menu-item">
+              <i class="fa fa-quora"></i>
+              <span class="menu-item-label">FAQ</span>
+            </div><!-- menu-item -->
+          </a> --}}
+          <h1><label href="" class="sidebar-label text-dark">Question n answers</label></h1>
+
+          <a href="{{ route('faq_post') }}" class="sl-menu-link @yield('faq')">
+            <div class="sl-menu-item">
+              <i class="fa fa-quora tx-22"></i>
+              <span class="menu-item-label">FAQ</span>
+              <i class="menu-item-arrow fa fa-angle-down"></i>
+            </div><!-- menu-item -->
+          </a><!-- sl-menu-link -->
+               <ul class="sl-menu-sub nav flex-column">
+                  <li class="nav-item"><a href="{{ route('faq_post') }}" class="nav-link">FAQ</a></li>
+              </ul>
+
+              <h1><label href="" class="sidebar-label text-dark">Blog posting</label></h1>
+
+          <a href="{{ route('blog_post') }}" class="sl-menu-link @yield('blog')">
+            <div class="sl-menu-item">
+              <i class="fa fa-text-width"></i>
+              <span class="menu-item-label">Blog</span>
+            </div><!-- menu-item -->
+          </a>
+
+          <h1><label href="" class="sidebar-label text-dark">Roles and permissions</label></h1>
+
         <a href="{{ route('manage.role') }}" class="sl-menu-link @yield('manage_role')">
             <div class="sl-menu-item">
               <i class="fa fa-lock"></i>
@@ -108,19 +177,34 @@
             </div><!-- menu-item -->
           </a>
 
-          <a href="{{ route('report') }}" class="sl-menu-link @yield('report')">
+          {{-- <a href="{{ route('report') }}" class="sl-menu-link @yield('report')">
             <div class="sl-menu-item">
-              <i class="fa fa-file"></i>
+              <i class="fa fa-server"></i>
               <span class="menu-item-label">Report</span>
             </div><!-- menu-item -->
-          </a>
+          </a> --}}
+          <h1><label href="" class="sidebar-label text-dark">Generate sales report</label></h1>
 
-          <a href="{{ route('faq_post') }}" class="sl-menu-link @yield('faq')">
+          <a href="{{ route('report') }}" class="sl-menu-link @yield('report')">
             <div class="sl-menu-item">
-              <i class="fa fa-quora"></i>
-              <span class="menu-item-label">FAQ</span>
+              <i class="fa fa-server tx-22"></i>
+              <span class="menu-item-label"> Report</span>
+              <i class="menu-item-arrow fa fa-angle-down"></i>
+            </div><!-- menu-item -->
+          </a><!-- sl-menu-link -->
+               <ul class="sl-menu-sub nav flex-column">
+                  <li class="nav-item"><a href="{{ route('report') }}" class="nav-link">Report</a></li>
+              </ul>
+
+             <h1><label href="" class="sidebar-label text-dark">Messenger</label></h1>
+
+          <a href="{{ route('chat') }}" class="sl-menu-link">
+            <div class="sl-menu-item">
+              <i class="fa fa-comments-o"></i>
+              <span class="menu-item-label">Live Chat</span>
             </div><!-- menu-item -->
           </a>
+          <h1><label href="" class="sidebar-label text-dark">------------------------------------------</label></h1>
 
         @else
         <a href="{{ url('/') }}" class="sl-menu-link">
@@ -135,6 +219,12 @@
             <span class="menu-item-label">Dashboard</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
+        <a href="{{ route('chat') }}" class="sl-menu-link">
+            <div class="sl-menu-item">
+              <i class="fa fa-comments-o"></i>
+              <span class="menu-item-label">Live Chat</span>
+            </div><!-- menu-item -->
+          </a>
 
         @endif
         {{-- <a href="#" class="sl-menu-link">
@@ -151,13 +241,10 @@
             <span class="menu-item-label">Reserved dropdown</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
-        </a><!-- sl-menu-link --> --}}
-           <!-- <ul class="sl-menu-sub nav flex-column">
+        </a><!-- sl-menu-link -->
+             <ul class="sl-menu-sub nav flex-column">
                 <li class="nav-item"><a href="#" class="nav-link">Blank Page</a></li>
-                {{-- <li class="nav-item"><a href="#" class="nav-link">Signin Page</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Signup Page</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">404 Page Not Found</a></li> --}}
-            </ul>-->
+            </ul> --}}
 
       </div><!-- sl-sideleft-menu -->
 

@@ -52,11 +52,26 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                            <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-dark">
                                     {{ __('Login') }}
                                 </button>
 
+                                <a href="{{ url('register/google') }}" class="btn btn-danger">
+                                    Login with Google
+                                </a>
+                            </div>
+                        </div>
+                        <br>
+                        {{-- @auth --}}
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                {{-- <a href="{{ url('register/github') }}" class="btn btn-light">
+                                    Login with Github
+                                </a> --}}
+                                {{-- <a href="{{ url('register/google') }}" class="btn btn-danger">
+                                    Login with Google
+                                </a> --}}
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
@@ -64,14 +79,8 @@
                                 @endif
                             </div>
                         </div>
-                        <br>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <a href="{{ url('register/github') }}" class="btn btn-light">
-                                    Login with Github
-                                </a>
-                            </div>
-                        </div>
+                        {{-- @endauth --}}
+
                     </form>
                 </div>
             </div>
