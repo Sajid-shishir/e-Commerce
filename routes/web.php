@@ -79,7 +79,7 @@ Route::get('role/permission/edit/{user_id}', 'RoleController@role_permission_edi
 Route::post('role/permission/edit/post', 'RoleController@role_permission_edit_post')->name('role.permission.edit.post');
 // SSLCOMMERZ Start
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
-Route::post('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+Route::post('/sslPayout', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);

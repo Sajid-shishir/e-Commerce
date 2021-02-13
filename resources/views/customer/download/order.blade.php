@@ -64,16 +64,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (cart_products() as $cart_product)
+
                                         <tr>
                                             {{-- <td>1</td> --}}
-                                            <td>{{ $cart_product->relationtoproducttable->product_name }}</td>
+                                            <td>{{ $product->product_name }}</td>
                                             {{-- <td>LTS Versions</td>
                                             <td>21</td>
                                             <td>$321</td>
                                             <td>$3452</td> --}}
                                         </tr>
-                                        @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

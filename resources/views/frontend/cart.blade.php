@@ -120,7 +120,7 @@ active
                                    <button type="submit" class="btn btn-light" href=""><input type="image" src="{{ asset('frontend_assets/images/stp1.png') }}" name="submit" width="100" height="48" alt="submit"/></button>
                                </form>
                                <br>
-                               <form action="{{ url('/example2')}}" method="POST">
+                               <form action="{{ url('/sslPayout')}}" method="POST">
                                    @csrf
                                    <input type="hidden" name="coupon_from_cart" value="{{ $coupon_name ?? "" }}">
                                    <input type="hidden" name="discount_amount" value="{{ $discount_amount ?? "" }}">

@@ -18,4 +18,8 @@ class Product extends Model
     function relation_to_category(){
         return $this->belongsTo('App\Category','category_id',);
     }
+    public function order(){
+
+        return $this->hasOne(Order_list::class,'product_id');
+    }
 }

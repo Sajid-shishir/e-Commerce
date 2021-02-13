@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Product;
 
 class Order extends Model
 {
@@ -29,7 +30,8 @@ class Order extends Model
     function relationtoproduct(){
         return $this->belongsToMany('App\Order_list');
     }
-   
+     
+
 
 
 }
