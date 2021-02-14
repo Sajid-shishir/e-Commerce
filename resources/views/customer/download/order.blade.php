@@ -35,15 +35,24 @@
                                 <p class="mb-1"><strong>Email: </strong> {{ $order_info->email_address }}</p>
                                 <p class="mb-1"><strong>Phone: </strong> {{ $order_info->phone_number }}</p>
                                 <p class="mb-1"><strong>Coupon Used: </strong> {{ $order_info->coupon_name ?? Null }}</p>
+                                <p class="mb-1"><strong>Item:</strong>
+                                    @foreach ($product as $item)
+                                    <br>
+                                    {{ $item }}/-
+
+                                    @endforeach
+                                </p>
 
 
-                                {{-- @foreach (itemlist() as $item) --}}
+                                <p class="mb-1"><strong>Quantity:</strong>
+                                    @foreach ($data2 as $v)
+                                    <br>
+                                   {{ $v }}
 
-                                <p class="mb-1"><strong>Item: </strong> {{ $product->product_name }}/-</p>
+                                    @endforeach
+                                </p>
 
-                                {{-- @endforeach --}}
 
-                                <p class="mb-1"><strong>Quantity: </strong> {{ $order_list->amount }}</p>
                                 <p class="mb-1"><strong>Total: </strong> {{ $order_info->amount }}/-</p>
                             </div>
 
@@ -58,21 +67,7 @@
                                 @endif
                             </div>
                         </div>
-                        <table>
-                            {{-- @foreach ($order_list as $item) --}}
-                            <tr>
-                                {{-- <th>Sl:</th> --}}
-                                {{-- <th>Item</th> --}}
-                                <th>Quantity</th>
-                            </tr>
-                            <tr>
-                                {{-- <td>{{ $item->product_id }}</td> --}}
-                                {{-- <td>{{ $item->product_id }}</td> --}}
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            {{-- @endforeach --}}
-                        </table>
+                       
                     </div>
                 </div>
             </div>

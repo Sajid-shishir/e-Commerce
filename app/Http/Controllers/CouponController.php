@@ -72,9 +72,10 @@ class CouponController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Coupon $coupon)
     {
-        //
+        // $categories = Category::all();
+        return view('admin.coupon.edit', compact('coupon'));
     }
 
     /**
@@ -83,9 +84,9 @@ class CouponController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Coupon $coupon)
     {
-        //
+        return view('admin.coupon.edit', compact('coupon'));
     }
 
     /**
@@ -95,9 +96,20 @@ class CouponController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Coupon $coupon)
     {
-        //
+        $request->validate([
+
+            'coupon_name' => 'required',
+            'discount_amount' => 'required',
+            'valid_till' => 'required'
+        ]);
+
+        $coupon->coupon_name = $request-> coupon_name;
+       $coupon->discount_amount = $request-> discount_amount;
+       $coupon->valid_till = $request-> valid_till;
+       $coupon->save();
+        return redirect('coupon')->with('status','Updated Successfully');
     }
 
     /**

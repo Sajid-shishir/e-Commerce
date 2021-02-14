@@ -14,8 +14,8 @@
 @endsection
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8">
+    <div class="row-mb-6">
+        <div class="col-md-12">
             @if (session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}
@@ -35,7 +35,13 @@
                                 <th>Valid Till</th>
                                 <th>Status</th>
                                 <th>Remaining Days</th>
+                                {{-- @isset($coupon->updated_at) --}}
                                 <th>Created At</th>
+                                {{-- @else --}}
+                                <th>Updated At</th>
+                                {{-- @endisset --}}
+
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,8 +66,15 @@
                                         @endif
 
                                     </td>
-
                                     <td>{{ $coupon->created_at }}</td>
+                                    @isset($coupon)
+                                    <td>{{ $coupon->updated_at }}</td>
+                                    @else
+                                    <td>Not update</td>
+                                    @endisset
+                                    <td>
+                                        <a href="{{ route('coupon.edit',$coupon->id) }}" class="btn btn-light btn-sm fa fa-edit"> Edit</a>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
@@ -73,7 +86,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <br>
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
                     Add Coupon

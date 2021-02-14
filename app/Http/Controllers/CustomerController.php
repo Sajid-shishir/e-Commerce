@@ -37,11 +37,35 @@ class CustomerController extends Controller
     }
 
     function orderdownload($order_id){
+
        $order_info = Order::findOrFail($order_id);
-       $order_list = Order_list::select('id','order_id', 'product_id','amount')->where('order_id',$order_id)->first();
-        $product =Product::where('id',$order_list->product_id)->first();
+        $order_list = Order_list::select('id','order_id', 'product_id','amount')->where('order_id',$order_id)->get();
+        $data=[];
+        $data2=[];
+        $i=0;
+        foreach($order_list as $v){
+            $data[$i]=$v->product_id;
+            $data2[$i]=$v->amount;
+            $i++;
+
+        }
+        $product=[];
+
+        for($j=0;$j<count($data);$j++){
+
+            $product[$j] =Product::where('id',$data[$j])->value('product_name');
+
+        }
+        // $result = array_merge($data, $data2);
+
+        // return $data;
+
+        // $product =Product::where('id',$order_list->product_id)->value();
+
+        //   return view('customer.download.order',compact('product'));
+
         $dynamic_name = "Invoice-".$order_info->id."-".Carbon::now()->format('d-m-Y').".pdf";
-        $order_pdf = PDF::loadView('customer.download.order',compact('order_info','dynamic_name','order_list','product'));
+        $order_pdf = PDF::loadView('customer.download.order',compact('order_info','dynamic_name','product','data2','order_list'));
         // Mail::to(Auth::user()->email)->send(new payment());
 
        return $order_pdf->download($dynamic_name);

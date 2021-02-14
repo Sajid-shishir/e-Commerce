@@ -13,7 +13,7 @@
     </nav>
 @endsection
 @section('content')
-@can('edit category')
+@can('report')
 
             <div class="row">
                 <div class="col-md-4">
