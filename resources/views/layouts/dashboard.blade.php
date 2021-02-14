@@ -76,6 +76,9 @@
                   <li class="nav-item"><a href="{{route('edit_profile')}}" class="nav-link">Edit Profile</a></li>
               </ul>
 
+              {{-- @can('add category','edit category','delete category','add product','edit product','delete product','add coupon','manage role','add faq','add and edit blog','report') --}}
+
+
               <h1><label href="" class="sidebar-label text-dark"> Categories</label></h1>
               <a href="{{ route('category.index') }}" class="sl-menu-link @yield('add_category')">
                 <div class="sl-menu-item">
@@ -153,14 +156,16 @@
                   <li class="nav-item"><a href="{{ route('faq_post') }}" class="nav-link">FAQ</a></li>
               </ul>
 
-              <h1><label href="" class="sidebar-label text-dark">Blog posting</label></h1>
 
-          <a href="{{ route('blog_post') }}" class="sl-menu-link @yield('blog')">
-            <div class="sl-menu-item">
-              <i class="fa fa-text-width"></i>
-              <span class="menu-item-label">Blog</span>
-            </div><!-- menu-item -->
-          </a>
+                <h1><label href="" class="sidebar-label text-dark">Blog posting</label></h1>
+
+                <a href="{{ route('blog_post') }}" class="sl-menu-link @yield('blog')">
+                    <div class="sl-menu-item">
+                        <i class="fa fa-text-width"></i>
+                        <span class="menu-item-label">Blog</span>
+                    </div><!-- menu-item -->
+                </a>
+
 
           <h1><label href="" class="sidebar-label text-dark">Roles and permissions</label></h1>
 
@@ -198,6 +203,7 @@
               <span class="menu-item-label">Live Chat</span>
             </div><!-- menu-item -->
           </a>
+          {{-- @endcan --}}
           <h1><label href="" class="sidebar-label text-dark">------------------------------------------</label></h1>
 
         @else

@@ -35,27 +35,22 @@
                                 <p class="mb-1"><strong>Email: </strong> {{ $order_info->email_address }}</p>
                                 <p class="mb-1"><strong>Phone: </strong> {{ $order_info->phone_number }}</p>
                                 <p class="mb-1"><strong>Coupon Used: </strong> {{ $order_info->coupon_name ?? Null }}</p>
-                                <p class="mb-1"><strong>Item:</strong>
+                                {{-- <p class="mb-1"><strong>Item:</strong>
                                     @foreach ($product as $item)
                                     <br>
                                     {{ $item }}/-
 
                                     @endforeach
                                 </p>
-
-
                                 <p class="mb-1"><strong>Quantity:</strong>
                                     @foreach ($data2 as $v)
                                     <br>
                                    {{ $v }}
 
                                     @endforeach
-                                </p>
-
-
-                                <p class="mb-1"><strong>Total: </strong> {{ $order_info->amount }}/-</p>
+                                </p> --}}
+                                {{-- <p class="mb-1"><strong>Total: </strong> {{ $order_info->amount }}/-</p> --}}
                             </div>
-
                             <div class="col-md-6 text-right">
                                 <p class="font-weight-bold mb-4">Payment Details-</p>
                                 @if ( $order_info->payment_method == 2 )
@@ -67,7 +62,58 @@
                                 @endif
                             </div>
                         </div>
-                       
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    {{-- @foreach ($product as $item) --}}
+                                    <td>
+                                        <p class="mb-1"><strong>Item-</strong>
+                                            @foreach ($product as $item)
+                                            <br>
+                                            {{ $item }}/-
+
+                                            @endforeach
+                                        </p>
+                                    </td>
+                                    <br>
+                                    <td>
+                                        <p class="mb-1"><strong>Quantity-</strong>
+                                            @foreach ($data2 as $v)
+                                            <br>
+                                           {{ $v }} x
+
+                                            @endforeach
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="mb-1"><strong>Price-</strong>
+                                            @foreach ($price as $p)
+                                            <br>
+                                            {{ $p }}/-
+
+                                            @endforeach
+                                        </p>
+                                    </td>
+                                    {{-- <td>{{ $item }}/-</td> --}}
+                                    {{-- @endforeach --}}
+                                    {{-- @foreach ($data2 as $v) --}}
+
+                                    {{-- <td> {{ $v }}</td> --}}
+                                    {{-- @endforeach --}}
+
+                                </tr>
+                            </tbody>
+                            <p class="mb-1"><strong>Total: </strong> {{ $order_info->amount }}/-</p>
+                            <br>
+                        </table>
+                        <p class="mb-1"><strong>Thank you </strong></p>
                     </div>
                 </div>
             </div>

@@ -50,10 +50,13 @@ class CustomerController extends Controller
 
         }
         $product=[];
+        $price=[];
 
         for($j=0;$j<count($data);$j++){
 
             $product[$j] =Product::where('id',$data[$j])->value('product_name');
+
+            $price[$j] =Product::where('id',$data[$j])->value('product_price');
 
         }
         // $result = array_merge($data, $data2);
@@ -65,7 +68,7 @@ class CustomerController extends Controller
         //   return view('customer.download.order',compact('product'));
 
         $dynamic_name = "Invoice-".$order_info->id."-".Carbon::now()->format('d-m-Y').".pdf";
-        $order_pdf = PDF::loadView('customer.download.order',compact('order_info','dynamic_name','product','data2','order_list'));
+        $order_pdf = PDF::loadView('customer.download.order',compact('order_info','dynamic_name','product','price','data2','order_list'));
         // Mail::to(Auth::user()->email)->send(new payment());
 
        return $order_pdf->download($dynamic_name);
