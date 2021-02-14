@@ -31,7 +31,7 @@ class GithubController extends Controller
             User::insert([
                 'name' => $user->getNickname(),
                 'email' => $user->getEmail(),
-                'avatar' =>'null',
+
                 'password' => bcrypt('xyz@123'),
                 'role' => 2,
                 'created_at' => Carbon::now()

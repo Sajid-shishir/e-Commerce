@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 use Carbon\Carbon;
 use App\Coupon;
@@ -14,6 +14,9 @@ use DB;
 use App\Mail\payment;
 use Illuminate\Support\Facades\Mail;
 use App\User;
+use Spatie\QueryBuilder\QueryBuilder;
+
+use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
@@ -34,29 +37,18 @@ class CustomerController extends Controller
     }
 
     function orderdownload($order_id){
-
-    //    $data = DB::table('order_lists')->join('products',);
-
-       $order_list = Order_list::where('order_id',$order_id)->first();
-        $product =Product::where('id',$order_list->product_id)->first();
-
-         
-
-
-
        $order_info = Order::findOrFail($order_id);
-       $dynamic_name = "Invoice-".$order_info->id."-".Carbon::now()->format('d-m-Y').".pdf";
-       $order_pdf = PDF::loadView('customer.download.order',compact('order_info','dynamic_name','order_list','product'));
+       $order_list = Order_list::select('id','order_id', 'product_id','amount')->where('order_id',$order_id)->first();
+        $product =Product::where('id',$order_list->product_id)->first();
+        $dynamic_name = "Invoice-".$order_info->id."-".Carbon::now()->format('d-m-Y').".pdf";
+        $order_pdf = PDF::loadView('customer.download.order',compact('order_info','dynamic_name','order_list','product'));
+        // Mail::to(Auth::user()->email)->send(new payment());
+
        return $order_pdf->download($dynamic_name);
 
-       foreach(User::where(Auth::user())->get() as $user){
-
-        Mail::to($request->user())->send(new payment($order_pdf));
-    }
-        // echo $order_id;
-
 
     }
+
     function addreview(Request $request){
 
         // print_r($request->all());

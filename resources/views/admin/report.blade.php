@@ -13,6 +13,8 @@
     </nav>
 @endsection
 @section('content')
+@can('edit category')
+
             <div class="row">
                 <div class="col-md-4">
                     <div class="card mb-4">
@@ -97,5 +99,7 @@
                     </div>
                 </div> --}}
             </div>
-
+            @else
+                    <span class="lead m-auto"><h1 class="badge badge-danger">UnAuthorized</h1></span>
+            @endcan
 @endsection

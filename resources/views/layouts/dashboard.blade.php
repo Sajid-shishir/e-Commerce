@@ -207,7 +207,7 @@
             <span class="menu-item-label">Shop</span>
           </div><!-- menu-item -->
         </a>
-        <a href="{{ url('home/customer') }}" class="sl-menu-link @yield('home')" >
+        <a href="{{ url('home/customer') }}" class="sl-menu-link @yield('cus_home')" >
           <div class="sl-menu-item">
             <i class="fa fa-tachometer"></i>
             <span class="menu-item-label">Dashboard</span>

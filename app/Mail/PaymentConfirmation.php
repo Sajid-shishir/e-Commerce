@@ -7,10 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class payment extends Mailable
+class PaymentConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
-    // private $payment_name_to_send = "";
 
     /**
      * Create a new message instance.
@@ -19,7 +18,6 @@ class payment extends Mailable
      */
     public function __construct()
     {
-        // $this->$payment_name_to_send =$order_pdf;
         //
     }
 
@@ -30,6 +28,6 @@ class payment extends Mailable
      */
     public function build()
     {
-        return $this->view('admin.mail.payment');
+        return $this->view('view.name');
     }
 }

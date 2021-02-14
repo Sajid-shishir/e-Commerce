@@ -20,6 +20,10 @@ class Product extends Model
     }
     public function order(){
 
+        return $this->hasMany(Order_list::class,'product_id');
+    }
+    public function coupon(){
+
         return $this->hasOne(Order_list::class,'product_id');
     }
 }

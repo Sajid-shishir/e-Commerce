@@ -26,18 +26,18 @@
         <div class="row">
             <div class="col-12">
               <div class="about-wrap text-center">
-                <h3>FAQ</h3>
+                <h3>Popular Questions</h3>
               </div>
               <div class="accordion" id="accordionExample">
                         @forelse ($faqs_frontend as $faqs)
                         <div class="card border-0">
                             <div class="card-header border-0 p-0 my-3">
-                                <button class="btn btn-link text-left py-3 w-100 text-white" type="button" data-toggle="collapse" data-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                                <button class="btn btn-link text-left py-3 w-100 text-white" type="button" data-toggle="collapse" data-target="#faq{{ $faqs->id }}" aria-expanded="true" aria-controls="faq{{ $faqs->id }}">
                                 {{ $faqs->faq_question }}
                                 </button>
                             </div>
 
-                            <div id="faq1" class="collapse show" aria-labelledby="faq1" data-parent="#accordionExample">
+                            <div id="faq{{ $faqs->id }}" class="collapse" aria-labelledby="faq{{ $faqs->id }}" data-parent="#accordionExample">
                             <div class="card-body">
                                 {{ $faqs->faq_answer }}
                             </div>

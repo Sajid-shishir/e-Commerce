@@ -8,10 +8,10 @@ active
         <div class="row">
             <div class="col-12">
                 <div class="breadcumb-wrap text-center">
-                    <h2>Shopping Cart</h2>
+                    <h2>Cart</h2>
                     <ul>
                         <li><a href="{{ url('/') }}">Home</a></li>
-                        <li><span>Shopping Cart</span></li>
+                        <li><span>Cart</span></li>
                     </ul>
                 </div>
             </div>
@@ -45,16 +45,14 @@ active
                             </tr>
                         </thead>
                         <tbody>
-
                             @foreach (cart_products() as $cart_product)
-
                             <tr>
                                 <td class="images"><img src="{{ asset('uploads/product_thumbnail') }}/{{ $cart_product->relationtoproducttable->product_thumbnail_photo }}" alt="{{ $cart_product->relationtoproducttable->product_thumbnail_photo }}"></td>
                                 <td class="product"><a href="{{ url('product') }}/{{ $cart_product->relationtoproducttable->product_slug }}" target="_blank">{{ $cart_product->relationtoproducttable->product_name }}</a></td>
                                 <td class="ptice">৳ {{ $cart_product->relationtoproducttable->product_price }}</td>
 
                                 <input type="hidden" value="{{ $cart_product->id }}" name="cart_id[]" />
-                                <td class="quantity ">
+                                <td class="quantity">
                                     <input type="text" value="{{ $cart_product->amount }}" name="cart_quantity[]" />
                                 </td>
                                 <td class="total">৳ {{ $cart_product->relationtoproducttable->product_price * $cart_product->amount }}
@@ -71,13 +69,13 @@ active
                     <div class="row mt-60">
                         <div class="col-xl-4 col-lg-5 col-md-6 ">
                             <div class="cartcupon-wrap">
-                                {{-- <ul class="d-flex">
-                                    <li>
+                                <ul class="d-flex">
+                                    {{-- <li>
                                         <button>Update Cart</button>
-                                    </li>
+                                    </li> --}}
                                     <li>
                                         <a href="{{ url('/') }}">Continue Shopping</a></li>
-                                </ul> --}}
+                                </ul>
                             </form>
                             <br>
                                 <h3>Coupon</h3>

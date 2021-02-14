@@ -11,6 +11,8 @@ use App\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\payment;
+use Illuminate\Support\Facades\Mail;
 use DB;
 use App\Library\SslCommerz\SslCommerzNotification;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -41,6 +43,9 @@ class CheckoutController extends Controller
                 'transaction_id' => uniqid(),
                 'created_at' => Carbon::now()
             ]);
+
+                Mail::to(Auth::user()->email)->send(new payment());
+
                 $url = "http://66.45.237.70/api.php";
                 $number=$request->phone_number;
                 $text="Hello, Dear ".$request->full_name.". Your Transaction Id: ".uniqid().". Total Payment Pending: ".$request->amount. " TK, Thank You";
@@ -80,24 +85,9 @@ class CheckoutController extends Controller
             session()->flash('message', 'Cash On Delivery Purchase!');
                 return redirect('/');
         }
-        // elseif($request->payment_method == 3){
-        //     return view('frontend.bkash',[
-        //         'full_name' =>$request->full_name,
-        //         'email_address' =>$request->email_address,
-        //         'phone_number' =>$request->phone_number,
-        //         'country_id' =>$request->country_id,
-        //         'city_id' =>$request->city_id,
-        //         'address' =>$request->address,
-        //         'note' =>$request->note,
-        //         'sub_total' =>$request->sub_total,
-        //         'total' =>$request->total,
-        //         'coupon_name' =>$request->coupon_name
 
-        //     ]);
-        // }
         else{
-            // echo "credit card";
-            // print_r($request->all());
+
             return view('frontend.onlinepayment',[
                 'full_name' =>$request->full_name,
                 'email_address' =>$request->email_address,
@@ -113,7 +103,7 @@ class CheckoutController extends Controller
             ]);
 
         }
-        // inserting in order table
+        
 
     }
 

@@ -112,7 +112,7 @@
             </div>
             @else
             <span class="lead m-auto"><h1 class="badge badge-danger">UnAuthorized</h1></span>
-            <span class="lead m-auto"><h1 class="badge badge-danger">Only Blog Writter can Add Faq</h1></span>
+            {{-- <span class="lead m-auto"><h1 class="badge badge-danger">Only Blog Writter can Add Faq</h1></span> --}}
             @endcan
         </div>
     </div>
