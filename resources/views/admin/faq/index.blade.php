@@ -53,10 +53,15 @@
                                 <td>{{ $faq->faq_answer }}</td>
                                 <td>
                                     @can('add faq')
-
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a type="button" class="btn btn-light btn-sm text-black fa fa-edit" href="{{ url('faq_edit') }}/{{ $faq->id }}"> Edit</a>
-                                        <a type="button" class="btn btn-danger btn-sm text-white fa fa-trash" href="{{ url('faq_delete') }}/{{ $faq->id }}"> Trash</a>
+
+                                        <form action="{{ url('faq_delete') }}/{{ $faq->id }}" class="d-inline" onsubmit="return confirm('Are you sure you want to delete?')" method="get">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash"></i> Trash</button>
+                                        {{-- <a type="button" class="btn btn-danger btn-sm text-white fa fa-trash" href="{{ url('faq_delete') }}/{{ $faq->id }}"> Trash</a> --}}
+                                        </form>
                                     </div>
                                     @endcan
 

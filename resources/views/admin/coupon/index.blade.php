@@ -25,6 +25,7 @@
                 <div class="card-header">
                     <span >List Of Coupon</span>
                 </div>
+                @can('add coupon')
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
@@ -92,7 +93,7 @@
                 <div class="card-header">
                     Add Coupon
                 </div>
-                @can('add coupon')
+                {{-- @can('add coupon') --}}
                 <div class="card-body">
                         @if ($errors->all())
                         <div class="alert alert-danger">

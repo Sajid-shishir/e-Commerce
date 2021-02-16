@@ -60,8 +60,6 @@
       </div><!-- input-group --> --}}
 
       <h1><label href="" class="sidebar-label text-dark">Admin Dashboard</label></h1>
-
-
       <div class="sl-sideleft-menu">
           @if (Auth::user()->role == 1)
         <a href="{{ url('/home') }}" class="sl-menu-link @yield('home') @yield('edit_profile')">
@@ -88,21 +86,21 @@
                 </div><!-- menu-item -->
               </a><!-- sl-menu-link -->
                    <ul class="sl-menu-sub nav flex-column">
-                      <li class="nav-item"><a href="{{ route('category.index') }}" class="nav-link">Add Category</a></li>
+                      <li class="nav-item"><a href="{{ route('category.index') }}" class="nav-link"> Category</a></li>
                   </ul>
 
-                  <h1><label href="" class="sidebar-label text-dark">Products and coupons</label></h1>
+                  <h1><label href="" class="sidebar-label text-dark">Items and coupons</label></h1>
 
                   <a href="{{ route('product.index') }}" class="sl-menu-link @yield('add_product') @yield('add_coupon')">
                     <div class="sl-menu-item">
                       <i class="fa fa-product-hunt tx-22"></i>
-                      <span class="menu-item-label">Product</span>
+                      <span class="menu-item-label">Item</span>
                       <i class="menu-item-arrow fa fa-angle-down"></i>
                     </div><!-- menu-item -->
                   </a><!-- sl-menu-link -->
                        <ul class="sl-menu-sub nav flex-column">
-                          <li class="nav-item"><a href="{{ route('product.index') }}" class="nav-link">Add Product</a></li>
-                          <li class="nav-item"><a href="{{ route('coupon.index') }}" class="nav-link">Add Coupon</a></li>
+                          <li class="nav-item"><a href="{{ route('product.index') }}" class="nav-link"> Item</a></li>
+                          <li class="nav-item"><a href="{{ route('coupon.index') }}" class="nav-link"> Coupon</a></li>
                       </ul>
 
         {{-- <a href="{{ url('/home') }}" class="sl-menu-link @yield('home')" >
