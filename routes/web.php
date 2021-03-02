@@ -44,7 +44,7 @@ Route::resource('coupon','CouponController');
 
 Route::get('home/customer','CustomerController@homecustomer')->name('home.customer');
 Route::get('order/download/{order_id}','CustomerController@orderdownload');
-Route::post('add/review','CustomerController@addreview');
+Route::post('add/review','CustomerController@addreview')->name('add.review');
 
 Route::get('register/github','GithubController@redirectToProvider');
 Route::get('register/github/callback','GithubController@handleProviderCallback');

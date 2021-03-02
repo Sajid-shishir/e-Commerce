@@ -78,6 +78,11 @@ class CustomerController extends Controller
 
     function addreview(Request $request){
 
+        $request->validate([
+            'review' =>'required',
+            'star' =>'required'
+        ]);
+
         // print_r($request->all());
         $order_list =Order_list::where('user_id',Auth::id())->where('product_id',$request->product_id)->whereNull('review')->first()->update([
             'review' =>$request->review,

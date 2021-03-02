@@ -35,21 +35,6 @@
                                 <p class="mb-1"><strong>Email: </strong> {{ $order_info->email_address }}</p>
                                 <p class="mb-1"><strong>Phone: </strong> {{ $order_info->phone_number }}</p>
                                 <p class="mb-1"><strong>Coupon Used: </strong> {{ $order_info->coupon_name ?? Null }}</p>
-                                {{-- <p class="mb-1"><strong>Item:</strong>
-                                    @foreach ($product as $item)
-                                    <br>
-                                    {{ $item }}/-
-
-                                    @endforeach
-                                </p>
-                                <p class="mb-1"><strong>Quantity:</strong>
-                                    @foreach ($data2 as $v)
-                                    <br>
-                                   {{ $v }}
-
-                                    @endforeach
-                                </p> --}}
-                                {{-- <p class="mb-1"><strong>Total: </strong> {{ $order_info->amount }}/-</p> --}}
                             </div>
                             <div class="col-md-6 text-right">
                                 <p class="font-weight-bold mb-4">Payment Details-</p>
@@ -72,7 +57,6 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    {{-- @foreach ($product as $item) --}}
                                     <td>
                                         <p class="mb-1"><strong>Item-</strong>
                                             @foreach ($product as $item)
@@ -101,13 +85,6 @@
                                             @endforeach
                                         </p>
                                     </td>
-                                    {{-- <td>{{ $item }}/-</td> --}}
-                                    {{-- @endforeach --}}
-                                    {{-- @foreach ($data2 as $v) --}}
-
-                                    {{-- <td> {{ $v }}</td> --}}
-                                    {{-- @endforeach --}}
-
                                 </tr>
                             </tbody>
                             <p class="mb-1"><strong>Total: </strong> {{ $order_info->amount }}/-</p>

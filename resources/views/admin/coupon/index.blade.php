@@ -116,7 +116,7 @@
                           <label>Valid Till </label>
                           <input type="date" class="form-control" name="valid_till" min="{{ \Carbon\carbon::now()->format('Y-m-d') }}">
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Product</button>
+                        <button type="submit" class="btn btn-success">Add </button>
                       </form>
                     </div>
                     @else

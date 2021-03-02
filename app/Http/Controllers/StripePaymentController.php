@@ -33,6 +33,7 @@ class StripePaymentController extends Controller
         Stripe\Charge::create ([
                 "amount" => $request->amount * 100,
                 "currency" => "INR",
+                // "currency" => "cve", Application fees for destination charges and converting balances
                 "source" => $request->stripeToken,
                 "description" => "Test payment from Catch Food Online"
 

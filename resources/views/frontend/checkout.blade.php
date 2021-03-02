@@ -145,7 +145,6 @@ $(document).ready(function(){
                     url:'/get/city/list',
                     data:{country_id:country_id},
                     success:function(data){
-
                         $('#city_list').html(data);
                     }
                 });
