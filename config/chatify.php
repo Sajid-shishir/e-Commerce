@@ -25,7 +25,7 @@ return [
     | e.g. : app.test/chatify
     */
 
-    'path' => env('CHATIFY_PATH', 'chatify'),
+    'path' => env('CHATIFY_PATH', 'chat'),
 
     /*
     |--------------------------------------------------------------------------
