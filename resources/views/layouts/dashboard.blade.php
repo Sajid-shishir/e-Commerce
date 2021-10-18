@@ -198,12 +198,12 @@
 
              <h1><label href="" class="sidebar-label text-dark">Messenger</label></h1>
 
-          <a href="{{ route('chat') }}" class="sl-menu-link">
+          {{-- <a href="{{ route('chat') }}" class="sl-menu-link">
             <div class="sl-menu-item">
               <i class="fa fa-comments-o"></i>
               <span class="menu-item-label">Live Chat</span>
             </div><!-- menu-item -->
-          </a>
+          </a> --}}
           <h1><label href="" class="sidebar-label text-dark">------------------------------------------</label></h1>
 
         @else

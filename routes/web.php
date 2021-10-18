@@ -1,13 +1,15 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SslCommerzPaymentController;
+use App\Http\Controllers\vendor\Chatify\MessagesController;
+use Chatify\Http\Controllers;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-use App\Http\Controllers\SslCommerzPaymentController;
 
 
 

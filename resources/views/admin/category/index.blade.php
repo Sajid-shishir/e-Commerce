@@ -46,7 +46,7 @@
                                 <tr>
                                     <td>{{ $loop->index +1 }}</td>
                                     <td>{{ $category->category_name }}</td>
-                                    <td>{{ $category->connect_to_user_table->name }}</td>
+                                    {{-- <td>{{ $category->connect_to_user_table->name }}</td> --}}
                                     <td>
                                         <img width="80"  src="{{ asset('uploads/category') }}/{{ $category->category_photo }}" alt="{{ $category->category_photo }}">
                                     </td>

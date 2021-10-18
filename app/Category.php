@@ -12,7 +12,8 @@ class Category extends Model
 
     function connect_to_user_table(){
 
-        return $this->belongsTo('App\User','added_by');
+        return $this->belongsTo('App\User');
+        
     }
     function connect_to_product_table(){
 

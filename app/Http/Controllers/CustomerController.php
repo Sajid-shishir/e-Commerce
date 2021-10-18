@@ -41,11 +41,7 @@ class CustomerController extends Controller
     //    $data = DB::table('order_lists')->join('products',);
 
        $order_list = Order_list::where('order_id',$order_id)->first();
-        $product =Product::where('id',$order_list->product_id)->first();
-
-         
-
-
+       $product =Product::where('id',$order_list->product_id)->first();
 
        $order_info = Order::findOrFail($order_id);
        $dynamic_name = "Invoice-".$order_info->id."-".Carbon::now()->format('d-m-Y').".pdf";

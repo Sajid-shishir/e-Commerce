@@ -8,6 +8,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Symfony\Component\HttpFoundation\Session\Session;
+use DB;
 class CategoryController extends Controller
 {
 
@@ -24,9 +25,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        // $categories = DB::table('categories')->orderBy('id')->get();
+        $categories = Category::orderBy('id')->get();
 
        return view('admin.category.index', [
-        'categories' => $categories = Category::all()
+        'categories' => $categories 
        ]);
     }
 
