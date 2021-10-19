@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Product;
 use App\Faq;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -70,19 +71,21 @@ class FrontendController extends Controller
 
         $request->validate([
             'faq_question' => 'required|unique:faqs,faq_question',
-            'faq_answer' => 'required'
+            'faq_answer' => 'required',
+
         ]);
 
         Faq::insert([
             'faq_question' => $request->faq_question,
             'faq_answer' => $request->faq_answer,
+            'created_at' => Carbon::now()
         ]);
             return back()->with('status','FAQ Added Successfully');
 
     }
 
     function about(){
-        
+
         return view('frontend.about',[
             'categories' => Category::all()
         ]);

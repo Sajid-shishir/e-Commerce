@@ -31,7 +31,34 @@
             <div class="col-lg-8 col-12">
                 <div class="contact-form form-style">
                     <div class="cf-msg"></div>
-                    <form action="http://themepresss.com/tf/html/tohoney/mail.php" method="post" id="cf">
+                    <div class="contact-wrap">
+                        <ul>
+                            <li>
+                                <i class="fa fa-home"></i> Address:
+                                <p>Sector-10, Uttara,Dhaka-1230</p>
+                            </li>
+                            <li>
+                                <i class="fa fa-phone"></i> Email address:
+                                <p>
+                                    <span>sajidulhaque@gmail.com </span>
+                                </p>
+                            </li>
+                            <li>
+                                <i class="fa fa-envelope"></i> phone number:
+                                <p>
+                                    <span>+8801686662852</span>
+                                    <span>+8801634174881</span>
+                                </p>
+                            </li>
+                            <li>
+                                <i class="fa fa-commenting-o"></i>Want to Chat?
+                                <p>
+                                    <span>Create a free account and find us on live messenger</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    {{-- <form action="http://themepresss.com/tf/html/tohoney/mail.php" method="post" id="cf">
                         <div class="row">
                             <div class="col-12 col-sm-6">
                                 <input type="text" placeholder="Name" id="fname" name="fname">
@@ -49,32 +76,10 @@
                                 <button id="submit" name="submit">SEND MESSAGE</button>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
             <div class="col-lg-4 col-12">
-                <div class="contact-wrap">
-                    <ul>
-                        <li>
-                            <i class="fa fa-home"></i> Address:
-                            <p>1234, Contrary to popular Sed ut perspiciatis unde 1234</p>
-                        </li>
-                        <li>
-                            <i class="fa fa-phone"></i> Email address:
-                            <p>
-                                <span>info@yoursite.com </span>
-                                <span>info@yoursite.com </span>
-                            </p>
-                        </li>
-                        <li>
-                            <i class="fa fa-envelope"></i> phone number:
-                            <p>
-                                <span>+0123456789</span>
-                                <span>+1234567890</span>
-                            </p>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>

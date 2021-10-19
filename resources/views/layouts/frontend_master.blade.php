@@ -102,7 +102,7 @@
                                 <li class="@yield('blog')"><a href="{{ url('blog') }}">Blog</a></li>
                                 <li class="@yield('faq')"><a href="{{ url('faq') }}">FAQ</a></li>
                                 <li class="@yield('contact')"><a href="{{ url('contact') }}">Contact</a></li>
-                                <li class="@yield('about')"><a href="{{ url('about') }}">About</a></li>
+                                {{-- <li class="@yield('about')"><a href="{{ url('about') }}">About</a></li> --}}
                                 {{-- <li>
                                     <a href="javascript:void(0);">Pages <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown_style">

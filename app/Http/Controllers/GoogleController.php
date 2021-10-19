@@ -34,7 +34,6 @@ class GoogleController extends Controller
             User::insert([
                 'name' => $user->getName(),
                 'email' => $user->getEmail(),
-                'avatar' =>'null',
                 'password' => bcrypt('xyz@123'),
                 'role' => 2,
                 'created_at' => Carbon::now(),
@@ -43,6 +42,10 @@ class GoogleController extends Controller
         if(Auth::attempt(['email'=> $user->getEmail(),'password' => 'xyz@123'])){
 
          return redirect('home/customer');
+        }
+        else{
+            echo "Password Changed. Login with new password";
+
         }
 
         // $user->token;

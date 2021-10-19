@@ -71,19 +71,22 @@
                         <br>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <a href="{{ url('register/github') }}" class="btn btn-light">
+                                {{-- <a href="{{ url('register/github') }}" class="btn btn-light">
                                     Register with GitHub
-                                </a>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                                </a> --}}
                                 <a href="{{ url('register/google') }}" class="btn btn-danger">
                                     Register with Google
                                 </a>
                             </div>
                         </div>
+                        <br>
+                        {{-- <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <a href="{{ url('register/google') }}" class="btn btn-danger">
+                                    Register with Google
+                                </a>
+                            </div>
+                        </div> --}}
                     </form>
                 </div>
             </div>

@@ -15,4 +15,8 @@ class Order_list extends Model
         return $this->hasMany(Product::class);
     }
 
+    function relationtoproduct(){
+
+        return $this->belongsTo(Product::class);
+    }
 }

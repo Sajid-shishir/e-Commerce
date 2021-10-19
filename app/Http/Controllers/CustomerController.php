@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 use Carbon\Carbon;
 use App\Coupon;
@@ -16,6 +16,9 @@ use DB;
 use App\Mail\payment;
 use Illuminate\Support\Facades\Mail;
 use App\User;
+use Spatie\QueryBuilder\QueryBuilder;
+
+use Illuminate\Support\Str;
 
 
 class CustomerController extends Controller
@@ -38,25 +41,55 @@ class CustomerController extends Controller
 
     function orderdownload($order_id){
 
-    //    $data = DB::table('order_lists')->join('products',);
+       $order_info = Order::findOrFail($order_id);
+        $order_list = Order_list::select('id','order_id', 'product_id','amount')->where('order_id',$order_id)->get();
+        $data=[];
+        $data2=[];
+        $i=0;
+        foreach($order_list as $v){
+            $data[$i]=$v->product_id;
+            $data2[$i]=$v->amount;
+            $i++;
+
 
        $order_list = Order_list::where('order_id',$order_id)->first();
        $product =Product::where('id',$order_list->product_id)->first();
 
-       $order_info = Order::findOrFail($order_id);
-       $dynamic_name = "Invoice-".$order_info->id."-".Carbon::now()->format('d-m-Y').".pdf";
-       $order_pdf = PDF::loadView('customer.download.order',compact('order_info','dynamic_name','order_list','product'));
+        }
+        $product=[];
+        $price=[];
+
+        for($j=0;$j<count($data);$j++){
+
+            $product[$j] =Product::where('id',$data[$j])->value('product_name');
+
+            $price[$j] =Product::where('id',$data[$j])->value('product_price');
+
+
+        }
+        // $result = array_merge($data, $data2);
+
+        // return $data;
+
+        // $product =Product::where('id',$order_list->product_id)->value();
+
+        //   return view('customer.download.order',compact('product'));
+
+        $dynamic_name = "Invoice-".$order_info->id."-".Carbon::now()->format('d-m-Y').".pdf";
+        $order_pdf = PDF::loadView('customer.download.order',compact('order_info','dynamic_name','product','price','data2','order_list'));
+        // Mail::to(Auth::user()->email)->send(new payment());
+
        return $order_pdf->download($dynamic_name);
 
-       foreach(User::where(Auth::user())->get() as $user){
-
-        Mail::to($request->user())->send(new payment($order_pdf));
-    }
-        // echo $order_id;
-
 
     }
+
     function addreview(Request $request){
+
+        $request->validate([
+            'review' =>'required',
+            'star' =>'required'
+        ]);
 
         // print_r($request->all());
         $order_list =Order_list::where('user_id',Auth::id())->where('product_id',$request->product_id)->whereNull('review')->first()->update([

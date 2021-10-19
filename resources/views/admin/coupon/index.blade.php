@@ -14,8 +14,8 @@
 @endsection
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8">
+    <div class="row-mb-6">
+        <div class="col-md-12">
             @if (session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}
@@ -25,6 +25,7 @@
                 <div class="card-header">
                     <span >List Of Coupon</span>
                 </div>
+                @can('add coupon')
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
@@ -35,7 +36,13 @@
                                 <th>Valid Till</th>
                                 <th>Status</th>
                                 <th>Remaining Days</th>
+                                {{-- @isset($coupon->updated_at) --}}
                                 <th>Created At</th>
+                                {{-- @else --}}
+                                <th>Updated At</th>
+                                {{-- @endisset --}}
+
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,8 +67,15 @@
                                         @endif
 
                                     </td>
-
                                     <td>{{ $coupon->created_at }}</td>
+                                    @isset($coupon)
+                                    <td>{{ $coupon->updated_at }}</td>
+                                    @else
+                                    <td>Not update</td>
+                                    @endisset
+                                    <td>
+                                        <a href="{{ route('coupon.edit',$coupon->id) }}" class="btn btn-light btn-sm fa fa-edit"> Edit</a>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
@@ -73,12 +87,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <br>
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
                     Add Coupon
                 </div>
-                @can('add coupon')
+                {{-- @can('add coupon') --}}
                 <div class="card-body">
                         @if ($errors->all())
                         <div class="alert alert-danger">
@@ -101,7 +116,7 @@
                           <label>Valid Till </label>
                           <input type="date" class="form-control" name="valid_till" min="{{ \Carbon\carbon::now()->format('Y-m-d') }}">
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Product</button>
+                        <button type="submit" class="btn btn-success">Add </button>
                       </form>
                     </div>
                     @else

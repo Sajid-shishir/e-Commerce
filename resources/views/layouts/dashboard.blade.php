@@ -60,8 +60,6 @@
       </div><!-- input-group --> --}}
 
       <h1><label href="" class="sidebar-label text-dark">Admin Dashboard</label></h1>
-
-
       <div class="sl-sideleft-menu">
           @if (Auth::user()->role == 1)
         <a href="{{ url('/home') }}" class="sl-menu-link @yield('home') @yield('edit_profile')">
@@ -76,6 +74,9 @@
                   <li class="nav-item"><a href="{{route('edit_profile')}}" class="nav-link">Edit Profile</a></li>
               </ul>
 
+              {{-- @can('add category','edit category','delete category','add product','edit product','delete product','add coupon','manage role','add faq','add and edit blog','report') --}}
+
+
               <h1><label href="" class="sidebar-label text-dark"> Categories</label></h1>
               <a href="{{ route('category.index') }}" class="sl-menu-link @yield('add_category')">
                 <div class="sl-menu-item">
@@ -85,21 +86,21 @@
                 </div><!-- menu-item -->
               </a><!-- sl-menu-link -->
                    <ul class="sl-menu-sub nav flex-column">
-                      <li class="nav-item"><a href="{{ route('category.index') }}" class="nav-link">Add Category</a></li>
+                      <li class="nav-item"><a href="{{ route('category.index') }}" class="nav-link"> Category</a></li>
                   </ul>
 
-                  <h1><label href="" class="sidebar-label text-dark">Products and coupons</label></h1>
+                  <h1><label href="" class="sidebar-label text-dark">Items and coupons</label></h1>
 
                   <a href="{{ route('product.index') }}" class="sl-menu-link @yield('add_product') @yield('add_coupon')">
                     <div class="sl-menu-item">
                       <i class="fa fa-product-hunt tx-22"></i>
-                      <span class="menu-item-label">Product</span>
+                      <span class="menu-item-label">Item</span>
                       <i class="menu-item-arrow fa fa-angle-down"></i>
                     </div><!-- menu-item -->
                   </a><!-- sl-menu-link -->
                        <ul class="sl-menu-sub nav flex-column">
-                          <li class="nav-item"><a href="{{ route('product.index') }}" class="nav-link">Add Product</a></li>
-                          <li class="nav-item"><a href="{{ route('coupon.index') }}" class="nav-link">Add Coupon</a></li>
+                          <li class="nav-item"><a href="{{ route('product.index') }}" class="nav-link"> Item</a></li>
+                          <li class="nav-item"><a href="{{ route('coupon.index') }}" class="nav-link"> Coupon</a></li>
                       </ul>
 
         {{-- <a href="{{ url('/home') }}" class="sl-menu-link @yield('home')" >
@@ -153,14 +154,16 @@
                   <li class="nav-item"><a href="{{ route('faq_post') }}" class="nav-link">FAQ</a></li>
               </ul>
 
-              <h1><label href="" class="sidebar-label text-dark">Blog posting</label></h1>
 
-          <a href="{{ route('blog_post') }}" class="sl-menu-link @yield('blog')">
-            <div class="sl-menu-item">
-              <i class="fa fa-text-width"></i>
-              <span class="menu-item-label">Blog</span>
-            </div><!-- menu-item -->
-          </a>
+                <h1><label href="" class="sidebar-label text-dark">Blog posting</label></h1>
+
+                <a href="{{ route('blog_post') }}" class="sl-menu-link @yield('blog')">
+                    <div class="sl-menu-item">
+                        <i class="fa fa-text-width"></i>
+                        <span class="menu-item-label">Blog</span>
+                    </div><!-- menu-item -->
+                </a>
+
 
           <h1><label href="" class="sidebar-label text-dark">Roles and permissions</label></h1>
 
@@ -192,7 +195,7 @@
               <i class="menu-item-arrow fa fa-angle-down"></i>
             </div><!-- menu-item -->
           </a><!-- sl-menu-link -->
-               <ul class="sl-menu-sub nav flex-column">
+               
                   <li class="nav-item"><a href="{{ route('report') }}" class="nav-link">Report</a></li>
               </ul>
 
@@ -203,7 +206,12 @@
               <i class="fa fa-comments-o"></i>
               <span class="menu-item-label">Live Chat</span>
             </div><!-- menu-item -->
+
           </a> --}}
+
+          </a>
+          {{-- @endcan --}}
+
           <h1><label href="" class="sidebar-label text-dark">------------------------------------------</label></h1>
 
         @else
@@ -213,7 +221,7 @@
             <span class="menu-item-label">Shop</span>
           </div><!-- menu-item -->
         </a>
-        <a href="{{ url('home/customer') }}" class="sl-menu-link @yield('home')" >
+        <a href="{{ url('home/customer') }}" class="sl-menu-link @yield('cus_home')" >
           <div class="sl-menu-item">
             <i class="fa fa-tachometer"></i>
             <span class="menu-item-label">Dashboard</span>

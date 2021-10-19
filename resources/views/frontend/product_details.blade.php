@@ -170,10 +170,11 @@
                             </ul>
                         </div>
                         <div class="add-review">
+
                             <h4>Add A Review?</h4>
                             @auth
                             @if (App\Order_list::where('user_id',Auth::id())->where('product_id',$product_info->id)->whereNull('review')->exists())
-                            <form method="post" action="{{ url('add/review') }}">
+                            <form method="post" action="{{ route('add.review') }}">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product_info->id }}">
                             <div class="ratting-wrap">
@@ -210,6 +211,13 @@
                                     </tbody>
                                 </table>
                             </div>
+                            @if ($errors->all())
+                                <div class="alert alert-danger">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </div>
+                            @endif
                             <div class="row">
                                 <div class="col-md-6 col-12">
                                     <h4>Name:</h4>

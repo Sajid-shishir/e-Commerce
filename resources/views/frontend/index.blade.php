@@ -16,7 +16,7 @@
                                     <div class="slider-content">
                                         <div class="slider-shape">
                                             <h2 data-swiper-parallax="-500">Amazing Foods</h2>
-                                            <p data-swiper-parallax="-400">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin</p>
+                                            <p data-swiper-parallax="-400">Would you like thousands of new customers to taste your amazing food? So would we! It's simple: we list your menu online, help you process orders, pick them up, and deliver them to hungry pandas - in a heartbeat! Interested? Let's start our partnership today! </p>
                                             <a href="#" data-swiper-parallax="-300">Shop Now</a>
                                         </div>
                                     </div>
@@ -33,7 +33,7 @@
                                     <div class="slider-content">
                                         <div class="slider-shape">
                                             <h2 data-swiper-parallax="-500">Amazing Foods</h2>
-                                            <p data-swiper-parallax="-400">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin</p>
+                                            <p data-swiper-parallax="-400">Would you like thousands of new customers to taste your amazing food? So would we! It's simple: we list your menu online, help you process orders, pick them up, and deliver them to hungry pandas - in a heartbeat! Interested? Let's start our partnership today! </p>
                                             <a href="#" data-swiper-parallax="-300">Shop Now</a>
                                         </div>
                                     </div>
@@ -50,7 +50,7 @@
                                     <div class="slider-content">
                                         <div class="slider-shape">
                                             <h2 data-swiper-parallax="-500">Amazing Foods</h2>
-                                            <p data-swiper-parallax="-400">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin</p>
+                                            <p data-swiper-parallax="-400">Would you like thousands of new customers to taste your amazing food? So would we! It's simple: we list your menu online, help you process orders, pick them up, and deliver them to hungry pandas - in a heartbeat! Interested? Let's start our partnership today! </p>
                                             <a href="#" data-swiper-parallax="-300">Shop Now</a>
                                         </div>
                                     </div>
@@ -239,13 +239,22 @@
                         <div class="product-img">
                             <span>Sale</span>
                             <img src="{{ asset('/uploads/product_thumbnail') }}/{{ $product->product_thumbnail_photo }}" alt="">
-                            {{-- <div class="product-icon flex-style">
+                            <div class="product-icon flex-style">
                                 <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
+                                    <li>
+                                        {{-- <a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);">
+                                        <i class="fa fa-eye"></i>
+                                    </a> --}}
+                                    <p><strong>Add To Cart</strong></p>
+                                    </li>
+                                    {{-- <li>
+                                        <a href="wishlist.html"><i class="fa fa-heart"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="cart.html"><i class="fa fa-shopping-bag"></i></a>
+                                    </li> --}}
                                 </ul>
-                            </div> --}}
+                            </div>
                         </div>
                         <div class="product-content">
                             <h3><a href="{{  route('product.show',$product->product_slug) }}">{{ $product->product_name }}</a></h3>
@@ -304,9 +313,9 @@
                     <div class="testmonial-active owl-carousel">
                         <div class="test-items test-items2">
                             <div class="test-content">
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical LatinContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin</p>
-                                <h2>Elizabeth Ayna</h2>
-                                <p>CEO of Woman Fedaration</p>
+                                <p>I had an incredible experience working with the brighten talented young minds in many of the events and campaigns. Their innovative approach and creative advancement have always presented an outstanding outcome in challenging tasks. On the whole, the team is more than capable of delivering what you want. I believe they will surpass your expectations</p>
+                                <h2>Sarif Neer</h2>
+                                <p>National Communication Officer, IOM Bangladesh, UN migration agency</p>
                             </div>
                             <div class="test-img2">
                                 <img src="assets/images/test/1.png" alt="">
@@ -314,9 +323,9 @@
                         </div>
                         <div class="test-items test-items2">
                             <div class="test-content">
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical LatinContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin</p>
-                                <h2>Elizabeth Ayna</h2>
-                                <p>CEO of Woman Fedaration</p>
+                                <p>Catch Bangladesh is like a Swiss knife in the world of digital & social marketing world. They always come up with a solution no matter how complex the requirement is and them with their creativity. Their agility & adaptability is what that strengthens them with soberness being their Achilles heel. Looking forward to a sustainable professional relation with Catch Bangladesh.</p>
+                                <h2>Ramin Ahmed</h2>
+                                <p>Managing Partner, Woodhouse Grill</p>
                             </div>
                             <div class="test-img2">
                                 <img src="assets/images/test/1.png" alt="">

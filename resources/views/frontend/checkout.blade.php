@@ -28,7 +28,7 @@
             <div class="col-lg-8">
                 <div class="checkout-form form-style">
                     <h3>Billing Details</h3>
-                    <form method="post" action="{{ url('checkout/post') }}">
+             <form method="post" action="{{ url('checkout/post') }}">
                         @csrf
                         <span class="lead"><span class="badge badge-success">You are logged in as: {{ Auth::user()->name }}</span></span>
                         <div class="row">
@@ -69,9 +69,9 @@
                                 <textarea  placeholder="Notes about Your Order, e.g- Special Note for Delivery" name="note" required></textarea>
                             </div>
                         </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
+                  </div>
+              </div>
+             <div class="col-lg-4">
                 <div class="order-area">
                     <h3>Your Order</h3>
                     <ul class="total-cost">
@@ -120,7 +120,7 @@
                         </li>
                     </ul>
                     @endisset
-                    </form>
+                </form>
                 </div>
             </div>
         </div>
@@ -148,7 +148,6 @@ $(document).ready(function(){
                     url:'/get/city/list',
                     data:{country_id:country_id},
                     success:function(data){
-
                         $('#city_list').html(data);
                     }
                 });

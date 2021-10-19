@@ -4,12 +4,12 @@
 @endsection
 
 @section('title')
-    Edit Product
+    Edit Item
 @endsection
 @section('breadcrumb')
     <nav class="breadcrumb sl-breadcrumb">
         <a class="breadcrumb-item" href="{{route('home')}}">Home Page</a>
-        <a class="breadcrumb-item" href="{{route('product.index')}}">Product Page</a>
+        <a class="breadcrumb-item" href="{{route('product.index')}}">Item Page</a>
         <a class="breadcrumb-item" >{{ $product->product_name }}</a>
     </nav>
 @endsection
@@ -19,7 +19,7 @@
         <div class="col-md-8 m-auto">
             <div class="card">
                 <div class="card-header">
-                    Edit Product
+                    Edit Item
                 </div>
                 @can('edit category')
                 <div class="card-body">
@@ -44,19 +44,19 @@
                             </select>
                           </div>
                         <div class="form-group">
-                          <label>Product Name</label>
+                          <label> Name</label>
                           <input type="text" class="form-control" placeholder="Enter your category Name" name="product_name" value="{{ $product->product_name }}">
                         </div>
                         <div class="form-group">
-                            <label>Product Price</label>
+                            <label> Price</label>
                             <input type="text" class="form-control" placeholder="Enter your category Name" name="product_price" value="{{ $product->product_price }}">
                           </div>
                           <div class="form-group">
-                            <label>Product Quantity</label>
+                            <label> Quantity</label>
                             <input type="text" class="form-control" placeholder="Enter your category Name" name="quantity" value="{{ $product->quantity }}">
                           </div>
                         <div class="form-group">
-                            <label>Product Thumbnail Photo</label>
+                            <label> Thumbnail Photo</label>
                             <input type="file" class="form-control" name="product_thumbnail_photo">
                           </div>
                         <button type="submit" class="btn btn-warning">Update</button>

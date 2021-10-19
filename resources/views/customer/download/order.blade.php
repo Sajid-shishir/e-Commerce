@@ -19,37 +19,45 @@
                     <div class="card-body p-0">
                         <div class="row p-5">
                             <div class="col-md-6 text-right">
-                                <span class="text-center">Catch Food Online- Receipt</span>
-                                <p class="font-weight-bold mb-1">Invoice #{{ $order_info->id }}/{{ Str::random(6) }}</p>
-                                <p class="text-muted">Date: {{ \Carbon\Carbon::now()->format('d-m-Y') }}</p>
+                                <p class="font-weight-bold mb-1">Invoice #{{ $order_info->id }}-{{ uniqid() }}</p>
+                                <p class="text-muted">Date: {{ \Carbon\Carbon::now()->format('l jS \\of F Y h:i:s A') }}</p>
                             </div>
                         </div>
                         <hr class="my-5">
                         <div class="row pb-5 p-5">
                             <div class="col-md-6">
                                 {{-- <p class="font-weight-bold mb-4">Order ID: {{ $order_info->id }}</p> --}}
-<<<<<<< HEAD
+
                                 <p class="font-weight-bold mb-4">Purchase Date: {{ $order_info->created_at->format('d/m/Y H:i:s A') }}</p>
-=======
+
                                 {{-- <p class="font-weight-bold mb-4">Purchase Date: {{ $order_info->created_at->format('d/m/Y H:i:s A') }}</p> --}}
->>>>>>> testing
+
+
                                 <p class="mb-1">Name: {{ $order_info->full_name }}</p>
                                 <p class="mb-1">Address: {{ $order_info->address }}</p>
                                 <p class="mb-1">City: {{ $order_info->relationtocity->city_name }}</p>
                                 <p class="mb-1">Email: {{ $order_info->email_address }}</p>
                                 <p class="mb-1">Phone: {{ $order_info->phone_number }}</p>
                                 <p class="mb-1">Coupon Name: {{ $order_info->coupon_name ??  "Null" }}</p>
-<<<<<<< HEAD
-                                <p class="mb-1">Total: {{ $order_info->total }}/-</p>
-=======
-                                <p class="mb-1">Total: {{ $order_info->amount }}/-</p>
->>>>>>> testing
-                            </div>
 
+                                <p class="mb-1">Total: {{ $order_info->total }}/-</p>
+
+                                <p class="mb-1">Total: {{ $order_info->amount }}/-</p>
+
+
+                                <p class="mb-1"><strong>Order ID: </strong> {{ $order_info->order_id }}</p>
+                                <p class="mb-1"><strong>Name: </strong> {{ $order_info->full_name }}</p>
+                                <p class="mb-1"><strong>Address: </strong> {{ $order_info->address }}</p>
+                                <p class="mb-1"><strong>City: </strong> {{ $order_info->relationtocity->city_name }}</p>
+                                <p class="mb-1"><strong>Email: </strong> {{ $order_info->email_address }}</p>
+                                <p class="mb-1"><strong>Phone: </strong> {{ $order_info->phone_number }}</p>
+                                <p class="mb-1"><strong>Coupon Used: </strong> {{ $order_info->coupon_name ?? Null }}</p>
+
+                            </div>
                             <div class="col-md-6 text-right">
-                                <p class="font-weight-bold mb-4">Payment Details</p>
+                                <p class="font-weight-bold mb-4">Payment Details-</p>
                                 @if ( $order_info->payment_method == 2 )
-                                <p class="mb-1"><span class="text-muted"><strong>Type: </strong></span>Card</p>
+                                <p class="mb-1"><span class="text-muted"><strong>Type: </strong></span>Online</p>
                                 <p class="mb-1"><span class="text-muted"><strong>Status: </strong></span>Paid</p>
                                 @else
                                 <p class="mb-1"><span class="text-muted"><strong>Type: </strong></span>Cash on delivery</p>
@@ -57,52 +65,50 @@
                                 @endif
                             </div>
                         </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p class="mb-1"><strong>Item-</strong>
+                                            @foreach ($product as $item)
+                                            <br>
+                                            {{ $item }}/-
 
-                        <div class="row p-5">
-                            <div class="col-md-12">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            {{-- <th class="border-0 text-uppercase small font-weight-bold">ID</th> --}}
-                                            <th class="border-0 text-uppercase small font-weight-bold">Item</th>
-                                            {{-- <th class="border-0 text-uppercase small font-weight-bold">Description</th>
-                                            <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
-                                            <th class="border-0 text-uppercase small font-weight-bold">Unit Cost</th>
-                                            <th class="border-0 text-uppercase small font-weight-bold">Total</th> --}}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                            @endforeach
+                                        </p>
+                                    </td>
+                                    <br>
+                                    <td>
+                                        <p class="mb-1"><strong>Quantity-</strong>
+                                            @foreach ($data2 as $v)
+                                            <br>
+                                           {{ $v }} x
 
-                                        <tr>
-                                            {{-- <td>1</td> --}}
-                                            <td>{{ $product->product_name }}</td>
-                                            {{-- <td>LTS Versions</td>
-                                            <td>21</td>
-                                            <td>$321</td>
-                                            <td>$3452</td> --}}
-                                        </tr>
+                                            @endforeach
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="mb-1"><strong>Price-</strong>
+                                            @foreach ($price as $p)
+                                            <br>
+                                            {{ $p }}/-
 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-row-reverse bg-dark text-white p-4">
-                            <div class="py-3 px-5 text-right">
-                                <div class="mb-2">Grand Total</div>
-                                <div class="h2 font-weight-light">$234,234</div>
-                            </div>
-
-                            <div class="py-3 px-5 text-right">
-                                <div class="mb-2">Discount</div>
-                                <div class="h2 font-weight-light">10%</div>
-                            </div>
-
-                            <div class="py-3 px-5 text-right">
-                                <div class="mb-2">Sub - Total amount</div>
-                                <div class="h2 font-weight-light">$32,432</div>
-                            </div>
-                        </div>
+                                            @endforeach
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <p class="mb-1"><strong>Total: </strong> {{ $order_info->amount }}/-</p>
+                            <br>
+                        </table>
+                        <p class="mb-1"><strong>Thank you </strong></p>
                     </div>
                 </div>
             </div>

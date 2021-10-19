@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Stripe;
 use App\Order;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\payment;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Carbon;
 use App\Order_list;
 use App\Product;
@@ -31,6 +33,7 @@ class StripePaymentController extends Controller
         Stripe\Charge::create ([
                 "amount" => $request->amount * 100,
                 "currency" => "INR",
+                // "currency" => "cve", Application fees for destination charges and converting balances
                 "source" => $request->stripeToken,
                 "description" => "Test payment from Catch Food Online"
 
@@ -58,6 +61,8 @@ class StripePaymentController extends Controller
         ]);
         // print_r($request->phone_number);
         // die();
+                    Mail::to(Auth::user()->email)->send(new payment());
+
                     $url = "http://66.45.237.70/api.php";
                     $number=$request->phone_number;
                     $text="Hello, Dear ".$request->full_name.". Your Transaction Id: ".uniqid().". Total Payment Done: ".$request->amount. " TK,  Thank You";
@@ -102,7 +107,7 @@ class StripePaymentController extends Controller
      }
      catch(\Stripe\Exception\CardException $e) {
         // Since it's a decline, \Stripe\Exception\CardException will be caught
-        session()->flash('error', 'Something Wrong, Please check your card number!');
+        session()->flash('error', 'Something Went Wrong, Please check your card number!');
         return redirect('/cart');
         echo 'Status is:' . $e->getHttpStatus() . '\n';
         echo 'Type is:' . $e->getError()->type . '\n';

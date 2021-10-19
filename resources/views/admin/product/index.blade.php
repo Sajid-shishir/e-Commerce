@@ -4,12 +4,12 @@
 @endsection
 
 @section('title')
-    Add Product
+    Add Item
 @endsection
 @section('breadcrumb')
     <nav class="breadcrumb sl-breadcrumb">
         <a class="breadcrumb-item" href="{{route('home')}}">Home Page</a>
-        <a class="breadcrumb-item" href=""> Add Product Page</a>
+        <a class="breadcrumb-item" href=""> Add Item Page</a>
     </nav>
 @endsection
 @section('content')
@@ -30,12 +30,12 @@
                         <thead>
                             <tr>
                                 <th>SL No</th>
-                                <th>Product Name</th>
-                                <th>Product Price</th>
-                                <th>Product Quantity</th>
-                                <th>Product Category</th>
-                                <th>Product Thumbnail Photo</th>
-                                <th>Product multiple Photo</th>
+                                <th>Item Name</th>
+                                <th>Item Price</th>
+                                <th>Item Quantity</th>
+                                <th>Item Category</th>
+                                <th>Thumbnail Photo</th>
+                                <th>Multiple Photo</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -89,7 +89,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    Add Product
+                    Add Item
                 </div>
                 @can('add product')
                 <div class="card-body">
@@ -115,31 +115,31 @@
                             </select>
                           </div>
                         <div class="form-group">
-                          <label>Product Name</label>
+                          <label>Name</label>
                           <input type="text" class="form-control" name="product_name" value="{{ old('product_name') }}">
                         </div>
                         <div class="form-group">
-                          <label>Product Price</label>
+                          <label>Price</label>
                           <input type="text" class="form-control" name="product_price" value="{{ old('product_price') }}">
                         </div>
                         <div class="form-group">
-                          <label>Product Quantity</label>
+                          <label>Quantity</label>
                           <input type="text" class="form-control @error('name') border-red-500 @enderror"  name="quantity" value="{{ old('quantity') }}">
                         </div>
                         <div class="form-group">
-                          <label>Product Short Description</label>
+                          <label>Short Description</label>
                           <textarea name="product_short_desc" class="form-control"  rows="4" value="">{{ old('product_short_desc') }}</textarea>
                         </div>
                         <div class="form-group">
-                          <label>Product Long Description</label>
+                          <label>Long Description</label>
                           <textarea name="product_long_desc" class="form-control"  rows="4" value="">{{ old('product_long_desc') }}</textarea>
                         </div>
                         <div class="form-group">
-                            <label>Product Thumbnail Photo</label>
+                            <label>Thumbnail Photo</label>
                             <input type="file" class="form-control" name="product_thumbnail_photo" value="{{ old('product_thumbnail_photo') }}">
                           </div>
                           <div class="form-group">
-                            <label>Product Multiple Photos</label>
+                            <label>Multiple Photos</label>
                             <input required type="file" class="form-control" name="product_multiple_photos[]" multiple>
                           </div>
                         <button type="submit" class="btn btn-success">Add</button>

@@ -1,4 +1,7 @@
 @extends('layouts.dashboard')
+@section('cus_home')
+    active
+@endsection
 
 
 @section('content')
@@ -72,6 +75,7 @@
                                     @endif
                                     <td>৳ {{ $customer_order->sub_total}}</td>
                                     <td>৳ {{ $customer_order->amount}}</td>
+
                                     @if($customer_order->created_at)
                                     <td style="color: green">{{ $customer_order->created_at->toDayDateTimeString() }}</td>
                                     @else
