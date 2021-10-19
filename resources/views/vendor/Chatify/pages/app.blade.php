@@ -5,8 +5,7 @@
         {{-- Header and search bar --}}
         <div class="m-header">
             <nav>
-                {{-- <a href="#"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">MESSAGES</span> </a> --}}
-                <a href="{{ url('/home') }}"><i class="fas fa-user"></i> <span>{{ Auth::user()->name}}</span> </a>
+                <a href="#"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">MESSAGES</span> </a>
                 {{-- header buttons --}}
                 <nav class="m-header-right">
                     <a href="#"><i class="fas fa-cog settings-btn"></i></a>
@@ -30,14 +29,16 @@
            <div class="@if($route == 'user') show @endif messenger-tab app-scroll" data-view="users">
 
                {{-- Favorites --}}
-               <p class="messenger-title">Favorites</p>
+               <div class="favorites-section">
+                <p class="messenger-title">Favorites</p>
                 <div class="messenger-favorites app-scroll-thin"></div>
+               </div>
 
                {{-- Saved Messages --}}
                {!! view('Chatify::layouts.listItem', ['get' => 'saved','id' => $id])->render() !!}
 
                {{-- Contact --}}
-               <div class="listOfContacts" style="width: 100%;height: calc(100% - 200px);"></div>
+               <div class="listOfContacts" style="width: 100%;height: calc(100% - 200px);position: relative;"></div>
 
            </div>
 
@@ -52,7 +53,7 @@
                 {{-- items --}}
                 <p class="messenger-title">Search</p>
                 <div class="search-records">
-                    <p class="message-hint"><span>Type to search..</span></p>
+                    <p class="message-hint center-el"><span>Type to search..</span></p>
                 </div>
              </div>
         </div>
@@ -73,7 +74,7 @@
                 {{-- header buttons --}}
                 <nav class="m-header-right">
                     <a href="#" class="add-to-favorite"><i class="fas fa-star"></i></a>
-                    <a href="{{ route('home') }}"><i class="fas fa-home"></i></a>
+                    <a href="/"><i class="fas fa-home"></i></a>
                     <a href="#" class="show-infoSide"><i class="fas fa-info-circle"></i></a>
                 </nav>
             </nav>
@@ -87,7 +88,7 @@
         {{-- Messaging area --}}
         <div class="m-body app-scroll">
             <div class="messages">
-                <p class="message-hint" style="margin-top: calc(30% - 126.2px);"><span>Please select a chat to start messaging</span></p>
+                <p class="message-hint center-el"><span>Please select a chat to start messaging</span></p>
             </div>
             {{-- Typing indicator --}}
             <div class="typing-indicator">

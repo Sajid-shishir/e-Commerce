@@ -2,6 +2,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SslCommerzPaymentController;
+// use App\Http\Controllers\vendor\Chatify\MessagesController;
+
 
 
 Route::get('/', 'FrontendController@index');
