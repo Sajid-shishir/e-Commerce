@@ -23,7 +23,7 @@ Route::get('blog_delete/{blog_id}', 'BlogController@blog_delete');
 Route::get('blog_edit/{blog_id}', 'BlogController@blog_edit');
 Route::post('blog_edit_post', 'BlogController@blog_edit_post')->name('blog_edit_post');
 
-Route::get('/shop', 'FrontendController@shop');
+Route::get('/shop', 'FrontendController@shop')->name('shop');
 Route::get('/search', 'FrontendController@search');
 
 Auth::routes(['verify' => true]);

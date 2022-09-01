@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-    protected $fillable =['amounts'];
+    protected $fillable =['amount'];
 
     function relationtoproducttable(){
 

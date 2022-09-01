@@ -52,9 +52,12 @@ active
                                 <td class="ptice">৳ {{ $cart_product->relationtoproducttable->product_price }}</td>
 
                                 <input type="hidden" value="{{ $cart_product->id }}" name="cart_id[]" />
-                                <td class="quantity">
-                                    <input type="text" value="{{ $cart_product->amount }}" name="cart_quantity[]" />
+                                                       
+                                 <td class="quantity">
+                                    <input type="number" min="1" value="{{ $cart_product->amount }}" name="cart_quantity[]" />
                                 </td>
+                            
+
                                 <td class="total">৳ {{ $cart_product->relationtoproducttable->product_price * $cart_product->amount }}
                                 </td>
 
@@ -70,9 +73,9 @@ active
                         <div class="col-xl-4 col-lg-5 col-md-6 ">
                             <div class="cartcupon-wrap">
                                 <ul class="d-flex">
-                                    {{-- <li>
+                                    <li>
                                         <button>Update Cart</button>
-                                    </li> --}}
+                                    </li>
                                     <li>
                                         <a href="{{ url('/') }}">Continue Shopping</a></li>
                                 </ul>
