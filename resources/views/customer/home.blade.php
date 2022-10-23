@@ -26,7 +26,7 @@
                                 <tr>
                                     <th scope="col">Sl No:</th>
                                     <th scope="col">Order ID:</th>
-                                    {{-- <th scope="col">Product ID:</th> --}}
+                                    <th scope="col">Product ID:</th>
                                     <th scope="col">Full Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Address</th>
@@ -42,11 +42,11 @@
                                 <tr>
                                     <td>{{ $customer_orders->firstItem()+$loop->index}}</td>
                                     <td>{{ $customer_order->id}}</td>
-                                    {{-- <td>{{ App\Order_list::find($customer_order->user_id)->amount }}</td> --}}
+                                    <td>{{ App\Order_list::find($customer_order->user_id)->amount }}</td>
                                     <td>{{ $customer_order->full_name}}</td>
                                     <td>{{ $customer_order->email_address}}</td>
                                     <td>{{ $customer_order->address}}</td>
-<<<<<<< HEAD
+
                                     @if( $customer_order->paid_status == 1)
                                     <td>
                                         <span class="badge badge-light">Cash on delivery</span>
@@ -59,7 +59,7 @@
                                     <td>৳ {{ $customer_order->sub_total}}</td>
                                     <td>৳ {{ $customer_order->total}}</td>
                                     <td>{{ $customer_order->created_at->format('d/m/Y H:i:s A') }}</td>
-=======
+
                                     @if( $customer_order->status == 1)
                                     <td>
                                         <span class="badge badge-light">Cash on delivery</span>
@@ -81,7 +81,7 @@
                                     @else
                                     <td style="color: red">Processing</td>
                                     @endif
->>>>>>> testing
+
                                     <td>
                                         <a href="{{ url('order/download') }}/{{ $customer_order->id }}" class="btn btn-dark btn-sm">Download</a>
                                     </td>

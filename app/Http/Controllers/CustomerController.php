@@ -31,12 +31,20 @@ class CustomerController extends Controller
     }
 
      function homecustomer(){
+       
 
-       $customer_orders = Order::where('user_id',Auth::id())->orderBy('id','desc')->paginate(5);
+
+       $customer_orders = Order::with(['city','user'])->where('user_id',Auth::id())->orderBy('id','desc')->get();
+    //    $customer_orders = Order::with(['city','user'])->join('users','orders.user_id','=','users.id')
+                        //   ->get(['users.*', 'orders.currency']);
     //    $customer_orders =Order::paginate(10);
-        $product_info = Order_list::where('product_id')->get();
-        return view('customer.home',compact('customer_orders','product_info'));
-
+        // $product_info = Order_list::all();
+        // return view('customer.home',compact('customer_orders'));
+        // return $customer_orders->toJson();
+        $array = json_decode($customer_orders, true);
+//  create a new collection instance from the array
+      return collect($array);
+        // return response()->json($customer_orders);
     }
 
     function orderdownload($order_id){

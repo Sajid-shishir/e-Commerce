@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\vendor\Chatify\MessagesController;
 
+Route::get('/u', 'HomeController@u');
+
+
 Route::get('/', 'FrontendController@index');
 Route::get('/contact', 'FrontendController@contact');
 Route::get('/about', 'FrontendController@about');

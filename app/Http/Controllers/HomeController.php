@@ -15,7 +15,7 @@ use App\Charts\WeeklySaleChart;
 use App\Charts\PaymentMethodChart;
 use App\Order;
 use Carbon\Carbon;
-
+use App\Category;
 class HomeController extends Controller
 {
     /**
@@ -106,8 +106,10 @@ class HomeController extends Controller
             return view('admin.report');
     }
 
-    // public function report(){
-    //         return view('admin.report');
-    // }
+    public function u(){
+        $total_users = Category::orderBy('id')->get();
+        $array = json_decode($total_users, true);
+        return collect($array);
+    }
 
 }

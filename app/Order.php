@@ -23,12 +23,21 @@ class Order extends Model
     'transaction_id'];
 
 
-    function relationtocity(){
+   public function relationtocity(){
         return $this->belongsTo('App\City','city_id',);
+    }
+   public function city(){
+        return $this->belongsTo('App\City','city_id',);
+    }
+   public function relationtocountry(){
+        return $this->belongsTo('App\Country','country_id',);
     }
 
     function relationtoproduct(){
         return $this->belongsToMany('App\Order_list');
+    }
+    function user(){
+        return $this->belongsTo('App\User');
     }
      
 
