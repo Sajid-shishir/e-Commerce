@@ -70,7 +70,6 @@ class ProductController extends Controller
         ]);
 
         $product_slug =Str::slug($request->product_name.'-'.Carbon::now()->timestamp);
-        // echo Str::slug('dsadasdas sfsd fdas 33');
         $product_id = Product::insertGetId([
 
             'category_id'=>$request->category_id,
