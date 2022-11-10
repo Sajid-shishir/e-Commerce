@@ -13,10 +13,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\payment;
 use Illuminate\Support\Facades\Mail;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Library\SslCommerz\SslCommerzNotification;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Str;
+use Illuminate\Support\Str;
 
 class CheckoutController extends Controller
 {
@@ -44,7 +44,7 @@ class CheckoutController extends Controller
                 'created_at' => Carbon::now()
             ]);
 
-                Mail::to(Auth::user()->email)->send(new payment());
+                // Mail::to(Auth::user()->email)->send(new payment());
 
                 $url = "http://66.45.237.70/api.php";
                 $number=$request->phone_number;
@@ -73,7 +73,7 @@ class CheckoutController extends Controller
                 'order_id' => $order_id,
                 'product_id' => $cart_product->product_id,
                 'amount' =>$cart_product->amount,
-                // 'star' =>$cart_product->default(0),
+                'star' => 5,
                 'created_at' => Carbon::now()
                 ]);
 
@@ -103,7 +103,7 @@ class CheckoutController extends Controller
             ]);
 
         }
-        
+
 
     }
 

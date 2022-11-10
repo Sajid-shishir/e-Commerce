@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+
         function cart_total_products(){
 
             return App\Cart::where('ip_address', request()->ip())->count();
@@ -7,8 +9,9 @@
 
         function cart_products(){
 
-            return App\Cart::where('ip_address', request()->ip())->get();
-            // return App\Cart::where('id', request())->get();
+             return App\Cart::where('ip_address', request()->ip())->get();
+//            return App\Cart::where('id')->first();
+
         }
         function itemlist(){
 
@@ -40,6 +43,8 @@
             if(!App\Order_list::where('product_id',$product_id)->exists()){
             return 0;
              }
+
+
              else{
                  $star_amount = (App\Order_list::where('product_id',$product_id)->where('star','!=',0)->sum('star')) / (App\Order_list::where('product_id',$product_id)->where('star','!=',0)->count());
                 return ceil($star_amount);

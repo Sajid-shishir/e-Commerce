@@ -79,7 +79,7 @@ active
                                     <li>
                                         <a href="{{ url('/') }}">Continue Shopping</a></li>
                                 </ul>
-                            </form>
+                </form>
                             <br>
                                 <h3>Coupon</h3>
                                 <p>Enter Your Coupon Code</p>

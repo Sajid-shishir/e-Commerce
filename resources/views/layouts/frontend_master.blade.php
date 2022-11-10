@@ -102,55 +102,12 @@
                                 <li class="@yield('blog')"><a href="{{ url('blog') }}">Blog</a></li>
                                 <li class="@yield('faq')"><a href="{{ url('faq') }}">FAQ</a></li>
                                 <li class="@yield('contact')"><a href="{{ url('contact') }}">Contact</a></li>
-                                {{-- <li class="@yield('about')"><a href="{{ url('about') }}">About</a></li> --}}
-                                {{-- <li>
-                                    <a href="javascript:void(0);">Pages <i class="fa fa-angle-down"></i></a>
-                                    <ul class="dropdown_style">
-                                        <li><a href="#">About Page</a></li>
-                                        <li><a href="#">Product Details</a></li>
-                                        <li><a href="#">Shopping cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="#">Wishlist</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                    </ul>
-                                </li> --}}
                             </ul>
                         </nav>
                     </div>
                     <div class="col-md-4 col-lg-2 col-sm-5 col-4">
                         <ul class="search-cart-wrapper d-flex">
                             <li class="search-tigger"><a href="javascript:void(0);"><i class="flaticon-search"></i></a></li>
-                            {{-- <li>
-                                <a href="javascript:void(0);"><i class="flaticon-like"></i> <span>2</span></a>
-                                <ul class="cart-wrap dropdown_style">
-                                    <li class="cart-items">
-                                        <div class="cart-img">
-                                            <img src="assets/images/cart/1.jpg" alt="">
-                                        </div>
-                                        <div class="cart-content">
-                                            <a href="cart.html">Pure Nature Product</a>
-                                            <span>QTY : 1</span>
-                                            <p>$35.00</p>
-                                            <i class="fa fa-times"></i>
-                                        </div>
-                                    </li>
-                                    <li class="cart-items">
-                                        <div class="cart-img">
-                                            <img src="assets/images/cart/3.jpg" alt="">
-                                        </div>
-                                        <div class="cart-content">
-                                            <a href="cart.html">Pure Nature Product</a>
-                                            <span>QTY : 1</span>
-                                            <p>$35.00</p>
-                                            <i class="fa fa-times"></i>
-                                        </div>
-                                    </li>
-                                    <li>Subtotol: <span class="pull-right">$70.00</span></li>
-                                    <li>
-                                        <button>Check Out</button>
-                                    </li>
-                                </ul>
-                            </li> --}}
                             <li>
                                 <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>
                                     {{ cart_total_products() }}
