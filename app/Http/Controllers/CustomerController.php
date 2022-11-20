@@ -34,12 +34,12 @@ class CustomerController extends Controller
        
 
 
-    //    $customer_orders = Order::with(['city','user'])->where('user_id',Auth::id())->orderBy('id','desc')->get();
+       $customer_orders = Order::with(['city','user'])->where('user_id',Auth::id())->orderBy('id','desc')->get();
     //    $customer_orders = Order::with(['city','user'])->join('users','orders.user_id','=','users.id')
                         //   ->get(['users.*', 'orders.currency']);
     //    $customer_orders =Order::all();
     
-    $customer_orders = Order::where('user_id',Auth::id())->orderBy('id','desc')->paginate(5);
+    // $customer_orders = Order::where('user_id',Auth::id())->orderBy('id','desc')->paginate(5);
     $product_info = Order_list::where('product_id')->get();
     return view('customer.home',compact('customer_orders','product_info'));
         // $product_info = Order_list::all();
