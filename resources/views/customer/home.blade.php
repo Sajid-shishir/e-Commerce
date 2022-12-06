@@ -40,7 +40,7 @@
                             <tbody >
                                 @foreach($customer_orders as $index=> $customer_order)
                                 <tr>
-                                    <td>{{ $customer_orders->firstItem()+$loop->index}}</td>
+                                    {{-- <td>{{ $customer_orders->firstItem()+$loop->index}}</td> --}}
                                     <td>{{ $customer_order->id}}</td>
                                     {{-- <td>{{ App\Order_list::find($customer_order->user_id)->amount }}</td> --}}
                                     <td>{{ $customer_order->full_name}}</td>
@@ -89,7 +89,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $customer_orders->links() }}
+                        {{-- {{ $customer_orders->links() }} --}}
                 </div>
 
 
